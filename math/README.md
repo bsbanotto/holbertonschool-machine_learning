@@ -1,0 +1,1 @@
+This Directory contains files for learning math as required for machine learning cirruculum
