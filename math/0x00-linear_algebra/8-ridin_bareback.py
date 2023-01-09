@@ -1,4 +1,4 @@
-#!/usr/bin/eng python3
+#!/usr/bin/env python3
 """
 This file does matrix multiplication
 """
