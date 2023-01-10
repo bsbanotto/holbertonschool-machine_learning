@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+This module combines charts from 0 thru 4 to one output
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 

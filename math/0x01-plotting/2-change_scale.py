@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+This module produces a semilog plot
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 
