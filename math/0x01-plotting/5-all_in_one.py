@@ -65,7 +65,7 @@ ax11.legend()
 """Bottom Histogram"""
 ax20 = fig.add_subplot(spec[2, :])
 ax20.hist(student_grades, facecolor="#348CC4", edgecolor="black",
-         bins=range(0, 101, 10), linewidth=0.75)
+          bins=range(0, 101, 10), linewidth=0.75)
 ax20.set_xlim(0, 100)
 ax20.set_xticks(ticks=range(0, 101, 10))
 ax20.set_ylim(0, 30)
