@@ -8,4 +8,6 @@ def summation_i_squared(n):
     """
     given 'n', sum of i^2 from 1 to n
     """
-    return(sum(i * i for i in range(1, n + 1)))
+    if (n < 1):
+        return None
+    return sum(map(lambda n : n * n, range(1, n + 1)))
