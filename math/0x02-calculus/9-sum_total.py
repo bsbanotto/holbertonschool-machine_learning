@@ -10,4 +10,4 @@ def summation_i_squared(n):
     """
     if (n < 1):
         return None
-    return sum(map(lambda n : n * n, range(1, n + 1)))
+    return sum(map(lambda n: n * n, range(1, n + 1)))
