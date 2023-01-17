@@ -10,9 +10,9 @@ def poly_integral(poly, C=0):
     The integration constant is given as C
     """
     return_poly = []
-    if(type(poly) == list) and len(poly) == 1:
+    if(poly[0] ==0):
         return_poly.append(C)
-    elif(type(poly) == list) and len(poly) > 1:
+    elif(type(poly) == list) and len(poly) >= 1:
         return_poly = []
         return_poly.append(C)
         for i in range(0, len(poly)):
