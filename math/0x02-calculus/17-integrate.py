@@ -9,7 +9,10 @@ def poly_integral(poly, C=0):
     Given a polynomial, determine the coefficients of the integral
     The integration constant is given as C
     """
-    if(type(poly) == list) and len(poly) > 0:
+    return_poly = []
+    if(type(poly) == list) and len(poly) == 1:
+        return_poly.append(C)
+    elif(type(poly) == list) and len(poly) > 1:
         return_poly = []
         return_poly.append(C)
         for i in range(0, len(poly)):
@@ -17,6 +20,6 @@ def poly_integral(poly, C=0):
             if (float(append_value) == int(append_value)):
                 append_value = int(append_value)
             return_poly.append(append_value)
-        return (return_poly)
     else:
         return None
+    return (return_poly)
