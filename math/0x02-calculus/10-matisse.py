@@ -11,7 +11,7 @@ def poly_derivative(poly):
     """
     if len(poly) == 1:
         return 0
-    if(type(poly) == list) or len(poly) > 0:
+    if(type(poly) == list) or len(poly) > 1:
         return_list = []
         for i in range(1, len(poly)):
             return_list.append(poly[i] * i)
