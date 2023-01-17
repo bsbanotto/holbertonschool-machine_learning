@@ -9,8 +9,6 @@ def poly_derivative(poly):
     poly is a list of coefficients representing a polynomial
     return the derivative
     """
-    if len(poly) == 1:
-        return [0]
     if(type(poly) == list) and len(poly) > 1:
         return_list = []
         for i in range(1, len(poly)):
