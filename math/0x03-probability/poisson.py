@@ -29,8 +29,19 @@ class Poisson:
     def pmf(self, k):
         """
         Calculates the probablity mass function (pmf)
+        ((lambtha^k)*(e^-lambtha))/(k!)
         """
+        def factorial(number):
+            """
+            Returns the factorial of a given number
+            """
+            factorial = 1
+            for i in range(1, number + 1):
+                factorial = factorial * i
+            return factorial
+
         self.k = int(k)
         if k < 0:
             return 0
-        
+        return ((self.lambtha ** self.k * e ** (self.lambtha * -1))
+                / factorial(k))
