@@ -24,4 +24,13 @@ class Poisson:
             if len(data) <= 1:
                 raise ValueError("data must contain multiple values")
             else:
-                self.lambtha = """calculate lambtha here"""
+                self.lambtha = sum(data)/len(data)
+
+    def pmf(self, k):
+        """
+        Calculates the probablity mass function (pmf)
+        """
+        self.k = int(k)
+        if k < 0:
+            return 0
+        
