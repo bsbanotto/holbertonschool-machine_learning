@@ -23,3 +23,5 @@ class Poisson:
                 raise TypeError("data must be a list")
             if len(data) <= 1:
                 raise ValueError("data must contain multiple values")
+            else:
+                self.lambtha = """calculate lambtha here"""
