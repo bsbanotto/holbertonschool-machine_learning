@@ -44,4 +44,4 @@ class Poisson:
         if k < 0:
             return 0
         return ((self.lambtha ** self.k * e ** (self.lambtha * -1))
-                / factorial(k))
+                / factorial(self.k))
