@@ -21,8 +21,9 @@ class Binomial:
                 raise ValueError("n must be a positive value")
             if p <= 0 and p >= 1:
                 raise ValueError("p must be greater than 0 and less than 1")
-        if type(data) is not list:
-            raise TypeError("data must be a list")
-        if len(data) <= 1:
-            raise ValueError("data must contain multiple values")
+        else:
+            if type(data) is not list:
+                raise TypeError("data must be a list")
+            if len(data) <= 1:
+                raise ValueError("data must contain multiple values")
         
