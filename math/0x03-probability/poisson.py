@@ -51,6 +51,8 @@ class Poisson:
         Calculates the Cumulative Distribution Function (cdf)
         e ^ -lambtha * summation(lambtha^j/j!) where j is 0 to k
         """
+        self.k = int(k)
+
         def factorial(number):
             """
             Returns the factorial of a given number
@@ -65,9 +67,8 @@ class Poisson:
             Calculates the summation of (lambtha^j)/j! from 0 to j=k
             """
             return sum(map(lambda k: self.lambtha ** k / factorial(k),
-                       range(0, k + 1)))
+                       range(0, self.k + 1)))
 
-        self.k = int(k)
         if k < 0:
             return 0
         return (e ** (-1 * self.lambtha) * poisson_cdf_summation(k))
