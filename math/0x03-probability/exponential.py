@@ -23,8 +23,7 @@ class Exponential:
                 raise TypeError("data must be a list")
             if len(data) <= 1:
                 raise ValueError("data must contain multiple values")
-            else:
-                self.lambtha = len(data)/sum(data)
+            self.lambtha = len(data)/sum(data)
 
     def pdf(self, x):
         """
@@ -34,8 +33,7 @@ class Exponential:
         """
         if x >= 0:
             return (self.lambtha * e ** ((-1 * self.lambtha) * x))
-        else:
-            return 0
+        return 0
 
     def cdf(self, x):
         """
@@ -45,5 +43,4 @@ class Exponential:
         """
         if x >= 0:
             return (1 - e ** ((-1 * self.lambtha) * x))
-        else:
-            return 0
+        return 0
