@@ -60,13 +60,13 @@ class Normal:
         see this link for the formula
         https://en.wikipedia.org/wiki/Normal_distribution
         """
-        x = (x - self.mean) / ((self.stddev * (2 ** .5)))
+        y = (x - self.mean) / ((self.stddev * (2 ** .5)))
         coeff = 2 / (pi ** .5)
-        num1 = x
-        num2 = (x ** 3) / 3
-        num3 = (x ** 5) / 10
-        num4 = (x ** 7) / 42
-        num5 = (x ** 9) / 216
+        num1 = y
+        num2 = (y ** 3) / 3
+        num3 = (y ** 5) / 10
+        num4 = (y ** 7) / 42
+        num5 = (y ** 9) / 216
         er = (coeff * (num1 - num2 + num3 - num4 + num5))
 
         return (.5 * (1 + er))
