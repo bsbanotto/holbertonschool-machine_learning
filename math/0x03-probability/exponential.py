@@ -32,7 +32,7 @@ class Exponential:
         if x is out of range(x <= 0), return 0
         pdf = lambtha * e^(-lambtha*x)
         """
-        if x > 0:
-            return (self.lambtha * e ** (-1 * self.lambtha) * x)
+        if x >= 0:
+            return (self.lambtha * e ** ((-1 * self.lambtha) * x))
         else:
             return 0
