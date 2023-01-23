@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This module contains the Poisson class
+This module defines the poisson distribution
 """
 pi = 3.1415926536
 e = 2.7182818285
