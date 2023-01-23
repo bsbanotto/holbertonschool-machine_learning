@@ -29,10 +29,21 @@ class Exponential:
     def pdf(self, x):
         """
         Calculates the probability density function for time period 'x'
-        if x is out of range(x <= 0), return 0
-        pdf = lambtha * e^(-lambtha*x)
+        if x is out of range(x < 0), return 0
+        pdf = lambtha * e ^ (-1 * lambtha * x)
         """
         if x >= 0:
             return (self.lambtha * e ** ((-1 * self.lambtha) * x))
+        else:
+            return 0
+
+    def cdf(self, x):
+        """
+        Calculates the cumulative distribution function for time period 'x'
+        if x is out of range(x < 0), return 0
+        cdf = 1 - e ^ ( -1 * lambtha * x)
+        """
+        if x >= 0:
+            return (1 - e ** ((-1 * self.lambtha) * x))
         else:
             return 0
