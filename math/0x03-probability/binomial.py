@@ -43,7 +43,7 @@ class Binomial:
         (n|k) * p^k * (1-p)^(n-k))
         """
         k = int(k)
-        if k <= 0:
+        if k < 0 or k > self.n:
             return 0
 
         def factorial(number):
