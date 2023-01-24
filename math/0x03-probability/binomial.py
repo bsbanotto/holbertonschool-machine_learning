@@ -62,3 +62,15 @@ class Binomial:
         val1 = self.p ** k
         val2 = (1-self.p) ** exp
         return (coeff * val1 * val2)
+
+    def cdf(self, k):
+        """
+        Calculates the cumulative distribution function for a value k
+        """
+        k = int(k)
+        if k < 0 or k > self.n:
+            return 0
+        value = 0
+        for i in range(0, k + 1):
+            value = value + (self.pmf(i))
+        return value
