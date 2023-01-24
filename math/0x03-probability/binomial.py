@@ -55,8 +55,8 @@ class Binomial:
                 factorial = factorial * i
             return factorial
 
-        coefficient = factorial(self.n) / (factorial(self.k) *
-                                           factorial(self.n - k))
+        coefficient = factorial(int(self.n)) / (factorial(int(self.k)) *
+                                                factorial(int(self.n - k)))
 
         exp = self.n - k
         val1 = self.p ** k
