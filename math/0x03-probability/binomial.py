@@ -42,7 +42,7 @@ class Binomial:
         Calculates the probability mass function
         (n|k) * p^k * (1-p)^(n-k))
         """
-        self.k = int(k)
+        k = int(k)
         if k <= 0:
             return 0
 
@@ -55,8 +55,8 @@ class Binomial:
                 factorial = factorial * i
             return factorial
 
-        coeff = factorial(int(self.n)) / (factorial(int(self.k)) *
-                                          factorial(int(self.n) - int(self.k)))
+        coeff = factorial(int(self.n)) / (factorial(int(k)) *
+                                          factorial(int(self.n) - int(k)))
 
         exp = self.n - k
         val1 = self.p ** k
