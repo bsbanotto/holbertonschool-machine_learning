@@ -31,8 +31,34 @@ class Binomial:
             for number in data:
                 variance = variance + (number - mean) ** 2
             variance = variance / len(data)
-            q1 = variance / mean
-            p1 = 1 - q1
+            q = variance / mean
+            p1 = 1 - q
             n1 = (sum(data) / p1) / len(data)
             self.n = int(round(n1))
             self.p = float(mean/self.n)
+
+    def pmf(self, k):
+        """
+        Calculates the probability mass function
+        (n|k) * p^k * (1-p)^(n-k))
+        """
+        self.k = int(k)
+        if k <= 0:
+            return 0
+
+        def factorial(number):
+            """
+            Returns the factorial of a given number
+            """
+            factorial = 1
+            for i in range(1, number + 1):
+                factorial = factorial * i
+            return factorial
+
+        coefficient = factorial(self.n) / (factorial(self.k) *
+                                           factorial(self.n - k))
+
+        exp = self.n - k
+        val1 = self.p ** k
+        val2 = (1-self.p) ** exp
+        return (coefficient * val1 * val2)
