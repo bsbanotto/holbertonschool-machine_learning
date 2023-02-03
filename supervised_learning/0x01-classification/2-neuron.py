@@ -47,5 +47,5 @@ class Neuron():
         """
         Calculates the forward propogation of the neuron
         """
-        self.__A =  (1 / (1 + np.exp(-X)))
+        self.__A = (1 / (1 + np.exp(-X)))
         return self.__A
