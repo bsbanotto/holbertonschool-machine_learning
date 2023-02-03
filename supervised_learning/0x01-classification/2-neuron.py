@@ -46,6 +46,10 @@ class Neuron():
     def forward_prop(self, X):
         """
         Calculates the forward propogation of the neuron
+        Matrix Multiply Weights and given numpy array, add bias
+        Pass this to the sigmoid function
         """
-        self.__A = (1 / (1 + np.exp(-X)))
+        x = np.matmul(self.__W, X) + self.__b
+        sigmoid = (1 / (1 + np.exp(-x)))
+        self.__A = sigmoid
         return self.__A
