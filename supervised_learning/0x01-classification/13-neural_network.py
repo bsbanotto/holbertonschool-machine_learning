@@ -92,13 +92,43 @@ class NeuralNetwork():
         Calculates one pass of gradient_descent for the neural network
         """
         m = Y.shape[1]
+        # print("X")
+        # print(X)
+        # print("X shape: {}".format(X.shape))
+        # print("Y")
+        # print(Y)
+        # print("Y shape: {}".format(Y.shape))
+        # print("A1")
+        # print(A1)
+        # print("A1 shape: {}".format(A1.shape))
+        # print("A2")
+        # print(A2)
+        # print("A2 shape: {}".format(A2.shape))
         dz2 = A2 - Y
+        # print("dz2")
+        # print(dz2)
+        # print("dz2 shape: {}".format(dz2.shape))
         dW2 = np.matmul(dz2, A1.T) / m
+        # print("dw2")
+        # print(dW2)
+        # print("dW2 shape: {}".format(dW2.shape))
         db2 = np.sum(dz2, axis=1, keepdims=True) / m
+        # print("db2")
+        # print(db2)
+        # print("db2 shape: {}".format(db2.shape))
 
         dz1 = np.matmul(self.__W2.T, dz2) * (A1 * (1 - A1))
+        # print("dz1")
+        # print(dz1)
+        # print("dz1 shape: {}".format(dz1.shape))
         dW1 = np.matmul(dz1, X.T) / m
+        # print("dW1")
+        # print(dW1)
+        # print("dW1 shape: {}".format(dW1.shape))
         db1 = np.sum(dz1, axis=1, keepdims=True) / m
+        # print("db1")
+        # print(db1)
+        # print("db1 shape: {}".format(db1.shape))
 
         self.__W1 = self.__W1 - alpha * dW1
         self.__b1 = self.__b1 - alpha * db1
