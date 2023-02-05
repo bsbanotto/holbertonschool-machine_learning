@@ -3,7 +3,6 @@
 Neural Network Module
 """
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 class NeuralNetwork():
