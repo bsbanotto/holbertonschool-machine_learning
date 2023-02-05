@@ -42,7 +42,7 @@ class NeuralNetwork():
     def A1(self):
         """Getter for A1 activated output"""
         return self.__A1
-        
+
     @property
     def W2(self):
         """Getter for W2 weights vector"""
