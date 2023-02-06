@@ -23,9 +23,9 @@ class DeepNeuralNetwork():
         if False in (np.array(layers) > 0):
             raise TypeError("layers must be a list of positive integers")
 
-        self.L = len(layers)
-        self.cache = {}
-        self.weights = {}
+        self.__L = len(layers)
+        self.__cache = {}
+        self.__weights = {}
         prevLayer = nx
 
         for l in range(len(layers)):
@@ -33,3 +33,24 @@ class DeepNeuralNetwork():
             self.weights["W{}".format(1 + l)] = w
             self.weights["b{}".format(l + 1)] = np.zeros((layers[l], 1))
             prevLayer = layers[l]
+
+    @property
+    def L(self):
+        """
+        getter for L, number of layers in the neural network
+        """
+        return self.__L
+
+    @property
+    def cache(self):
+        """
+        getter for cache
+        """
+        return self.__cache
+
+    @property
+    def weights(self):
+        """
+        getter for weights
+        """
+        return self.__weights
