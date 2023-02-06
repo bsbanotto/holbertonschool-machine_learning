@@ -63,7 +63,6 @@ class DeepNeuralNetwork():
         A = X
         self.__cache["A{}".format(0)] = X
         for l in range(1, self.L + 1):
-            prev = A
             W = self.weights["W{}".format(l)]
             b = self.weights["b{}".format(l)]
             z = np.matmul(W, A) + b

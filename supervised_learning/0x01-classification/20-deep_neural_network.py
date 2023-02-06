@@ -69,3 +69,25 @@ class DeepNeuralNetwork():
             A = 1 / (1 + np.exp(-z))
             self.__cache["A{}".format(l)] = A
         return (A, self.cache)
+
+    def cost(self, Y, A):
+        """
+        Calculates the cost of our model using logistic regression
+        Y contains the correct data labels
+        A contains the activated output of the neuron for each example
+        """
+        one = 1.0000001
+        loss = Y * np.log(A) + (1 - Y) * np.log(one - A)
+        cost = -(1 / A.shape[1]) * np.sum(loss)
+        return cost
+
+    def evaluate(self, X, Y):
+        """
+        Evaluates the neural networks predictions
+        X is an array that contains the input data
+        Y is an array that contains the correct labels for the data
+        """
+        predictions, cache = self.forward_prop(X)
+        cost = self.cost(Y, predictions)
+        evaluation = np.rint(predictions).astype(int)
+        return evaluation, cost
