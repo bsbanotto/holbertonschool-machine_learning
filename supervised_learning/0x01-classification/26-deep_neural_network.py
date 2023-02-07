@@ -172,20 +172,12 @@ class DeepNeuralNetwork():
         If filename doesn't have .pkl, it will be added
         """
         # Check to see if filename ends in .pkl
-        # if filename[-4:] != ".pkl":
-        #     filename = filename + ".pkl"
-        # try:
-        #     fileObject = open(filename, 'wb')
-        #     pickle.dump(self, fileObject)
-        #     fileObject.close()
-        # except Exception:
-        #     return None
-        ext = ".pkl"
-        if ext not in filename:
-            filename += ext
+        if filename[-4:] != ".pkl":
+            filename = filename + ".pkl"
         try:
-            with open(filename, "wb") as file:
-                pickle.dump(self, file)
+            fileObject = open(filename, 'wb')
+            pickle.dump(self, fileObject)
+            fileObject.close()
         except Exception:
             return None
 
