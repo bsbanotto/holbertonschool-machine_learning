@@ -11,7 +11,8 @@ def one_hot_encode(Y, classes):
     where m is the number of examples
     """
     if type(Y) is not np.ndarray:
-        np.asarray(Y)
+        # print("Caught Y error")
+        return None
     m = Y.shape[0]
     try:
         matrix = np.zeros([classes, m])
