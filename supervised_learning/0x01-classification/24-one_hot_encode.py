@@ -12,7 +12,7 @@ def one_hot_encode(Y, classes):
     """
     m = Y.shape[0]
     if type(Y) is not np.ndarray:
-        return None
+        np.asarray(Y)
     try:
         matrix = np.zeros([classes, m])
         matrix[Y, np.arange(m)] = 1
