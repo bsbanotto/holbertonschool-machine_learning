@@ -61,7 +61,7 @@ class DeepNeuralNetwork():
         Calculates the forward propogation values for our deep neural network
         X is the input data, shape of (nx, m)
         """
-        A = X
+        # A = X
         self.__cache["A{}".format(0)] = X
         for l in range(1, self.L + 1):
             W = self.weights["W{}".format(l)]
