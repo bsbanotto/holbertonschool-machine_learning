@@ -11,6 +11,8 @@ def one_hot_encode(Y, classes):
     where m is the number of examples
     """
     m = Y.shape[0]
+    if type(Y) is not np.ndarray:
+        return None
     try:
         matrix = np.zeros([classes, m])
         matrix[Y, np.arange(m)] = 1
