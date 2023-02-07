@@ -10,9 +10,9 @@ def one_hot_encode(Y, classes):
     Returns a one-hot encoding of Y with shape(classes, m)
     where m is the number of examples
     """
-    m = Y.shape[0]
     if type(Y) is not np.ndarray:
         np.asarray(Y)
+    m = Y.shape[0]
     try:
         matrix = np.zeros([classes, m])
         matrix[Y, np.arange(m)] = 1
