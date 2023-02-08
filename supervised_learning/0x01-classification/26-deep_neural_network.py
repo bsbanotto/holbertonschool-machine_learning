@@ -157,12 +157,13 @@ class DeepNeuralNetwork():
                 plt.title("Training Cost")
                 plt.xlabel("iteration")
                 plt.ylabel("cost")
+                plt.show()
             if verbose or graph:
                 if type(step) is not int:
                     raise TypeError("step must be in integer")
                 if step <= 0 or step > iterations:
                     raise ValueError("step must be positive and <= iterations")
-        plt.show()
+        # plt.show()
         return (self.evaluate(X, Y))
 
     def save(self, filename):
