@@ -163,7 +163,7 @@ class DeepNeuralNetwork():
                 if step <= 0 or step > iterations:
                     raise ValueError("step must be positive and <= iterations")
         if graph:
-        plt.show()
+            plt.show()
         return (self.evaluate(X, Y))
 
     def save(self, filename):
