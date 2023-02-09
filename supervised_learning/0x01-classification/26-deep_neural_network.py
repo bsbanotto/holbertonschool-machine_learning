@@ -141,7 +141,7 @@ class DeepNeuralNetwork():
 
         graphx = []
         graphy = []
-        for i in range(0, iterations + 1):
+        for i in range(0, iterations):
             A, cache = self.forward_prop(X)
             self.gradient_descent(Y, self.__cache, alpha)
             if verbose:
