@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 """
 Create placeholder Tensors for nx and classes
-
-Use this import for testing locally
-`Ipmort_tensorflow.compat.v1 as tf`
-
-Use this import when committing to github
-`Ipmort_tensorflow as tf`
 """
 import tensorflow as tf
 
