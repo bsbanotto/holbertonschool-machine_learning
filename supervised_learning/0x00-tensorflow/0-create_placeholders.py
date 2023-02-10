@@ -8,7 +8,6 @@ Use this import for testing locally
 Use this import when committing to github
 `import tensorflow as tf`
 """
-'''import tensorflow.compat.v1 as tf'''
 import tensorflow as tf
 
 
