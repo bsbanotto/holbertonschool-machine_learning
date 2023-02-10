@@ -3,10 +3,10 @@
 Create placeholder Tensors for nx and classes
 
 Use this import for testing locally
-`import tensorflow.compat.v1 as tf`
+`import_tensorflow.compat.v1 as tf`
 
 Use this import when committing to github
-`import tensorflow as tf`
+`import_tensorflow as tf`
 """
 import tensorflow as tf
 
