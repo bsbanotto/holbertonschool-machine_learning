@@ -2,6 +2,8 @@ Readme for project 0x00. Tensorflow
 
 There are 8 mandatory tasks in this project as follows:
 
+Link to Google Colab version of this project [here](https://colab.research.google.com/drive/1XfOdVE2uBKvnZchho9RsWLY3lEgqpupm#scrollTo=2tcN-kno1K2O) 
+
 Task 0 - Placeholders
 Write the function  `def create_placeholders(nx, classes):`  that returns two placeholders,  `x`  and  `y`, for the neural network:
 
