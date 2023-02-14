@@ -20,8 +20,8 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
     Y_train: numpy.ndarray containing the training labels
     X_valid: numpy.ndarray containing the validation input data
     Y_valid: numpy.ndarray containing the validation labels
-    layer_sizes: list containing the number of nodes in each network layer
-    activations: list containing the activation functions for each network layer
+    layer_sizes: list containing the number of nodes in each nn layer
+    activations: list containing the activation functions for each nn layer
     alpha: learning rate
     iterations: number of iterations to train over
     save_path: designates where to save the model
