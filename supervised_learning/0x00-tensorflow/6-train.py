@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Method to tie together all of the tensorflow stuff we've been working on
+"""
 import tensorflow as tf
 
 
@@ -38,12 +41,12 @@ def train(X_train,
         for i in range(iterations + 1):
             if i % 100 == 0 or i == iterations:
                 train_cost, train_accuracy = sess.run((loss, accuracy),
-                                                         feed_dict={x: X_train,
-                                                                    y: Y_train}
-                                                         )
+                                                      feed_dict={x: X_train,
+                                                                 y: Y_train}
+                                                      )
                 val_cost, val_accuracy = sess.run((loss, accuracy),
-                                                     feed_dict={x: X_valid,
-                                                                y: Y_valid})
+                                                  feed_dict={x: X_valid,
+                                                             y: Y_valid})
                 print("After {} iterations:".format(i))
                 print("\tTraining Cost: {}".format(train_cost))
                 print("\tTraining Accuracy: {}".format(train_accuracy))
