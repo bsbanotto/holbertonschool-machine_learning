@@ -4,7 +4,7 @@ There are 8 mandatory tasks in this project as follows:
 
 Link to Google Colab version of this project [here](https://colab.research.google.com/drive/1XfOdVE2uBKvnZchho9RsWLY3lEgqpupm#scrollTo=2tcN-kno1K2O) 
 
-Task 0 - Placeholders
+**Task 0 - Placeholders**
 Write the function  `def create_placeholders(nx, classes):`  that returns two placeholders,  `x`  and  `y`, for the neural network:
 
 -   `nx`: the number of feature columns in our data
@@ -13,7 +13,7 @@ Write the function  `def create_placeholders(nx, classes):`  that returns two pl
     -   `x`  is the placeholder for the input data to the neural network
     -   `y`  is the placeholder for the one-hot labels for the input data
 
-Task 1 - Layers
+**Task 1 - Layers**
 Write the function  `def create_layer(prev, n, activation):`
 
 -   `prev`  is the tensor output of the previous layer
@@ -23,7 +23,7 @@ Write the function  `def create_layer(prev, n, activation):`
 -   each layer should be given the name  `layer`
 -   Returns: the tensor output of the layer
 
-Task 2 - Forward Propagation
+**Task 2 - Forward Propagation**
 Write the function  `def forward_prop(x, layer_sizes=[], activations=[]):`  that creates the forward propagation graph for the neural network:
 
 -   `x`  is the placeholder for the input data
@@ -32,28 +32,28 @@ Write the function  `def forward_prop(x, layer_sizes=[], activations=[]):`  that
 -   Returns: the prediction of the network in tensor form
 -   For this function, you should import your  `create_layer`  function with  `create_layer = __import__('1-create_layer').create_layer`
 
-Task 3 - Accuracy
+**Task 3 - Accuracy**
 Write the function  `def calculate_accuracy(y, y_pred):`  that calculates the accuracy of a prediction:
 
 -   `y`  is a placeholder for the labels of the input data
 -   `y_pred`  is a tensor containing the network’s predictions
 -   Returns: a tensor containing the decimal accuracy of the prediction
 
-Task 4 - Loss
+**Task 4 - Loss**
 Write the function  `def calculate_loss(y, y_pred):`  that calculates the softmax cross-entropy loss of a prediction:
 
 -   `y`  is a placeholder for the labels of the input data
 -   `y_pred`  is a tensor containing the network’s predictions
 -   Returns: a tensor containing the loss of the prediction
 
-Task 5 - Train_Op
+**Task 5 - Train_Op**
 Write the function  `def create_train_op(loss, alpha):`  that creates the training operation for the network:
 
 -   `loss`  is the loss of the network’s prediction
 -   `alpha`  is the learning rate
 -   Returns: an operation that trains the network using gradient descent
 
-Task 6 - Train
+**Task 6 - Train**
 Write the function  `def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, iterations, save_path="/tmp/model.ckpt"):`  that builds, trains, and saves a neural network classifier:
 
 -   `X_train`  is a  `numpy.ndarray`  containing the training input data
@@ -86,7 +86,7 @@ Write the function  `def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, 
 -   You are not allowed to use  `tf.saved_model`
 -   Returns: the path where the model was saved
 
-Task 7 - Evaluate
+**Task 7 - Evaluate**
 Write the function  `def evaluate(X, Y, save_path):`  that evaluates the output of a neural network:
 
 -   `X`  is a  `numpy.ndarray`  containing the input data to evaluate
