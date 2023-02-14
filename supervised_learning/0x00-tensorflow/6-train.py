@@ -16,6 +16,16 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
           iterations, save_path="/tmp/model.ckpt"):
     """
     Function to build, train, and save a neural network classifier
+    X_train: numpy.ndarray containing the input data
+    Y_train: numpy.ndarray containing the training labels
+    X_valid: numpy.ndarray containing the validation input data
+    Y_valid: numpy.ndarray containing the validation labels
+    layer_sizes: list containing the number of nodes in each network layer
+    activations: list containing the activation functions for each network layer
+    alpha: learning rate
+    iterations: number of iterations to train over
+    save_path: designates where to save the model
+    Returns the path where the model was saved
     """
     x, y = create_placeholders(X_train.shape[1], Y_train.shape[1])
     y_pred = forward_prop(x, layer_sizes, activations)
@@ -30,8 +40,12 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
     tf.add_to_collection('train_op', train_op)
     with tf.Session() as sess:
         sess.run(tf.initializers.global_variables())
-        for i in range(iterations + 1):
+        for i in range(iterations):
+            if i <= iterations:
+                """Train our network for all iterations"""
+                sess.run((train_op), feed_dict={x: X_train, y: Y_train})
             if i % 100 == 0 or i == iterations:
+                """Find cost and accuracy only on every 100th and last iter"""
                 train_cost, train_accuracy = sess.run((loss, accuracy),
                                                       feed_dict={x: X_train,
                                                                  y: Y_train}
@@ -44,7 +58,5 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
                 print("\tTraining Accuracy: {}".format(train_accuracy))
                 print("\tValidation Cost: {}".format(val_cost))
                 print("\tValidation Accuracy: {}".format(val_accuracy))
-            if i < iterations:
-                sess.run((train_op), feed_dict={x: X_train, y: Y_train})
         saver = tf.train.Saver()
         return saver.save(sess, save_path)
