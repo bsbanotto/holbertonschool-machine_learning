@@ -40,7 +40,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
     tf.add_to_collection('train_op', train_op)
     with tf.Session() as sess:
         sess.run(tf.initializers.global_variables())
-        for i in range(iterations):
+        for i in range(iterations + 1):
             if i % 100 == 0 or i == iterations:
                 """Find cost and accuracy only on every 100th and last iter"""
                 train_cost, train_accuracy = sess.run((loss, accuracy),
@@ -55,7 +55,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
                 print("\tTraining Accuracy: {}".format(train_accuracy))
                 print("\tValidation Cost: {}".format(val_cost))
                 print("\tValidation Accuracy: {}".format(val_accuracy))
-            if i <= iterations:
+            if i < iterations:
                 """Train our network for all iterations"""
                 sess.run((train_op), feed_dict={x: X_train, y: Y_train})
         saver = tf.train.Saver()
