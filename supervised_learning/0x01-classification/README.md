@@ -2,7 +2,7 @@ This is a README for project 0x01. Classification
 
 There are 29 coding tasks and one blog post in this project
 
-**strong text**Task 0 - Neuron
+**Task 0 - Neuron**
 Write a class  `Neuron`  that defines a single neuron performing binary classification:
 
 -   class constructor:  `def __init__(self, nx):`
@@ -15,7 +15,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
     -   `b`: The bias for the neuron. Upon instantiation, it should be initialized to 0.
     -   `A`: The activated output of the neuron (prediction). Upon instantiation, it should be initialized to 0.
 
-**strong text**Task 1 - Privatize Neuron
+**Task 1 - Privatize Neuron**
 Write a class  `Neuron`  that defines a single neuron performing binary classification (Based on  `0-neuron.py`):
 
 -   class constructor:  `def __init__(self, nx):`
@@ -29,7 +29,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
     -   `__A`: The activated output of the neuron (prediction). Upon instantiation, it should be initialized to 0.
     -   Each private attribute should have a corresponding getter function (no setter function).
 
-**strong text**Task 2 - Neuron Forward Propogation
+**Task 2 - Neuron Forward Propogation**
 Write a class  `Neuron`  that defines a single neuron performing binary classification (Based on  `1-neuron.py`):
 
 -   Add the public method  `def forward_prop(self, X):`
@@ -41,7 +41,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
     -   The neuron should use a sigmoid activation function
     -   Returns the private attribute  `__A`
 
-**strong text**Task 3 - Neuron Cost
+**Task 3 - Neuron Cost**
 Write a class  `Neuron`  that defines a single neuron performing binary classification (Based on  `2-neuron.py`):
 
 -   Add the public method  `def cost(self, Y, A):`
@@ -51,7 +51,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
     -   To avoid division by zero errors, please use  `1.0000001 - A`  instead of  `1 - A`
     -   Returns the cost
 
-**strong text**Task 4 - Evaluate Neuron
+**Task 4 - Evaluate Neuron**
 Write a class  `Neuron`  that defines a single neuron performing binary classification (Based on  `3-neuron.py`):
 
 -   Add the public method  `def evaluate(self, X, Y):`
@@ -64,7 +64,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
         -   The prediction should be a  `numpy.ndarray`  with shape (1,  `m`) containing the predicted labels for each example
         -   The label values should be 1 if the output of the network is >= 0.5 and 0 otherwise
 
-**strong text**Task 5 - Neuron Gradient Descent
+**Task 5 - Neuron Gradient Descent**
 Write a class  `Neuron`  that defines a single neuron performing binary classification (Based on  `4-neuron.py`):
 
 -   Add the public method  `def gradient_descent(self, X, Y, A, alpha=0.05):`
@@ -77,7 +77,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
     -   `alpha`  is the learning rate
     -   Updates the private attributes  `__W`  and  `__b`
 
-**strong text**Tash 6 - Train Neuron
+**Tash 6 - Train Neuron**
 Write a class  `Neuron`  that defines a single neuron performing binary classification (Based on  `5-neuron.py`):
 
 -   Add the public method  `def train(self, X, Y, iterations=5000, alpha=0.05):`
@@ -97,7 +97,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
     -   You are allowed to use one loop
     -   Returns the evaluation of the training data after  `iterations`  of training have occurred
 
-**strong text**Task 7 - Upgrade Train Neuron
+**Task 7 - Upgrade Train Neuron**
 Write a class  `Neuron`  that defines a single neuron performing binary classification (Based on  `6-neuron.py`):
 
 -   Update the public method  `train`  to  `def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):`
@@ -129,7 +129,7 @@ Write a class  `Neuron`  that defines a single neuron performing binary classifi
     -   You can use  `import matplotlib.pyplot as plt`
     -   Returns: the evaluation of the training data after  `iterations`  of training have occurred
 
-**strong text**Task 8 - NeuralNetwork
+**Task 8 - NeuralNetwork**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification:
 
 -   class constructor:  `def __init__(self, nx, nodes):`
@@ -148,7 +148,7 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
     -   `b2`: The bias for the output neuron. Upon instantiation, it should be initialized to 0.
     -   `A2`: The activated output for the output neuron (prediction). Upon instantiation, it should be initialized to 0.
 
-**strong text**Task 9 - Privatize NeuralNetwork
+**Task 9 - Privatize NeuralNetwork**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification (based on  `8-neural_network.py`):
 
 -   class constructor:  `def __init__(self, nx, nodes):`
@@ -168,7 +168,7 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
     -   `A2`: The activated output for the output neuron (prediction). Upon instantiation, it should be initialized to 0.
     -   Each private attribute should have a corresponding getter function (no setter function).
 
-**strong text**Task 10 - NeuralNetwork Forward Propogation
+**Task 10 - NeuralNetwork Forward Propogation**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification (based on  `9-neural_network.py`):
 
 -   Add the public method  `def forward_prop(self, X):`
@@ -180,7 +180,7 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
     -   The neurons should use a sigmoid activation function
     -   Returns the private attributes  `__A1`  and  `__A2`, respectively
 
-**strong text**Task 11 - NeuralNetwork Cost
+**Task 11 - NeuralNetwork Cost**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification (based on  `10-neural_network.py`):
 
 -   Add the public method  `def cost(self, Y, A):`
@@ -189,8 +189,8 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
     -   `A`  is a  `numpy.ndarray`  with shape (1,  `m`) containing the activated output of the neuron for each example
     -   To avoid division by zero errors, please use  `1.0000001 - A`  instead of  `1 - A`
     -   Returns the cost
-**strong text**
-Task 12 - Evaluate NeuralNetwork
+
+**Task 12 - Evaluate NeuralNetwork**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification (based on  `11-neural_network.py`):
 
 -   Add the public method  `def evaluate(self, X, Y):`
@@ -203,7 +203,7 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
         -   The prediction should be a  `numpy.ndarray`  with shape (1,  `m`) containing the predicted labels for each example
         -   The label values should be 1 if the output of the network is >= 0.5 and 0 otherwise
 
-**strong text**Task 13 - NeuralNetwork Gradient Descent
+**Task 13 - NeuralNetwork Gradient Descent**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification (based on  `12-neural_network.py`):
 
 -   Add the public method  `def gradient_descent(self, X, Y, A1, A2, alpha=0.05):`
@@ -217,7 +217,7 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
     -   `alpha`  is the learning rate
     -   Updates the private attributes  `__W1`,  `__b1`,  `__W2`, and  `__b2`
 
-**strong text**Task 14 - Train NeuralNetwork
+**Task 14 - Train NeuralNetwork**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification (based on  `13-neural_network.py`):
 
 -   Add the public method  `def train(self, X, Y, iterations=5000, alpha=0.05):`
@@ -237,7 +237,7 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
     -   You are allowed to use one loop
     -   Returns the evaluation of the training data after  `iterations`  of training have occurred
 
-**strong text**Task 15 - Upgrade Train NeuralNetwork
+**Task 15 - Upgrade Train NeuralNetwork**
 Write a class  `NeuralNetwork`  that defines a neural network with one hidden layer performing binary classification (based on  `14-neural_network.py`):
 
 -   Update the public method  `train`  to  `def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):`
@@ -269,7 +269,7 @@ Write a class  `NeuralNetwork`  that defines a neural network with one hidden la
     -   You are allowed to use one loop
     -   Returns the evaluation of the training data after  `iterations`  of training have occurred
 
-**strong text**Task 16 - DeepNeuralNetwork
+**Task 16 - DeepNeuralNetwork**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification:
 
 -   class constructor:  `def __init__(self, nx, layers):`
@@ -289,7 +289,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
             -   The biases of the network should be initialized to 0’s and saved in the  `weights`  dictionary using the key  `b{l}`  where  `{l}`  is the hidden layer the bias belongs to
     -   You are allowed to use one loop
 
-**strong text**Task 17 - Privatize DeepNeuralNetwork
+**Task 17 - Privatize DeepNeuralNetwork**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification (based on  `16-deep_neural_network.py`):
 
 -   class constructor:  `def __init__(self, nx, layers):`
@@ -310,7 +310,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
         -   Each private attribute should have a corresponding getter function (no setter function).
     -   You are allowed to use one loop
 
-**strong text**Task 18 - DeepNeuralNetwork Forward Propogation
+**Task 18 - DeepNeuralNetwork Forward Propogation**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification (based on  `17-deep_neural_network.py`):
 
 -   Add the public method  `def forward_prop(self, X):`
@@ -325,7 +325,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
     -   You are allowed to use one loop
     -   Returns the output of the neural network and the cache, respectively
 
-**strong text**Task 19 - DeepNeuralNetwork Cost
+**Task 19 - DeepNeuralNetwork Cost**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification (based on  `18-deep_neural_network.py`):
 
 -   Add the public method  `def cost(self, Y, A):`
@@ -335,7 +335,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
     -   To avoid division by zero errors, please use  `1.0000001 - A`  instead of  `1 - A`
     -   Returns the cost
 
-**strong text**Task 20 - Evaluate DeepNeuralNetwork
+**Task 20 - Evaluate DeepNeuralNetwork**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification (based on  `19-deep_neural_network.py`):
 
 -   Add the public method  `def evaluate(self, X, Y):`
@@ -348,7 +348,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
         -   The prediction should be a  `numpy.ndarray`  with shape (1,  `m`) containing the predicted labels for each example
         -   The label values should be 1 if the output of the network is >= 0.5 and 0 otherwise
 
-**strong text**Task 21 - DeepNeuralNetwork Gradient Descent
+**Task 21 - DeepNeuralNetwork Gradient Descent**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification (based on  `20-deep_neural_network.py`):
 
 -   Add the public method  `def gradient_descent(self, Y, cache, alpha=0.05):`
@@ -359,7 +359,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
     -   Updates the private attribute  `__weights`
     -   You are allowed to use one loop
 
-**strong text**Task 22 - Train DeepNeuralNetwork
+**Task 22 - Train DeepNeuralNetwork**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification (based on  `21-deep_neural_network.py`):
 
 -   Add the public method  `def train(self, X, Y, iterations=5000, alpha=0.05):`
@@ -379,7 +379,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
     -   You are allowed to use one loop
     -   Returns the evaluation of the training data after  `iterations`  of training have occurred
 
-**strong text**Task 23 - Upgrade Train DeepNeuralNetwork
+**Task 23 - Upgrade Train DeepNeuralNetwork**
 Write a class  `DeepNeuralNetwork`  that defines a deep neural network performing binary classification (based on  `22-deep_neural_network.py`):
 
 -   Update the public method  `train`  to  `def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):`
@@ -410,7 +410,7 @@ Write a class  `DeepNeuralNetwork`  that defines a deep neural network performin
     -   You are allowed to use one loop
     -   Returns the evaluation of the training data after  `iterations`  of training have occurred
 
-**strong text**Task 24 - One-Hot Encode
+**Task 24 - One-Hot Encode**
 Write a function  `def one_hot_encode(Y, classes):`  that converts a numeric label vector into a one-hot matrix:
 
 -   `Y`  is a  `numpy.ndarray`  with shape (`m`,) containing numeric class labels
@@ -418,7 +418,7 @@ Write a function  `def one_hot_encode(Y, classes):`  that converts a numeric lab
 -   `classes`  is the maximum number of classes found in  `Y`
 -   Returns: a one-hot encoding of  `Y`  with shape (`classes`,  `m`), or  `None`  on failure
 
-**strong text**Task 25 - One-Hot Decode
+**Task 25 - One-Hot Decode**
 Write a function  `def one_hot_decode(one_hot):`  that converts a one-hot matrix into a vector of labels:
 
 -   `one_hot`  is a one-hot encoded  `numpy.ndarray`  with shape (`classes`,  `m`)
@@ -426,7 +426,7 @@ Write a function  `def one_hot_decode(one_hot):`  that converts a one-hot matrix
     -   `m`  is the number of examples
 -   Returns: a  `numpy.ndarray`  with shape (`m`, ) containing the numeric labels for each example, or  `None`  on failure
 
-**strong text**Task 26 - Persistence is Key
+**Task 26 - Persistence is Key**
 Update the class  `DeepNeuralNetwork`  (based on  `23-deep_neural_network.py`):
 
 -   Create the instance method  `def save(self, filename):`
@@ -440,7 +440,7 @@ Update the class  `DeepNeuralNetwork`  (based on  `23-deep_neural_network.py`):
     -   `filename`  is the file from which the object should be loaded
     -   Returns: the loaded object, or  `None`  if  `filename`  doesn’t exist
 
-**strong text**Task 27 - Update DeepNeuralNetwork
+**Task 27 - Update DeepNeuralNetwork**
 Update the class  `DeepNeuralNetwork`  to perform multiclass classification (based on  `26-deep_neural_network.py`):
 
 -   You will need to update the instance methods  `forward_prop`,  `cost`, and  `evaluate`
@@ -452,7 +452,7 @@ Because the training process takes such a long time, I have pretrained a model f
 
 _The training process may take up to 5 minutes_
 
-**strong text**Task 28 - All the Activations
+**Task 28 - All the Activations**
 Update the class  `DeepNeuralNetwork`  to allow different activation functions (based on  `27-deep_neural_network.py`):
 
 -   Update the  `__init__`  method to  `def __init__(self, nx, layers, activation='sig'):`
@@ -468,7 +468,7 @@ Because the training process takes such a long time, I have pre-trained a model 
 
 _The training process may take up to 5 minutes_
 
-**strong text**Task 29 - Blogpost
+**Task 29 - Blogpost**
 Write a blog post that explains the purpose of activation functions and compares and contrasts (at the minimum) the following functions:
 
 -   Binary
