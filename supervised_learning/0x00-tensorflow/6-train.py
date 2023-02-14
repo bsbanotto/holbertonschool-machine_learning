@@ -12,15 +12,8 @@ create_train_op = __import__('5-create_train_op').create_train_op
 forward_prop = __import__('2-forward_prop').forward_prop
 
 
-def train(X_train,
-          Y_train,
-          X_valid,
-          Y_valid,
-          layer_sizes,
-          activations,
-          alpha,
-          iterations,
-          save_path="/tmp/model.ckpt"):
+def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
+          iterations, save_path="/tmp/model.ckpt"):
     """
     Function to build, train, and save a neural network classifier
     """
@@ -29,7 +22,6 @@ def train(X_train,
     loss = calculate_loss(y, y_pred)
     accuracy = calculate_accuracy(y, y_pred)
     train_op = create_train_op(loss, alpha)
-    tf.initializers.global_variables()
     tf.add_to_collection('x', x)
     tf.add_to_collection('y', y)
     tf.add_to_collection('y_pred', y_pred)
@@ -37,7 +29,7 @@ def train(X_train,
     tf.add_to_collection('accuracy', accuracy)
     tf.add_to_collection('train_op', train_op)
     with tf.Session() as sess:
-        sess.run(init)
+        sess.run(tf.initializers.global_variables())
         for i in range(iterations + 1):
             if i % 100 == 0 or i == iterations:
                 train_cost, train_accuracy = sess.run((loss, accuracy),
