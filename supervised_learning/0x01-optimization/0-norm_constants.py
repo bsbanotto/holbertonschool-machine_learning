@@ -3,7 +3,6 @@
 Module that contains a function that calculates the normalization
 constants of a matrix
 """
-import tensorflow as tf
 import numpy as np
 
 

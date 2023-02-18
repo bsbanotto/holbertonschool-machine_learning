@@ -2,7 +2,6 @@
 """
 Module that contains a function that normalizes a matrix
 """
-import tensorflow as tf
 import numpy as np
 
 
