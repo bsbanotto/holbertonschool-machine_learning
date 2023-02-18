@@ -64,10 +64,10 @@ def train_mini_batch(X_train,
                                                      * batch:batch_size
                                                      * (batch + 1)]}
                     sess.run((train_op), feed_dict=mini_batch_dict)
-                    if batch % 100 == 0 and batch != 0:
+                    if (batch + 1) % 100 == 0 and batch != 0:
                         mini_batch_cost = loss.eval(mini_batch_dict)
                         mini_batch_accuracy = accuracy.eval(mini_batch_dict)
-                        print("\tStep {}:".format(batch))
+                        print("\tStep {}:".format(batch + 1))
                         print("\t\tCost: {}".format(mini_batch_cost))
                         print("\t\tAccuracy: {}".format(mini_batch_accuracy))
         saver = tf.train.Saver()
