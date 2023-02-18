@@ -4,7 +4,6 @@ Module that contains a function that shuffles the data in two matrices
 in the same way.
 """
 import tensorflow as tf
-import numpy as np
 
 
 shuffle_data = __import__('2-shuffle_data').shuffle_data
