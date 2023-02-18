@@ -40,7 +40,7 @@ def train_mini_batch(X_train,
         accuracy = tf.get_collection('accuracy')[0]
         loss = tf.get_collection('loss')[0]
         train_op = tf.get_collection('train_op')
-        mini_batch = len(X_train)//batch_size + 1
+        mini_batch = len(X_train)//batch_size
 
         for i in range(epochs + 1):
             train_cost, train_accuracy = sess.run((loss, accuracy),
