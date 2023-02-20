@@ -24,7 +24,7 @@ def create_batch_norm_layer(prev, n, activation):
     layers = tf.layers.dense(prev,
                              n,
                              kernel_initializer=weights)
-    mean, variance = tf.nn.moments(layers, [0])
+    mean, variance = tf.nn.moments(layers, 0)
     gamma = tf.Variable(tf.ones(n), trainable=True)
     beta = tf.Variable(tf.zeros(n), trainable=True)
     epsilon = 1e-8
