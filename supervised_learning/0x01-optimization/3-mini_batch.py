@@ -41,7 +41,7 @@ def train_mini_batch(X_train,
         loss = tf.get_collection('loss')[0]
         train_op = tf.get_collection('train_op')
         mini_batch = len(X_train)//batch_size
-        if mini_batch % batch_size != 0:
+        while mini_batch % batch_size != 0:
             mini_batch += 1
 
         for i in range(epochs + 1):
