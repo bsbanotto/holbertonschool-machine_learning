@@ -14,7 +14,7 @@ def update_variables_momentum(alpha, beta1, var, grad, v):
     v: previous first moment of var(dW_prev or db_prev)
     Returns the updated variable and the new moment
         new_var will be passed as var in next iteration
-        new_v will be passed as v in next iteration
+        new_moment will be passed as v in next iteration
     """
     new_moment = beta1 * v + (grad * (1 - beta1))
     new_var = var - (alpha * new_moment)
