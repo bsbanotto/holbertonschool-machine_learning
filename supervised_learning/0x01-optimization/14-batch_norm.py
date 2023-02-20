@@ -23,11 +23,12 @@ def create_batch_norm_layer(prev, n, activation):
     weights = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
     layers = tf.layers.dense(prev,
                              n,
+                             activation=activation,
                              kernel_initializer=weights)
-    mean, variance = tf.nn.moments(layers, 0)
+    mean, variance = tf.nn.moments(layers, [0])
     gamma = tf.Variable(tf.ones(n), trainable=True)
     beta = tf.Variable(tf.zeros(n), trainable=True)
-    epsilon = 1/100000000
+    epsilon = 1e-8
     return tf.nn.batch_normalization(layers,
                                      mean,
                                      variance,
