@@ -31,6 +31,6 @@ def create_batch_norm_layer(prev, n, activation):
     return tf.nn.batch_normalization(layers,
                                      mean,
                                      variance,
-                                     beta,
                                      gamma,
+                                     beta,
                                      epsilon)
