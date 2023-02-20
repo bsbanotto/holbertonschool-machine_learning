@@ -21,12 +21,14 @@ def create_batch_norm_layer(prev, n, activation):
     Returns a tensor of the normalized activated output for the layer
     """
     weights = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    layers = tf.layers.Dense(units=n, kernel_initializer=weights)
-    x = layers(prev)
-    mean, variance = tf.nn.moments(x, 0)
+    layers = tf.layers.dense(inputs=prev,
+                             units=n,
+                             activation=activation,
+                             kernel_initializer=weights)
+    mean, variance = tf.nn.moments(layers, 0)
     gamma = tf.Variable(tf.ones(n), trainable=True)
     beta = tf.Variable(tf.zeros(n), trainable=True)
-    epsilon = 1e-8
+    epsilon = 1/100000000
     return tf.nn.batch_normalization(layers,
                                      mean,
                                      variance,
