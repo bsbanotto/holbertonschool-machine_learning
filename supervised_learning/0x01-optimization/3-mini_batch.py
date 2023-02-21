@@ -40,9 +40,9 @@ def train_mini_batch(X_train,
         accuracy = tf.get_collection('accuracy')[0]
         loss = tf.get_collection('loss')[0]
         train_op = tf.get_collection('train_op')
-        mini_batch = len(X_train)//batch_size
-        while mini_batch % batch_size != 0:
-            mini_batch += 1
+        mini_batch_size = len(X_train)//batch_size
+        while mini_batch_size % batch_size != 0:
+            mini_batch_size += 1
 
         for i in range(epochs + 1):
             train_cost, train_accuracy = sess.run((loss, accuracy),
@@ -58,7 +58,7 @@ def train_mini_batch(X_train,
             print("\tValidation Accuracy: {}".format(val_accuracy))
             if i < epochs:
                 X_Shuffled, Y_Shuffled = shuffle_data(X_train, Y_train)
-                for batch in range(mini_batch):
+                for batch in range(mini_batch_size):
                     mini_batch_dict = {x: X_Shuffled[batch_size
                                                      * batch:batch_size
                                                      * (batch + 1)],
