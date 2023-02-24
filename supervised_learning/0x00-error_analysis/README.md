@@ -52,18 +52,19 @@ Scenarios:
 2. High Bias, Low Variance
 3. Low Bias, High Variance
 4. Low Bias, Low Variance
-
 ```
 
 Approaches:
 
 ```
-A. Train more
-B. Try a different architecture
-C. Get more data
-D. Build a deeper network
-E. Use regularization
-F. Nothing
+Always fix High Bias first, Then fix High Variance
+
+A. Train more                       |   High Bias
+B. Try a different architecture     |   High Anything
+C. Get more data                    |   High Variance
+D. Build a deeper network           |   High Bias
+E. Use regularization               |   High Variance
+F. Nothing                          |   All is well - Low Bias and Low Variance
 ```
 
 **Task 6. Compare and Contrast**
