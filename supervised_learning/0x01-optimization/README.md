@@ -2,7 +2,7 @@ This is a README file for project 0x01. Optimization
 
 There are 17 mandatory tasks as follows:
 
-**Task 0. Normalization Constants**
+## Task 0. Normalization Constants<br>
 Write the function  `def normalization_constants(X):`  that calculates the normalization (standardization) constants of a matrix:
 
 -   `X`  is the  `numpy.ndarray`  of shape  `(m, nx)`  to normalize
@@ -10,7 +10,7 @@ Write the function  `def normalization_constants(X):`  that calculates the norma
     -   `nx`  is the number of features
 -   Returns: the mean and standard deviation of each feature, respectively
 
-**Task 1. Normalize**
+## Task 1. Normalize<br>
 Write the function  `def normalize(X, m, s):`  that normalizes (standardizes) a matrix:
 
 -   `X`  is the  `numpy.ndarray`  of shape  `(d, nx)`  to normalize
@@ -20,7 +20,7 @@ Write the function  `def normalize(X, m, s):`  that normalizes (standardizes) a 
 -   `s`  is a  `numpy.ndarray`  of shape  `(nx,)`  that contains the standard deviation of all features of  `X`
 -   Returns: The normalized  `X`  matrix
 
-**Task 2. Shuffle Data**
+## Task 2. Shuffle Data<br>
 Write the function  `def shuffle_data(X, Y):`  that shuffles the data points in two matrices the same way:
 
 -   `X`  is the first  `numpy.ndarray`  of shape  `(m, nx)`  to shuffle
@@ -31,7 +31,7 @@ Write the function  `def shuffle_data(X, Y):`  that shuffles the data points in 
     -   `ny`  is the number of features in  `Y`
 -   Returns: the shuffled  `X`  and  `Y`  matrices
 
-**Task 3. Mini-Batch**
+## Task 3. Mini-Batch<br>
 Write the function  `def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32, epochs=5, load_path="/tmp/model.ckpt", save_path="/tmp/model.ckpt"):`  that trains a loaded neural network model using mini-batch gradient descent:
 
 -   `X_train`  is a  `numpy.ndarray`  of shape  `(m, 784)`  containing the training data
@@ -66,7 +66,7 @@ Write the function  `def train_mini_batch(X_train, Y_train, X_valid, Y_valid, ba
     -   `\t\tCost: {step_cost}`  where  `{step_cost}`  is the cost of the model on the current mini-batch
     -   `\t\tAccuracy: {step_accuracy}`  where  `{step_accuracy}`  is the accuracy of the model on the current mini-batch
 
-**Task 4. Moving Average**
+## Task 4. Moving Average<br>
 Write the function  `def moving_average(data, beta):`  that calculates the weighted moving average of a data set:
 
 -   `data`  is the list of data to calculate the moving average of
@@ -74,7 +74,7 @@ Write the function  `def moving_average(data, beta):`  that calculates the weigh
 -   Your moving average calculation should use bias correction
 -   Returns: a list containing the moving averages of  `data`
 
-**Task 5. Momentum**
+## Task 5. Momentum<br>
 Write the function  `def update_variables_momentum(alpha, beta1, var, grad, v):`  that updates a variable using the gradient descent with momentum optimization algorithm:
 
 -   `alpha`  is the learning rate
@@ -84,7 +84,7 @@ Write the function  `def update_variables_momentum(alpha, beta1, var, grad, v):`
 -   `v`  is the previous first moment of  `var`
 -   Returns: the updated variable and the new moment, respectively
 
-**Task 6. Momentum Upgraded**
+## Task 6. Momentum Upgraded<br>
 Write the function  `def create_momentum_op(loss, alpha, beta1):`  that creates the training operation for a neural network in  `tensorflow`  using the gradient descent with momentum optimization algorithm:
 
 -   `loss`  is the loss of the network
@@ -92,7 +92,7 @@ Write the function  `def create_momentum_op(loss, alpha, beta1):`  that creates 
 -   `beta1`  is the momentum weight
 -   Returns: the momentum optimization operation
 
-**Task 7. RMSProp**
+## Task 7. RMSProp<br>
 Write the function  `def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):`  that updates a variable using the RMSProp optimization algorithm:
 
 -   `alpha`  is the learning rate
@@ -103,7 +103,7 @@ Write the function  `def update_variables_RMSProp(alpha, beta2, epsilon, var, gr
 -   `s`  is the previous second moment of  `var`
 -   Returns: the updated variable and the new moment, respectively
 
-**Task 8. RMSProp Upgraded**
+## Task 8. RMSProp Upgraded<br>
 Write the function  `def create_RMSProp_op(loss, alpha, beta2, epsilon):`  that creates the training operation for a neural network in  `tensorflow`  using the RMSProp optimization algorithm:
 
 -   `loss`  is the loss of the network
@@ -112,7 +112,7 @@ Write the function  `def create_RMSProp_op(loss, alpha, beta2, epsilon):`  that 
 -   `epsilon`  is a small number to avoid division by zero
 -   Returns: the RMSProp optimization operation
 
-**Task 9. Adam**
+## Task 9. Adam<br>
 Write the function  `def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):`  that updates a variable in place using the Adam optimization algorithm:
 
 -   `alpha`  is the learning rate
@@ -126,7 +126,7 @@ Write the function  `def update_variables_Adam(alpha, beta1, beta2, epsilon, var
 -   `t`  is the time step used for bias correction
 -   Returns: the updated variable, the new first moment, and the new second moment, respectively
 
-**Task 10. Adam Upgraded**
+## Task 10. Adam Upgraded<br>
 Write the function  `def create_Adam_op(loss, alpha, beta1, beta2, epsilon):`  that creates the training operation for a neural network in  `tensorflow`  using the Adam optimization algorithm:
 
 -   `loss`  is the loss of the network
@@ -136,7 +136,7 @@ Write the function  `def create_Adam_op(loss, alpha, beta1, beta2, epsilon):`  t
 -   `epsilon`  is a small number to avoid division by zero
 -   Returns: the Adam optimization operation
 
-**Task 11. Learning Rate Decay**
+## Task 11. Learning Rate Decay<br>
 Write the function  `def learning_rate_decay(alpha, decay_rate, global_step, decay_step):`  that updates the learning rate using inverse time decay in  `numpy`:
 
 -   `alpha`  is the original learning rate
@@ -146,7 +146,7 @@ Write the function  `def learning_rate_decay(alpha, decay_rate, global_step, dec
 -   the learning rate decay should occur in a stepwise fashion
 -   Returns: the updated value for  `alpha`
 
-**Task 12. Learning Rate Decay Upgraded**
+## Task 12. Learning Rate Decay Upgraded<br>
 Write the function  `def learning_rate_decay(alpha, decay_rate, global_step, decay_step):`  that creates a learning rate decay operation in  `tensorflow`  using inverse time decay:
 
 -   `alpha`  is the original learning rate
@@ -156,7 +156,7 @@ Write the function  `def learning_rate_decay(alpha, decay_rate, global_step, dec
 -   the learning rate decay should occur in a stepwise fashion
 -   Returns: the learning rate decay operation
 
-**Task 13. Batch Normalization**
+## Task 13. Batch Normalization<br>
 Write the function  `def batch_norm(Z, gamma, beta, epsilon):`  that normalizes an unactivated output of a neural network using batch normalization:
 
 -   `Z`  is a  `numpy.ndarray`  of shape  `(m, n)`  that should be normalized
@@ -167,7 +167,7 @@ Write the function  `def batch_norm(Z, gamma, beta, epsilon):`  that normalizes 
 -   `epsilon`  is a small number used to avoid division by zero
 -   Returns: the normalized  `Z`  matrix
 
-**Task 14. Batch Normalization Upgraded**
+## Task 14. Batch Normalization Upgraded<br>
 Write the function  `def create_batch_norm_layer(prev, n, activation):`  that creates a batch normalization layer for a neural network in  `tensorflow`:
 
 -   `prev`  is the activated output of the previous layer
@@ -178,7 +178,7 @@ Write the function  `def create_batch_norm_layer(prev, n, activation):`  that cr
 -   you should use an  `epsilon`  of  `1e-8`
 -   Returns: a tensor of the activated output for the layer
 
-**Task 15. Put it all together and what do you get?**
+## Task 15. Put it all together and what do you get?<br>
 Write the function  `def model(Data_train, Data_valid, layers, activations, alpha=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8, decay_rate=1, batch_size=32, epochs=5, save_path='/tmp/model.ckpt'):`  that builds, trains, and saves a neural network model in  `tensorflow`  using Adam optimization, mini-batch gradient descent, learning rate decay, and batch normalization:
 
 -   `Data_train`  is a tuple containing the training inputs and training labels, respectively
@@ -210,7 +210,7 @@ Write the function  `def model(Data_train, Data_valid, layers, activations, alph
 
 _Note: the input data does not need to be normalized as it has already been scaled to a range of [0, 1]_
 
-**Task 16. If you can't explain it simply, you don't understand it well enough**
+## Task 16. If you can't explain it simply, you don't understand it well enough<br>
 Write a blog post explaining the mechanics, pros, and cons of the following optimization techniques:
 
 -   Feature Scaling
