@@ -77,7 +77,7 @@ Given the following training and validation confusion matrices and the fact that
 Most important issue:
 
 ```
-## A. High Bias
+**A. High Bias**
 B. High Variance
 C. Nothing
 ```
