@@ -3,6 +3,8 @@
 Calculate the F1 score of a confusion matrix
 """
 import numpy as np
+sensitivity = __import__('1-sensitivity').sensitivity
+precision = __import__('2-precision').precision
 
 
 def f1_score(confusion):
@@ -13,10 +15,6 @@ def f1_score(confusion):
     Returns a numpy.ndarray of shape (classes, ) containing the F1 score of
         each class
     """
-    # prec = precision(confusion)
-    # sens = sensitivity(confusion)
-    # F1 = prec + sens
-    # return F1 / 2
 
     true_positives = np.diag(confusion)
     col_sum = np.sum(confusion, axis=0)
