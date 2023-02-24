@@ -71,7 +71,7 @@ Given the following training and validation confusion matrices and the fact that
 
 <img src="https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/supervised_learning/0x00-error_analysis/readme_photos/Training%20Matrix.png" />
 
-<img src=""/>
+<img src="https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/supervised_learning/0x00-error_analysis/readme_photos/Validation%20Matrix.png"/>
 
 Most important issue:
 
