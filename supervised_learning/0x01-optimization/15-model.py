@@ -18,7 +18,7 @@ def create_batch_norm_layers(prev, n, activation, last, epsilon):
 
     This is similar to task 14, except we needed to add check for last layer
     """
-    weights = tf.keras.initializers.VarianceScaling(mode="fan_avg")
+    weights = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
     layers = tf.layers.dense(inputs=prev,
                              units=n,
                              kernel_initializer=weights)
