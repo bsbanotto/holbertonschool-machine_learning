@@ -149,7 +149,7 @@ def model(Data_train, Data_valid, layers, activations,
             if epoch == epochs:
                 break
             data_shuffled, labels_shuffled = shuffle_data(X_train, Y_train)
-            for batch in range(0, len(data_shuffled), batch_size):
+            for batch in range(0, data_shuffled.shape[0], batch_size):
                 mini_batch_dict = {
                     data: data_shuffled[batch:batch + batch_size],
                     labels: labels_shuffled[batch:batch + batch_size]
@@ -162,5 +162,5 @@ def model(Data_train, Data_valid, layers, activations,
                     print("\tStep {}:".format(iterator))
                     print("\t\tCost: {}".format(mini_batch_cost))
                     print("\t\tAccuracy: {}".format(mini_batch_accuracy))
-            saver = tf.train.Saver()
-            return saver.save(sess, save_path)
+        saver = tf.train.Saver()
+        return saver.save(sess, save_path)
