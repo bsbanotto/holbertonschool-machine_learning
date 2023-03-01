@@ -6,9 +6,6 @@ import numpy as np
 import tensorflow as tf
 
 
-"""
-Builds, trains, and saves a neural network model in tensorflow
-"""
 def create_batch_norm_layer(prev, n, activation, last, epsilon):
     """
     Creates a batch normalization for a neural network
@@ -106,9 +103,9 @@ def model(Data_train, Data_valid, layers, activations,
     X_train, Y_train = Data_train
     X_valid, Y_valid = Data_valid
     data = tf.placeholder(name='data', dtype=tf.float32,
-                       shape=[None, X_train.shape[1]])
+                          shape=[None, X_train.shape[1]])
     labels = tf.placeholder(name='labels', dtype=tf.float32,
-                       shape=[None, Y_train.shape[1]])
+                            shape=[None, Y_train.shape[1]])
     tf.add_to_collection('data', data)
     tf.add_to_collection('labels', labels)
     pred_labels = forward_prop(data, epsilon, layers, activations)
