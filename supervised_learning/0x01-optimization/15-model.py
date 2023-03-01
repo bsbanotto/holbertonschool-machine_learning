@@ -6,7 +6,10 @@ import numpy as np
 import tensorflow as tf
 
 
-def create_batch_norm_layers(prev, n, activation, last, epsilon):
+"""
+Builds, trains, and saves a neural network model in tensorflow
+"""
+def create_batch_norm_layer(prev, n, activation, last, epsilon):
     """
     Creates a batch normalization for a neural network
     prev: activated output of the previous layer
@@ -18,15 +21,16 @@ def create_batch_norm_layers(prev, n, activation, last, epsilon):
 
     This is similar to task 14, except we needed to add check for last layer
     """
-    weights = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
+
+    init = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
     layers = tf.layers.dense(inputs=prev,
                              units=n,
-                             kernel_initializer=weights)
+                             kernel_initializer=init)
     if last is True:
         return layers
     mean, variance = tf.nn.moments(layers, axes=[0])
-    gamma = tf.Variable(tf.ones([n]), trainable=True)
-    beta = tf.Variable(tf.zeros([n]), trainable=True)
+    gamma = tf.Variable(tf.ones(n), trainable=True)
+    beta = tf.Variable(tf.zeros(n), trainable=True)
     return activation(tf.nn.batch_normalization(layers,
                                                 mean,
                                                 variance,
@@ -35,7 +39,7 @@ def create_batch_norm_layers(prev, n, activation, last, epsilon):
                                                 epsilon))
 
 
-def forward_prop_tf(input, epsilon, layer_sizes=[], activations=[]):
+def forward_prop(input, epsilon, layer_sizes=[], activations=[]):
     """
     Use tensorflow to calculate forward propagation of the neural network
     input: placeholder for input data
@@ -49,18 +53,16 @@ def forward_prop_tf(input, epsilon, layer_sizes=[], activations=[]):
     for node in range(len(layer_sizes)):
         if node == len(layer_sizes) - 1:
             last = True
-        prediction = create_batch_norm_layers(input,
-                                              layer_sizes[node],
-                                              activations[node],
-                                              last,
-                                              epsilon)
+        prediction = create_batch_norm_layer(prediction,
+                                             layer_sizes[node],
+                                             activations[node],
+                                             last,
+                                             epsilon)
     return prediction
 
 
 def calculate_accuracy(labels, pred_labels):
-    """
-    Calculates the accuracy of a prediction
-    """
+    """Calculates accuracy of prediction"""
     labels_max = tf.math.argmax(labels, axis=1)
     labels_pred_max = tf.math.argmax(pred_labels, axis=1)
     equality = tf.math.equal(labels_max, labels_pred_max)
@@ -81,9 +83,9 @@ def shuffle_data(X, Y):
     return X[p], Y[p]
 
 
-def model(Data_train, Data_valid, layers, activations, alpha=0.001,
-          beta1=0.9, beta2=0.999, epsilon=1e-8, decay_rate=1,
-          batch_size=32, epochs=5, save_path='/tmp/model.ckpt'):
+def model(Data_train, Data_valid, layers, activations,
+          alpha=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8,
+          decay_rate=1, batch_size=32, epochs=5, save_path='/tmp/model.ckpt'):
     """
     Builds, trains, and saves a neural network model in tensorflow
         See README for details on variables
@@ -101,26 +103,23 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
     save_path: path where the model should be saved to
     Returns the path where the model was saved
     """
-    X_Train, Y_Train = Data_train
-    X_Valid, Y_Valid = Data_valid
-    # placeholder for input data and labels
+    X_train, Y_train = Data_train
+    X_valid, Y_valid = Data_valid
     data = tf.placeholder(name='data', dtype=tf.float32,
-                          shape=[None, X_Train.shape[1]])
+                       shape=[None, X_train.shape[1]])
     labels = tf.placeholder(name='labels', dtype=tf.float32,
-                            shape=[None, Y_Train.shape[1]])
+                       shape=[None, Y_train.shape[1]])
     tf.add_to_collection('data', data)
     tf.add_to_collection('labels', labels)
-
-    pred_labels = forward_prop_tf(data, epsilon, layers, activations)
-    tf.add_to_collection('pred_labels', pred_labels)
+    pred_labels = forward_prop(data, epsilon, layers, activations)
+    tf.add_to_collection('y_pred', pred_labels)
     accuracy = calculate_accuracy(labels, pred_labels)
     tf.add_to_collection('accuracy', accuracy)
     loss = tf.losses.softmax_cross_entropy(labels, pred_labels)
     tf.add_to_collection('loss', loss)
-
     global_step = tf.Variable(0, trainable=False)
-    mini_batch_size = len(X_Train) // batch_size
-    if mini_batch_size % batch_size != 0:
+    mini_batch_size = len(X_train) // batch_size
+    while mini_batch_size % batch_size != 0:
         mini_batch_size += 1
     alpha = tf.train.inverse_time_decay(learning_rate=alpha,
                                         global_step=global_step,
@@ -132,19 +131,19 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
                                       beta2,
                                       epsilon).minimize(loss,
                                                         global_step)
-    tf.add_to_collection('train_op', train_op)
+    tf.add_to_collection("train_op", train_op)
     init = tf.global_variables_initializer()
     with tf.Session() as sess:
         sess.run(init)
         for epoch in range(epochs + 1):
-            train_loss = loss.eval({data: X_Train,
-                                    labels: Y_Train})
-            train_accuracy = accuracy.eval({data: X_Train,
-                                            labels: Y_Train})
-            validation_loss = loss.eval({data: X_Valid,
-                                         labels: Y_Valid})
-            validation_accuracy = accuracy.eval({data: X_Valid,
-                                                 labels: Y_Valid})
+            train_loss = loss.eval({data: X_train,
+                                    labels: Y_train})
+            train_accuracy = accuracy.eval({data: X_train,
+                                            labels: Y_train})
+            validation_loss = loss.eval({data: X_valid,
+                                         labels: Y_valid})
+            validation_accuracy = accuracy.eval({data: X_valid,
+                                                 labels: Y_valid})
             print("After {} epochs:".format(epoch))
             print("\tTraining Cost: {}".format(train_loss))
             print("\tTraining Accuracy: {}".format(train_accuracy))
@@ -152,21 +151,19 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
             print("\tValidation Accuracy: {}".format(validation_accuracy))
             if epoch == epochs:
                 break
-            data_Shuffled, labels_Shuffled = shuffle_data(X_Train, Y_Train)
-            for batch in range(0, mini_batch_size):
-                mini_batch_dict = {data: data_Shuffled[batch_size
-                                                        * batch:batch_size
-                                                        * (batch + 1)],
-                                    labels: labels_Shuffled[batch_size
-                                                            * batch:
-                                                            batch_size
-                                                            * (batch + 1)]}
-                sess.run(train_op, feed_dict=mini_batch_dict)
-                if (batch + 1) % 100 == 0:
+            data_shuffled, labels_shuffled = shuffle_data(X_train, Y_train)
+            for batch in range(0, len(data_shuffled), batch_size):
+                mini_batch_dict = {
+                    data: data_shuffled[batch:batch + batch_size],
+                    labels: labels_shuffled[batch:batch + batch_size]
+                    }
+                sess.run((train_op), feed_dict=mini_batch_dict)
+                iterator = batch // (batch_size + 1)
+                if iterator % 100 == 0 and iterator != 0:
                     mini_batch_cost = loss.eval(mini_batch_dict)
                     mini_batch_accuracy = accuracy.eval(mini_batch_dict)
-                    print("\tStep {}:".format(batch + 1))
+                    print("\tStep {}:".format(iterator))
                     print("\t\tCost: {}".format(mini_batch_cost))
                     print("\t\tAccuracy: {}".format(mini_batch_accuracy))
-    saver = tf.train.Saver()
-    return saver.save(sess, save_path)
+        saver = tf.train.Saver()
+        return saver.save(sess, save_path)
