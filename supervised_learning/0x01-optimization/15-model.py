@@ -1,4 +1,4 @@
-# Task 15. Put it all together and what do you get?
+#!/usr/bin/env python3
 """
 Builds, trains, and saves a neural network model in tensorflow
 """
