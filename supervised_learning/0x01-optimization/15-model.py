@@ -156,7 +156,7 @@ def model(Data_train, Data_valid, layers, activations,
                     }
                 sess.run((train_op), feed_dict=mini_batch_dict)
                 iterator = batch // batch_size + 1
-                if iterator % 100 == 0 and iterator != 0:
+                if not ((batch // batch_size + 1) % 100):
                     mini_batch_cost = loss.eval(mini_batch_dict)
                     mini_batch_accuracy = accuracy.eval(mini_batch_dict)
                     print("\tStep {}:".format(iterator))
