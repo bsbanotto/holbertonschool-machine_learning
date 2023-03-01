@@ -150,22 +150,23 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
             print("\tTraining Accuracy: {}".format(train_accuracy))
             print("\tValidation Cost: {}".format(validation_loss))
             print("\tValidation Accuracy: {}".format(validation_accuracy))
-            while epoch < epochs:
-                data_Shuffled, labels_Shuffled = shuffle_data(X_Train, Y_Train)
-                for batch in range(0, mini_batch_size):
-                    mini_batch_dict = {data: data_Shuffled[batch_size
-                                                           * batch:batch_size
-                                                           * (batch + 1)],
-                                       labels: labels_Shuffled[batch_size
-                                                               * batch:
-                                                               batch_size
-                                                               * (batch + 1)]}
-                    sess.run(train_op, feed_dict=mini_batch_dict)
-                    if (batch + 1) % 100 == 0:
-                        mini_batch_cost = loss.eval(mini_batch_dict)
-                        mini_batch_accuracy = accuracy.eval(mini_batch_dict)
-                        print("\tStep {}:".format(batch + 1))
-                        print("\t\tCost: {}".format(mini_batch_cost))
-                        print("\t\tAccuracy: {}".format(mini_batch_accuracy))
-        saver = tf.train.Saver()
-        return saver.save(sess, save_path)
+            if epoch == epochs:
+                break
+            data_Shuffled, labels_Shuffled = shuffle_data(X_Train, Y_Train)
+            for batch in range(0, mini_batch_size):
+                mini_batch_dict = {data: data_Shuffled[batch_size
+                                                        * batch:batch_size
+                                                        * (batch + 1)],
+                                    labels: labels_Shuffled[batch_size
+                                                            * batch:
+                                                            batch_size
+                                                            * (batch + 1)]}
+                sess.run(train_op, feed_dict=mini_batch_dict)
+                if (batch + 1) % 100 == 0:
+                    mini_batch_cost = loss.eval(mini_batch_dict)
+                    mini_batch_accuracy = accuracy.eval(mini_batch_dict)
+                    print("\tStep {}:".format(batch + 1))
+                    print("\t\tCost: {}".format(mini_batch_cost))
+                    print("\t\tAccuracy: {}".format(mini_batch_accuracy))
+    saver = tf.train.Saver()
+    return saver.save(sess, save_path)
