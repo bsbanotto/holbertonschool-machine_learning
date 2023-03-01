@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+# Task 15. Put it all together and what do you get?
 """
 Builds, trains, and saves a neural network model in tensorflow
 """
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 
 
 def create_batch_norm_layers(prev, n, activation, last, epsilon):
@@ -19,10 +19,9 @@ def create_batch_norm_layers(prev, n, activation, last, epsilon):
     This is similar to task 14, except we needed to add check for last layer
     """
     weights = tf.keras.initializers.VarianceScaling(mode="fan_avg")
-    layers = tf.layers.Dense(n,
-                             kernel_initializer=weights,
-                             name='dense_layer')
-    layers = layers(prev)
+    layers = tf.layers.dense(inputs=prev,
+                             units=n,
+                             kernel_initializer=weights)
     if last is True:
         return layers
     mean, variance = tf.nn.moments(layers, 0)
@@ -88,18 +87,31 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
     """
     Builds, trains, and saves a neural network model in tensorflow
         See README for details on variables
+    Data_train: tuple containing the training inputs and training labels
+    Data_valid: tuple containing the validation inputs and labels
+    layers: list containing the number of nodes in each layer
+    activation: list containing the activation functions for each layer
+    alpha: learning rate
+    beta1: weight for first moment of Adam Optimization
+    beta2: weight for second moment of Adam Optimization
+    epsilon: small number to avoid divide by zero errors
+    decay_rate: decay rate for inverse time decay of the learning rate
+    batch_size: number of data points that should be in each mini-batch
+    epochs: number of times the training should pass through the whole dataset
+    save_path: path where the model should be saved to
+    Returns the path where the model was saved
     """
     X_Train, Y_Train = Data_train
     X_Valid, Y_Valid = Data_valid
     # placeholder for input data and labels
-    input = tf.placeholder(name='input', dtype=tf.float32,
-                           shape=[None, X_Train.shape[1]])
+    data = tf.placeholder(name='data', dtype=tf.float32,
+                          shape=[None, X_Train.shape[1]])
     labels = tf.placeholder(name='labels', dtype=tf.float32,
                             shape=[None, Y_Train.shape[1]])
-    tf.add_to_collection('input', input)
+    tf.add_to_collection('data', data)
     tf.add_to_collection('labels', labels)
 
-    pred_labels = forward_prop_tf(input, epsilon, layers, activations)
+    pred_labels = forward_prop_tf(data, epsilon, layers, activations)
     tf.add_to_collection('pred_labels', pred_labels)
     accuracy = calculate_accuracy(labels, pred_labels)
     tf.add_to_collection('accuracy', accuracy)
@@ -108,9 +120,7 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
 
     global_step = tf.Variable(0, trainable=False)
     mini_batch_size = len(X_Train) // batch_size
-    # print(mini_batch_size)
     while mini_batch_size % batch_size != 0:
-        # print(mini_batch_size)
         mini_batch_size += 1
     alpha = tf.train.inverse_time_decay(learning_rate=alpha,
                                         global_step=global_step,
@@ -127,13 +137,13 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
     with tf.Session() as sess:
         sess.run(init)
         for epoch in range(epochs + 1):
-            train_loss = loss.eval({input: X_Train,
+            train_loss = loss.eval({data: X_Train,
                                     labels: Y_Train})
-            train_accuracy = accuracy.eval({input: X_Train,
+            train_accuracy = accuracy.eval({data: X_Train,
                                             labels: Y_Train})
-            validation_loss = loss.eval({input: X_Valid,
+            validation_loss = loss.eval({data: X_Valid,
                                          labels: Y_Valid})
-            validation_accuracy = accuracy.eval({input: X_Valid,
+            validation_accuracy = accuracy.eval({data: X_Valid,
                                                  labels: Y_Valid})
             print("After {} epochs:".format(epoch))
             print("\tTraining Cost: {}".format(train_loss))
@@ -141,20 +151,17 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
             print("\tValidation Cost: {}".format(validation_loss))
             print("\tValidation Accuracy: {}".format(validation_accuracy))
             if epoch < epochs:
-                input_Shuffled, labels_Shuffled = shuffle_data(X_Train,
-                                                               Y_Train)
-                # print(input_Shuffled.shape[0])
-                # print(batch_size)
+                data_Shuffled, labels_Shuffled = shuffle_data(X_Train, Y_Train)
                 for batch in range(0, mini_batch_size):
-                    mini_batch_dict = {input: input_Shuffled
-                                       [batch_size * batch:
-                                        batch_size * (batch + 1)],
-                                       labels: labels_Shuffled
-                                       [batch_size * batch:
-                                        batch_size * (batch + 1)]}
+                    mini_batch_dict = {data: data_Shuffled[batch_size
+                                                           * batch:batch_size
+                                                           * (batch + 1)],
+                                       labels: labels_Shuffled[batch_size
+                                                               * batch:
+                                                               batch_size
+                                                               * (batch + 1)]}
                     sess.run(train_op, feed_dict=mini_batch_dict)
                     if (batch + 1) % 100 == 0:
-                        # print("Made it this far without error")
                         mini_batch_cost = loss.eval(mini_batch_dict)
                         mini_batch_accuracy = accuracy.eval(mini_batch_dict)
                         print("\tStep {}:".format(batch + 1))
