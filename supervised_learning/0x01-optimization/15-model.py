@@ -24,9 +24,9 @@ def create_batch_norm_layers(prev, n, activation, last, epsilon):
                              kernel_initializer=weights)
     if last is True:
         return layers
-    mean, variance = tf.nn.moments(layers, 0)
-    gamma = tf.Variable(tf.ones(n), trainable=True)
-    beta = tf.Variable(tf.zeros(n), trainable=True)
+    mean, variance = tf.nn.moments(layers, axes=[0])
+    gamma = tf.Variable(tf.ones([n]), trainable=True)
+    beta = tf.Variable(tf.zeros([n]), trainable=True)
     return activation(tf.nn.batch_normalization(layers,
                                                 mean,
                                                 variance,
@@ -120,7 +120,7 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
 
     global_step = tf.Variable(0, trainable=False)
     mini_batch_size = len(X_Train) // batch_size
-    while mini_batch_size % batch_size != 0:
+    if mini_batch_size % batch_size != 0:
         mini_batch_size += 1
     alpha = tf.train.inverse_time_decay(learning_rate=alpha,
                                         global_step=global_step,
@@ -150,7 +150,7 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
             print("\tTraining Accuracy: {}".format(train_accuracy))
             print("\tValidation Cost: {}".format(validation_loss))
             print("\tValidation Accuracy: {}".format(validation_accuracy))
-            if epoch < epochs:
+            while epoch < epochs:
                 data_Shuffled, labels_Shuffled = shuffle_data(X_Train, Y_Train)
                 for batch in range(0, mini_batch_size):
                     mini_batch_dict = {data: data_Shuffled[batch_size
