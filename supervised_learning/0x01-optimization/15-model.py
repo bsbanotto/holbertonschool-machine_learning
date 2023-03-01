@@ -162,5 +162,5 @@ def model(Data_train, Data_valid, layers, activations,
                     print("\tStep {}:".format(iterator))
                     print("\t\tCost: {}".format(mini_batch_cost))
                     print("\t\tAccuracy: {}".format(mini_batch_accuracy))
-        saver = tf.train.Saver()
-        return saver.save(sess, save_path)
+            saver = tf.train.Saver()
+            return saver.save(sess, save_path)
