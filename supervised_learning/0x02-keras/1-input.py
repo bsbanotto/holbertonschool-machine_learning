@@ -22,11 +22,11 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
                        kernel_regularizer=K.regularizers.l2(lambtha)
                        )(inputs)
     for layer in range(1, len(layers)):
-        if layer <= len(layers) - 1:
-            dropout_layer = K.layers.Dropout(1 - keep_prob)(x)
+        dropout_layer = K.layers.Dropout(1 - keep_prob)(x)
         x = K.layers.Dense(units=layers[layer],
                            activation=activations[layer],
-                           kernel_regularizer=K.regularizers.l2(lambtha),
+                           kernel_regularizer=K.regularizers.l2(lambtha)
                            )(dropout_layer)
-        model = K.Model(inputs=inputs, outputs=x)
+
+    model = K.Model(inputs=inputs, outputs=x)
     return model
