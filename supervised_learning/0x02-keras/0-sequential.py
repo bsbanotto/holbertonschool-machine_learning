@@ -20,8 +20,8 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     model = K.Sequential()
     # Create our input layer
     model.add(K.layers.Dense(units=layers[0],
-                             activation = activations[0],
-                             kernel_regularizer=K.regularizers.L2(lambtha),
+                             activation=activations[0],
+                             kernel_regularizer=K.regularizers.l2(lambtha),
                              input_shape=(nx,)))
     # Create all of our hidden layers
     for layer in range(1, len(layers)):
@@ -29,7 +29,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
             model.add(K.layers.Dropout(1 - keep_prob))
         model.add(K.layers.Dense(units=layers[layer],
                                  activation=activations[layer],
-                                 kernel_regularizer=K.regularizers.L2(lambtha)
+                                 kernel_regularizer=K.regularizers.l2(lambtha)
                                  ))
         # Handle dropout on hidden layers
     return model
