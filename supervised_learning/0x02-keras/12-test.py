@@ -2,6 +2,7 @@
 """
 Write a function that tests a neural network
 """
+import tensorflow.keras as K
 
 
 def test_model(network, data, labels, verbose=True):
