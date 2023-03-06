@@ -54,15 +54,6 @@ def train_model_7(network, data, labels, batch_size, epochs,
                 return alpha / (1 + decay_rate * (epoch))
             learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
                                                                   verbose)
-        return network.fit(x=data,
-                           y=labels,
-                           batch_size=batch_size,
-                           epochs=epochs,
-                           verbose=verbose,
-                           shuffle=shuffle,
-                           validation_data=validation_data,
-                           callbacks=[earlystopping, learningratedecay]
-                           )
     return network.fit(x=data,
                        y=labels,
                        batch_size=batch_size,
@@ -70,4 +61,5 @@ def train_model_7(network, data, labels, batch_size, epochs,
                        verbose=verbose,
                        shuffle=shuffle,
                        validation_data=validation_data,
+                       callbacks=[earlystopping, learningratedecay]
                        )
