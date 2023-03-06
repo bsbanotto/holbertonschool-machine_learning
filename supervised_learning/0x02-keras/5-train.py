@@ -6,7 +6,7 @@ validation data
 import tensorflow.keras as K
 
 
-def train_model_5(network, data, labels, batch_size, epochs,
+def train_model(network, data, labels, batch_size, epochs,
                   validation_data=None, verbose=True, shuffle=False):
     """
     validation_data: the data to validate the model with, if not `None`
