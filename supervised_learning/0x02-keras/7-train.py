@@ -38,66 +38,30 @@ def train_model_7(network, data, labels, batch_size, epochs,
         we have chosen to set the default to False
     Returns: the History object generated after training the model
     """
-    if validation_data is not None:
-        if early_stopping:
-            """Create earlystop callback"""
-            print("Creating early stopping callback")
-            earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
-                                                      patience=patience)
-        if learning_rate_decay:
-            """
-            Create learning rate decay callback
-            """
-            print("Creating learning rate decay callback")
+    callback_list = []
 
-            def scheduler(epoch):
-                """
-                This function changes the learning rate in a stepwise manner
-                using inverse time decay
-                """
-                return alpha / (1 + decay_rate * (epoch))
-            learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
-                                                                  verbose)
-        if early_stopping and learning_rate_decay:
-            print("early stopping and learning rate decay")
-            return network.fit(x=data,
-                               y=labels,
-                               batch_size=batch_size,
-                               epochs=epochs,
-                               verbose=verbose,
-                               shuffle=shuffle,
-                               validation_data=validation_data,
-                               callbacks=[earlystopping, learningratedecay]
-                               )
-        if early_stopping and not learning_rate_decay:
-            print("early stopping and not learning rate decay")
-            return network.fit(x=data,
-                               y=labels,
-                               batch_size=batch_size,
-                               epochs=epochs,
-                               verbose=verbose,
-                               shuffle=shuffle,
-                               validation_data=validation_data,
-                               callbacks=[earlystopping]
-                               )
-        if learning_rate_decay and not early_stopping:
-            print("learning rate decay and not early stopping")
-            return network.fit(x=data,
-                               y=labels,
-                               batch_size=batch_size,
-                               epochs=epochs,
-                               verbose=verbose,
-                               shuffle=shuffle,
-                               validation_data=validation_data,
-                               callbacks=[learningratedecay]
-                               )
-    else:
-        print("no validation data")
-        return network.fit(x=data,
-                           y=labels,
-                           batch_size=batch_size,
-                           epochs=epochs,
-                           verbose=verbose,
-                           shuffle=shuffle,
-                           validation_data=validation_data,
-                           )
+    earlystopping = early_stopping
+    if earlystopping and validation_data is not None:
+        earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
+                                                  patience=patience)
+        callback_list.append(earlystopping)
+
+    learningratedecay = learning_rate_decay
+    if learningratedecay and validation_data is not None:
+
+        def scheduler(epoch):
+            return (alpha / (1 + decay_rate * epoch))
+        learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
+                                                              verbose=verbose)
+        callback_list.append(learningratedecay)
+
+    print(callback_list)
+    return network.fit(x=data,
+                       y=labels,
+                       batch_size=batch_size,
+                       epochs=epochs,
+                       verbose=verbose,
+                       shuffle=shuffle,
+                       validation_data=validation_data,
+                       callbacks=callback_list
+                       )
