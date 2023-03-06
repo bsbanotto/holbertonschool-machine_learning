@@ -6,10 +6,10 @@ model with learning rate decay
 import tensorflow.keras as K
 
 
-def train_model(network, data, labels, batch_size, epochs,
-                validation_data=None, early_stopping=False, patience=0,
-                learning_rate_decay=False, alpha=0.1, decay_rate=1,
-                verbose=True, shuffle=False):
+def train_model_7(network, data, labels, batch_size, epochs,
+                  validation_data=None, early_stopping=False, patience=0,
+                  learning_rate_decay=False, alpha=0.1, decay_rate=1,
+                  verbose=True, shuffle=False):
     """
     learning_rate_decay: boolean that indicates whether or not learning rate
     decay should be used
@@ -39,13 +39,23 @@ def train_model(network, data, labels, batch_size, epochs,
     Returns: the History object generated after training the model
     """
     if validation_data is not None:
-        earlystopping = early_stopping
-        learningratedecay = learning_rate_decay
-        if earlystopping:
+        if early_stopping and not learning_rate_decay:
             """Create earlystop callback"""
             earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
                                                       patience=patience)
-        if learningratedecay:
+            return network.fit(x=data,
+                               y=labels,
+                               batch_size=batch_size,
+                               epochs=epochs,
+                               verbose=verbose,
+                               shuffle=shuffle,
+                               validation_data=validation_data,
+                               callbacks=[earlystopping]
+                               )
+        if learning_rate_decay and not early_stopping:
+            """
+            Create learning rate decay callback
+            """
             def scheduler(epoch):
                 """
                 This function changes the learning rate in a stepwise manner
@@ -54,6 +64,37 @@ def train_model(network, data, labels, batch_size, epochs,
                 return alpha / (1 + decay_rate * (epoch))
             learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
                                                                   verbose)
+            return network.fit(x=data,
+                               y=labels,
+                               batch_size=batch_size,
+                               epochs=epochs,
+                               verbose=verbose,
+                               shuffle=shuffle,
+                               validation_data=validation_data,
+                               callbacks=[learningratedecay]
+                               )
+        if early_stopping and learning_rate_decay:
+            earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
+                                                      patience=patience)
+
+            def scheduler(epoch):
+                """
+                This function changes the learning rate in a stepwise manner
+                using inverse time decay
+                """
+                return alpha / (1 + decay_rate * (epoch))
+            learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
+                                                                  verbose)
+            return network.fit(x=data,
+                               y=labels,
+                               batch_size=batch_size,
+                               epochs=epochs,
+                               verbose=verbose,
+                               shuffle=shuffle,
+                               validation_data=validation_data,
+                               callbacks=[earlystopping, learningratedecay]
+                               )
+    else:
         return network.fit(x=data,
                            y=labels,
                            batch_size=batch_size,
@@ -61,5 +102,4 @@ def train_model(network, data, labels, batch_size, epochs,
                            verbose=verbose,
                            shuffle=shuffle,
                            validation_data=validation_data,
-                           callbacks=[earlystopping, learningratedecay]
                            )
