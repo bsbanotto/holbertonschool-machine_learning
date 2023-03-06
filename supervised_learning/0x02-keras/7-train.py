@@ -63,3 +63,11 @@ def train_model_7(network, data, labels, batch_size, epochs,
                            validation_data=validation_data,
                            callbacks=[earlystopping, learningratedecay]
                            )
+    return network.fit(x=data,
+                       y=labels,
+                       batch_size=batch_size,
+                       epochs=epochs,
+                       verbose=verbose,
+                       shuffle=shuffle,
+                       validation_data=validation_data,
+                       )
