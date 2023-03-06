@@ -6,7 +6,7 @@ model with learning rate decay
 import tensorflow.keras as K
 
 
-def train_model_7(network, data, labels, batch_size, epochs,
+def train_model(network, data, labels, batch_size, epochs,
                   validation_data=None, early_stopping=False, patience=0,
                   learning_rate_decay=False, alpha=0.1, decay_rate=1,
                   verbose=True, shuffle=False):
