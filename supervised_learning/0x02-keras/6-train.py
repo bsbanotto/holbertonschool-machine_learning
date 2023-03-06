@@ -35,12 +35,21 @@ def train_model(network, data, labels, batch_size, epochs,
         """Create earlystop callback"""
         earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
                                                   patience=patience)
-    return network.fit(x=data,
-                       y=labels,
-                       batch_size=batch_size,
-                       epochs=epochs,
-                       verbose=verbose,
-                       shuffle=shuffle,
-                       validation_data=validation_data,
-                       callbacks=[earlystopping]
-                       )
+        return network.fit(x=data,
+                           y=labels,
+                           batch_size=batch_size,
+                           epochs=epochs,
+                           verbose=verbose,
+                           shuffle=shuffle,
+                           validation_data=validation_data,
+                           callbacks=[earlystopping]
+                           )
+    else:
+        return network.fit(x=data,
+                           y=labels,
+                           batch_size=batch_size,
+                           epochs=epochs,
+                           verbose=verbose,
+                           shuffle=shuffle,
+                           validation_data=validation_data,
+                           )
