@@ -31,19 +31,20 @@ def train_model(network, data, labels, batch_size, epochs,
         we have chosen to set the default to False
     Returns: the History object generated after training the model
     """
-    if validation_data is not None and early_stopping:
-        """Create earlystop callback"""
-        earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
-                                                  patience=patience)
-        return network.fit(x=data,
-                           y=labels,
-                           batch_size=batch_size,
-                           epochs=epochs,
-                           verbose=verbose,
-                           shuffle=shuffle,
-                           validation_data=validation_data,
-                           callbacks=[earlystopping]
-                           )
+    if validation_data is not None:
+        if early_stopping:
+            """Create earlystop callback"""
+            earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
+                                                      patience=patience)
+            return network.fit(x=data,
+                               y=labels,
+                               batch_size=batch_size,
+                               epochs=epochs,
+                               verbose=verbose,
+                               shuffle=shuffle,
+                               validation_data=validation_data,
+                               callbacks=[earlystopping]
+                               )
     else:
         return network.fit(x=data,
                            y=labels,
