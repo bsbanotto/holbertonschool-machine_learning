@@ -39,10 +39,34 @@ def train_model_7(network, data, labels, batch_size, epochs,
     Returns: the History object generated after training the model
     """
     if validation_data is not None:
-        if early_stopping and not learning_rate_decay:
+        if early_stopping:
             """Create earlystop callback"""
             earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
                                                       patience=patience)
+        if learning_rate_decay:
+            """
+            Create learning rate decay callback
+            """
+
+            def scheduler(epoch):
+                """
+                This function changes the learning rate in a stepwise manner
+                using inverse time decay
+                """
+                return alpha / (1 + decay_rate * (epoch))
+            learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
+                                                                  verbose)
+        if early_stopping and learning_rate_decay:
+            return network.fit(x=data,
+                               y=labels,
+                               batch_size=batch_size,
+                               epochs=epochs,
+                               verbose=verbose,
+                               shuffle=shuffle,
+                               validation_data=validation_data,
+                               callbacks=[earlystopping, learningratedecay]
+                               )
+        if early_stopping and not learning_rate_decay:
             return network.fit(x=data,
                                y=labels,
                                batch_size=batch_size,
@@ -53,17 +77,6 @@ def train_model_7(network, data, labels, batch_size, epochs,
                                callbacks=[earlystopping]
                                )
         if learning_rate_decay and not early_stopping:
-            """
-            Create learning rate decay callback
-            """
-            def scheduler(epoch):
-                """
-                This function changes the learning rate in a stepwise manner
-                using inverse time decay
-                """
-                return alpha / (1 + decay_rate * (epoch))
-            learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
-                                                                  verbose)
             return network.fit(x=data,
                                y=labels,
                                batch_size=batch_size,
@@ -72,27 +85,6 @@ def train_model_7(network, data, labels, batch_size, epochs,
                                shuffle=shuffle,
                                validation_data=validation_data,
                                callbacks=[learningratedecay]
-                               )
-        if early_stopping and learning_rate_decay:
-            earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
-                                                      patience=patience)
-
-            def scheduler(epoch):
-                """
-                This function changes the learning rate in a stepwise manner
-                using inverse time decay
-                """
-                return alpha / (1 + decay_rate * (epoch))
-            learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
-                                                                  verbose)
-            return network.fit(x=data,
-                               y=labels,
-                               batch_size=batch_size,
-                               epochs=epochs,
-                               verbose=verbose,
-                               shuffle=shuffle,
-                               validation_data=validation_data,
-                               callbacks=[earlystopping, learningratedecay]
                                )
     else:
         return network.fit(x=data,
