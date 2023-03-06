@@ -41,12 +41,14 @@ def train_model_7(network, data, labels, batch_size, epochs,
     if validation_data is not None:
         if early_stopping:
             """Create earlystop callback"""
+            print("Creating early stopping callback")
             earlystopping = K.callbacks.EarlyStopping(monitor="val_loss",
                                                       patience=patience)
         if learning_rate_decay:
             """
             Create learning rate decay callback
             """
+            print("Creating learning rate decay callback")
 
             def scheduler(epoch):
                 """
@@ -57,6 +59,7 @@ def train_model_7(network, data, labels, batch_size, epochs,
             learningratedecay = K.callbacks.LearningRateScheduler(scheduler,
                                                                   verbose)
         if early_stopping and learning_rate_decay:
+            print("early stopping and learning rate decay")
             return network.fit(x=data,
                                y=labels,
                                batch_size=batch_size,
@@ -67,6 +70,7 @@ def train_model_7(network, data, labels, batch_size, epochs,
                                callbacks=[earlystopping, learningratedecay]
                                )
         if early_stopping and not learning_rate_decay:
+            print("early stopping and not learning rate decay")
             return network.fit(x=data,
                                y=labels,
                                batch_size=batch_size,
@@ -77,6 +81,7 @@ def train_model_7(network, data, labels, batch_size, epochs,
                                callbacks=[earlystopping]
                                )
         if learning_rate_decay and not early_stopping:
+            print("learning rate decay and not early stopping")
             return network.fit(x=data,
                                y=labels,
                                batch_size=batch_size,
@@ -87,6 +92,7 @@ def train_model_7(network, data, labels, batch_size, epochs,
                                callbacks=[learningratedecay]
                                )
     else:
+        print("no validation data")
         return network.fit(x=data,
                            y=labels,
                            batch_size=batch_size,
