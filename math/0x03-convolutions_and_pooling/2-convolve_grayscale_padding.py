@@ -34,18 +34,13 @@ def convolve_grayscale_padding(images, kernel, padding):
     h = images.shape[1] + (2 * padding[0]) - kh + 1
     w = images.shape[2] + (2 * padding[1]) - kw + 1
 
-    # print("padding[0] {}".format(padding[0]))
-    # print("padding[1] {}".format(padding[1]))
-
     images = np.pad(images, ((0, 0), (pad_top_bottom, pad_top_bottom),
                              (pad_left_right, pad_left_right)))
 
     csm = np.zeros((m, h, w))
-    # print(np.shape(csm))
 
     for x in range(h):
         for y in range(w):
-            # print("Matrix Location ({}, {})".format(x, y))
             hadamard_prod = np.multiply(images[:, x:x + kh, y:y + kw], kernel)
             csm[:, x, y] = np.sum(hadamard_prod, axis=(1, 2))
     return csm
