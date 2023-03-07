@@ -24,7 +24,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
             ph: padding for the height of the image
             pw: padding for the width of the image
         the image should be padded with 0's
-    stride: tuple of sh, sw)
+    stride: tuple of (sh, sw)
         sh: stride for the height of the image
         sw: stride for the width of the image
     Only allowed to use two for loops
