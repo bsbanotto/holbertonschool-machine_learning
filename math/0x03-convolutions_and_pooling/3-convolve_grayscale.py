@@ -40,24 +40,21 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
 
     if padding == 'same':
         """Do same padding here"""
-        h = h // sh
-        w = w // sw
         pad_top_bottom = (((h - 1) * sh) + kh - h) // 2 + 1
         pad_left_right = (((w - 1) * sw) + kw - w) // 2 + 1
 
     elif padding == 'valid':
         """Do valid padding here"""
-        h = (h - kh + 1) // sh
-        w = (w - kw + 1) // sh
         pad_top_bottom = 0
         pad_left_right = 0
 
     else:
         """Do padding here"""
-        h = (h + (2 * padding[0]) - kh + 1) // sh
-        w = (w + (2 * padding[1]) - kw + 1) // sw
         pad_top_bottom = padding[0]
         pad_left_right = padding[1]
+
+    h = (h + 2 * pad_top_bottom - kh) // sh + 1
+    w = (w + 2 * pad_left_right - kw) // sw + 1
 
     images = np.pad(images, ((0, 0), (pad_top_bottom, pad_top_bottom),
                              (pad_left_right, pad_left_right)))
