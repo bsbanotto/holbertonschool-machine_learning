@@ -87,7 +87,8 @@ Write a function  `def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mo
 -   Returns: the partial derivatives with respect to the previous layer (`dA_prev`)
 
 ## Task 4. LeNet-5 (Tensorflow)
-![FlowChart](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/12/4fb0e30dfb666ae3a592.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG/20230310/eu-west-3/s3/aws4_request&X-Amz-Date=20230310T150001Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=063fa247fc4123e40caf27e6190e9bc072a4f944f1bfe197ca87f0c6730b019d)
+<img src="https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/supervised_learning/0x00-cnn/readme_photos/4fb0e30dfb666ae3a592.png" />
+
 Write a function  `def lenet5(x, y):`  that builds a modified version of the  `LeNet-5`  architecture using  `tensorflow`:
 
 -   `x`  is a  `tf.placeholder`  of shape  `(m, 28, 28, 1)`  containing the input images for the network
