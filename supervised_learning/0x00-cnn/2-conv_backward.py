@@ -55,8 +55,8 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     db = np.sum(dZ, axis=(0, 1, 2))
 
     if padding == 'same':
-        pad_top_bottom = (((h_prev - 1) * sh) + kh - h_prev) // 2
-        pad_left_right = (((w_prev - 1) * sw) + kw - w_prev) // 2
+        pad_top_bottom = (((h_prev - 1) * sh) + kh - h_prev) // 2 + 1
+        pad_left_right = (((w_prev - 1) * sw) + kw - w_prev) // 2 + 1
 
     if padding == 'valid':
         pad_top_bottom = 0
