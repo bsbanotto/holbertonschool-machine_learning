@@ -38,7 +38,8 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     m = dZ.shape[0]
     h_new = dZ.shape[1]
     w_new = dZ.shape[2]
-    c_new = dZ.shape[3]
+
+    c_new = b.shape[3]
 
     h_prev = A_prev.shape[1]
     w_prev = A_prev.shape[2]
