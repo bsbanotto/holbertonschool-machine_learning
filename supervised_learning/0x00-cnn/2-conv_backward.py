@@ -74,11 +74,11 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                 for z in range(c_new):
                     i = x * sh
                     j = y * sw
-                    dW[:, :, :, z] +=\
-                        np.multiply(A_prev[image, i:i + kh, j:j + kw, :],
-                                    dZ[image, x, y, z])
-                    dA_prev[image, i:i + kh, j:j + kw, :] +=\
-                        np.multiply(W[:, :, :, z], dZ[image, x, y, z])
+                    dW[:, :, :, z] += np.multiply(
+                        A_prev[image, i:i + kh, j:j + kw, :],
+                        dZ[image, x, y, z])
+                    dA_prev[image, i:i + kh, j:j + kw, :] += (
+                        np.multiply(W[:, :, :, z], dZ[image, x, y, z]))
 
     if padding == 'same':
         dA_prev = dA_prev[:, pad_top_bottom:-pad_top_bottom,
