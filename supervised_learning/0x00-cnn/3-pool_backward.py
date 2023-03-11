@@ -4,7 +4,7 @@ Write a function that performs back propagation over a pooling layer of a
 neural network
 """
 import numpy as np
-# np.set_printoptions(suppress=True)
+np.set_printoptions(suppress=True)
 
 
 def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
