@@ -32,7 +32,7 @@ def lenet5(x, y):
         a tensor for the loss of the network
         a tensor for the accuracy of the network
     """
-    init = tf.keras.initializers.VarianceScaling()
+    init = tf.contrib.layers.variance_scaling_initializer()
 
     convolutional1 = tf.layers.conv2d(inputs=x,
                                       filters=6,
