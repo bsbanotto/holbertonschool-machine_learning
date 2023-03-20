@@ -39,7 +39,7 @@ def projection_block(A_prev, filters, s=2):
 
     conv3x3_1 = K.layers.Conv2D(filters=F3,
                                 kernel_size=(3, 3),
-                                strides=s,
+                                strides=1,
                                 padding='same',
                                 kernel_initializer=init)(relu_0)
 
@@ -49,7 +49,7 @@ def projection_block(A_prev, filters, s=2):
 
     conv1x1_2 = K.layers.Conv2D(filters=F12,
                                 kernel_size=(1, 1),
-                                strides=s,
+                                strides=1,
                                 padding='same',
                                 kernel_initializer=init)(relu_1)
 
@@ -59,7 +59,7 @@ def projection_block(A_prev, filters, s=2):
                                        kernel_size=(1, 1),
                                        strides=s,
                                        padding='same',
-                                       kernel_initializer=init)(relu_1)
+                                       kernel_initializer=init)(A_prev)
 
     batch_norm_shortcut = K.layers.BatchNormalization(axis=3)(conv1x1_shortcut)
 
