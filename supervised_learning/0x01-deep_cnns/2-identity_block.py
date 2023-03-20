@@ -28,7 +28,6 @@ def identity_block(A_prev, filters):
                                 kernel_size=(1, 1),
                                 strides=1,
                                 padding='same',
-                                activation='relu',
                                 kernel_initializer=init
                                 )(A_prev)
 
@@ -40,7 +39,6 @@ def identity_block(A_prev, filters):
                                 kernel_size=(3, 3),
                                 strides=1,
                                 padding='same',
-                                activation='relu',
                                 kernel_initializer=init)(relu_0)
 
     batch_norm_1 = K.layers.BatchNormalization(axis=3)(conv3x3_1)
@@ -51,14 +49,11 @@ def identity_block(A_prev, filters):
                                 kernel_size=(1, 1),
                                 strides=1,
                                 padding='same',
-                                activation='relu',
                                 kernel_initializer=init)(relu_1)
 
     batch_norm_2 = K.layers.BatchNormalization(axis=3)(conv1x1_2)
 
-    relu_2 = K.layers.ReLU()(batch_norm_2)
-
-    add_layer = K.layers.Add()([relu_2, A_prev])
+    add_layer = K.layers.Add()([A_prev, batch_norm_2])
 
     relu_output = K.layers.ReLU()(add_layer)
 
