@@ -53,7 +53,7 @@ def identity_block(A_prev, filters):
 
     batch_norm_2 = K.layers.BatchNormalization(axis=3)(conv1x1_2)
 
-    add_layer = K.layers.Add()([A_prev, batch_norm_2])
+    add_layer = K.layers.Add()([batch_norm_2, A_prev])
 
     relu_output = K.layers.ReLU()(add_layer)
 
