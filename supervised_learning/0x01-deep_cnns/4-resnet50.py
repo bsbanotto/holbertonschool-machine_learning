@@ -55,7 +55,7 @@ def resnet50():
     conv5_b = identity_block(conv5_a, [512, 512, 2048])
     conv5_c = identity_block(conv5_b, [512, 512, 2048])
 
-    AvgPool = K.layers.AveragePooling2D(pool_size=(1, 1),
+    AvgPool = K.layers.AveragePooling2D(pool_size=(7, 7),
                                         strides=1,
                                         padding='valid'
                                         )(conv5_c)
