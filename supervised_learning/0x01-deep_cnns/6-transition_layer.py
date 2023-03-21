@@ -19,7 +19,7 @@ def transition_layer(X, nb_filters, compression):
         the output, respectively
     """
     init = K.initializers.he_normal()
-    filters = nb_filters * compression
+    filters = (int)(nb_filters * compression)
 
     batch_norm = K.layers.BatchNormalization(axis=3)(X)
     ReLU = K.layers.ReLU()(batch_norm)
