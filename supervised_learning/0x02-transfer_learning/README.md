@@ -27,41 +27,18 @@ Write a blog post explaining your experimental process in completing the task ab
 
   
 
-Experimental process
+|**Experimental Process**|**Section of Paper**|
+|--|--|
+|What did I do in a nutshell?|Abstract|
+|What is the problem?|Introduction|
+|How did I solve the problem?|Materials and Methods|
+|What did I find out?|Results|
+|What does it mean?|Discussion|
+|Who helped me out?|Acknowledgments (optional)|
+|Whose work did I refer to?|Literature Cited|
+|Extra Information|Appendices (optional)|
 
-Section of Paper
 
-What did I do in a nutshell?
-
-Abstract
-
-What is the problem?
-
-Introduction
-
-How did I solve the problem?
-
-Materials and Methods
-
-What did I find out?
-
-Results
-
-What does it mean?
-
-Discussion
-
-Who helped me out?
-
-Acknowledgments (optional)
-
-Whose work did I refer to?
-
-Literature Cited
-
-Extra Information
-
-Appendices (optional)
 
   
 
