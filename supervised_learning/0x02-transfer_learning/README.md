@@ -25,8 +25,6 @@ In the same file, write a function  `def preprocess_data(X, Y):`  that pre-proce
 
 Write a blog post explaining your experimental process in completing the task above written as a journal-style scientific paper:
 
-  
-
 |**Experimental Process**|**Section of Paper**|
 |--|--|
 |What did I do in a nutshell?|Abstract|
@@ -38,13 +36,9 @@ Write a blog post explaining your experimental process in completing the task ab
 |Whose work did I refer to?|Literature Cited|
 |Extra Information|Appendices (optional)|
 
-
-
-  
-
 Your posts should have examples and at least one picture, at the top
-
 
 ## Comments
 In this project, I am planning on using EfficientNetB1 pretrained on the
-ImageNet dataset
+ImageNet dataset. Please reade the blog post for further details.
+
