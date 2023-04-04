@@ -153,7 +153,7 @@ model.compile(optimizer=optimizer,
 # Train Model
 model.fit(x=x_train_p,
           y=y_train_p,
-          batch_size=100,
+          batch_size=64,
           epochs=5,
           validation_data=(x_valid_p, y_valid_p))
 
