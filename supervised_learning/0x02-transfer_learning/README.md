@@ -25,16 +25,16 @@ In the same file, write a function  `def preprocess_data(X, Y):`  that pre-proce
 
 Write a blog post explaining your experimental process in completing the task above written as a journal-style scientific paper:
 
-|**Experimental Process**|**Section of Paper**|
+|**Section of Paper**|**Experimental Process**|
 |--|--|
-|What did I do in a nutshell?|Abstract|
-|What is the problem?|Introduction|
-|How did I solve the problem?|Materials and Methods|
-|What did I find out?|Results|
-|What does it mean?|Discussion|
-|Who helped me out?|Acknowledgments (optional)|
-|Whose work did I refer to?|Literature Cited|
-|Extra Information|Appendices (optional)|
+|Abstract|What did I do in a nutshell?|
+|Introduction|What is the problem?|
+|Materials and Methods|How did I solve the problem?|
+|Results|What did I find out?|
+|Discussion|What does it mean?|
+|Acknowledgments (optional)|Who helped me out?|
+|Literature Cited|Whose work did I refer to?|
+|Appendices (optional)|Extra Information|
 
 Your posts should have examples and at least one picture, at the top
 
