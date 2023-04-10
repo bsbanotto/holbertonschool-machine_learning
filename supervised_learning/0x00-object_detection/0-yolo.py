@@ -33,7 +33,7 @@ class Yolo:
         self.model = K.models.load_model(model_path)
         with open(classes_path) as file:
             class_names = file.read()
-        self.class_names = class_names.split("\n")
+        self.class_names = class_names.replace("\n", "|").split("|")[:-1]
         self.class_t = class_t
         self.nms_t = nms_t
         self.anchors = anchors
