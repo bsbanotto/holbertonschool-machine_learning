@@ -98,6 +98,7 @@ class Yolo:
             cx = np.arange(grid_width).reshape(1, grid_width)
             cx = np.repeat(cx, grid_height, axis=0)
             x_corners.append(np.repeat(cx[..., np.newaxis], anchors, axis=2))
+
             cy = np.arange(grid_width).reshape(1, grid_width)
             cy = np.repeat(cy, grid_height, axis=0).T
             y_corners.append(np.repeat(cy[..., np.newaxis], anchors, axis=2))
@@ -116,9 +117,9 @@ class Yolo:
             bh = (np.exp(box[..., 3]) * self.anchors[x, :, 1]) / input_height
 
             # Move bounding box coordinates from corner to center
-            box[..., 1] = (by - (bh * .5)) * image_size[0]
-            box[..., 0] = (bx - (bw * .5)) * image_size[1]
-            box[..., 3] = (by + (bh * .5)) * image_size[0]
-            box[..., 2] = (bx + (bw * .5)) * image_size[1]
+            box[..., 1] = (by - (bh * .5)) * image_size[1]
+            box[..., 0] = (bx - (bw * .5)) * image_size[0]
+            box[..., 3] = (by + (bh * .5)) * image_size[1]
+            box[..., 2] = (bx + (bw * .5)) * image_size[0]
 
         return (boxes, box_confidences, box_class_probs)
