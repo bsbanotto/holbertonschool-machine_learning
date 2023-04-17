@@ -3,7 +3,8 @@
 Implementation of Yolo V3 Algorithm
 """
 import numpy as np
-import tensorflow.keras as K
+import tensorflow.compat.v1 as tf
+import tensorflow.compat.v1.keras as K
 
 
 
@@ -107,8 +108,8 @@ class Yolo:
             box_confidences.append(self.sigmoid(output[..., 4:5]))
             box_class_probs.append(self.sigmoid(output[..., 5:]))
 
-        input_width = self.model.input.shape[1].value
-        input_height = self.model.input.shape[2].value
+        input_width = self.model.input.shape[1]
+        input_height = self.model.input.shape[2]
 
         for x, box in enumerate(boxes):
             # Activate bounding boxes
