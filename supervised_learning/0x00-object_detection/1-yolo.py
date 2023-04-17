@@ -6,6 +6,7 @@ import numpy as np
 import tensorflow.keras as K
 
 
+
 class Yolo:
     """
     Initialize Yolo class.
@@ -37,6 +38,13 @@ class Yolo:
         self.class_t = class_t
         self.nms_t = nms_t
         self.anchors = anchors
+
+    # Define sigmoid activation function
+    def sigmoid(self, z):
+        """
+        sigmoid activation function
+        """
+        return (1 / (1 + np.exp(-z)))
 
     def process_outputs(self, outputs, image_size):
         """
@@ -81,13 +89,6 @@ class Yolo:
         # Create lists for bounding box corner coordinates
         x_corners, y_corners = [], []
 
-        # Define sigmoid activation function
-        def sigmoid(z):
-            """
-            sigmoid activation function
-            """
-            return (1 / (1 + np.exp(-z)))
-
         # Creat all of the grid cells to overlay image
         # Calculate box_confidences and box_class_probs
         for output in outputs:
@@ -103,23 +104,24 @@ class Yolo:
             cy = np.repeat(cy, grid_height, axis=0).T
             y_corners.append(np.repeat(cy[..., np.newaxis], anchors, axis=2))
 
-            box_confidences.append(sigmoid(output[..., 4:5]))
-            box_class_probs.append(sigmoid(output[..., 5:]))
+            box_confidences.append(self.sigmoid(output[..., 4:5]))
+            box_class_probs.append(self.sigmoid(output[..., 5:]))
 
         input_width = self.model.input.shape[1]
         input_height = self.model.input.shape[2]
 
         for x, box in enumerate(boxes):
             # Activate bounding boxes
-            bx = (sigmoid(box[..., 0]) + x_corners[x])/outputs[x].shape[1]
-            by = (sigmoid(box[..., 1]) + y_corners[x])/outputs[x].shape[0]
+            bx = (self.sigmoid(box[..., 0]) + x_corners[x])/outputs[x].shape[1]
+            by = (self.sigmoid(box[..., 1]) + y_corners[x])/outputs[x].shape[0]
             bw = (np.exp(box[..., 2]) * self.anchors[x, :, 0]) / input_width
             bh = (np.exp(box[..., 3]) * self.anchors[x, :, 1]) / input_height
 
             # Move bounding box coordinates from corner to center
-            box[..., 1] = (by - (bh * .5)) * image_size[1]
-            box[..., 0] = (bx - (bw * .5)) * image_size[0]
-            box[..., 3] = (by + (bh * .5)) * image_size[1]
-            box[..., 2] = (bx + (bw * .5)) * image_size[0]
+            box[..., 0] = (bx - (bw * .5)) * image_size[1]
+            box[..., 1] = (by - (bh * .5)) * image_size[0]
+            box[..., 2] = (bx + (bw * .5)) * image_size[1]
+            box[..., 3] = (by + (bh * .5)) * image_size[0]
+
 
         return (boxes, box_confidences, box_class_probs)
