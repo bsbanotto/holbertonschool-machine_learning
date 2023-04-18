@@ -116,7 +116,7 @@ class Yolo:
             bw = (np.exp(box[..., 2]) * self.anchors[x, :, 0]) / input_width
             bh = (np.exp(box[..., 3]) * self.anchors[x, :, 1]) / input_height
 
-            # Move bounding box coordinates from corner to center
+            # Move bounding box coordinates from center to corner
             box[..., 0] = (bx - (bw * .5)) * image_size[1]
             box[..., 1] = (by - (bh * .5)) * image_size[0]
             box[..., 2] = (bx + (bw * .5)) * image_size[1]

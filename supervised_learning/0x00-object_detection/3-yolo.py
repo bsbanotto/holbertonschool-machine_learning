@@ -106,8 +106,8 @@ class Yolo:
             box_confidences.append(self.sigmoid(output[..., 4:5]))
             box_class_probs.append(self.sigmoid(output[..., 5:]))
 
-        input_width = self.model.input.shape[1].value
-        input_height = self.model.input.shape[2].value
+        input_width = self.model.input.shape[1]
+        input_height = self.model.input.shape[2]
 
         for x, box in enumerate(boxes):
             # Activate bounding boxes
@@ -174,3 +174,61 @@ class Yolo:
             box_scores = np.concatenate((box_scores, filtered_score), axis=0)
 
         return (filtered_boxes, box_classes.astype(int), box_scores)
+
+    def _iou(self, box1, box2):
+        """Calculates IoU for two boxes"""
+        x1 = max(box1[0], box2[0])
+        y1 = max(box1[1], box2[1])
+        x2 = min(box1[2], box2[2])
+        y2 = min(box1[3], box2[3])
+
+        intersection_area = max(0, x2 - x1) * max(0, y2 - y1)
+        box1_area = (box1[2] - box1[0]) * (box1[3] - box1[1])
+        box2_area = (box2[2] - box2[0]) * (box2[3] - box2[1])
+
+        union_area = box1_area + box2_area - intersection_area
+        return intersection_area / union_area
+
+    def non_max_suppression(self, filtered_boxes, box_classes, box_scores):
+        """
+        Method to suppress all non-max bounding boxes in each grid square
+        filtered_boxes: numpy.ndarray of shape (?, 4) containing all of the
+            filtered bounding boxes
+        box_classes: numpy.ndarray of shape (?,) containing the class number
+            for the class that filtered_boxes predicts
+        box_scores: numpy.ndarray of shape (?) containing the box scores for
+            each box in filtered_boxes
+        Returns a tuple of (box_predictions, predicted_box_classes,
+            predicted_box_scores):
+            box_predictions: numpy.ndarray shape (?, 4) containing all of the
+                predicted bounding boxes ordered by class and box score
+            predicted_box_classes: numpy.ndarray shape (?,) containing the
+                class number for box_predictions ordered by class and box score
+            predicted_box_scores: numpy.ndarray shape (?) containing the box
+                scores for box_predictions ordered by class and box score
+        """
+        unique_classes = np.unique(box_classes)
+        box_predictions = []
+        predicted_box_classes = []
+        predicted_box_scores = []
+
+        for cls in unique_classes:
+            idxs = np.where(box_classes == cls)
+            cls_boxes = filtered_boxes[idxs]
+            cls_box_scores = box_scores[idxs]
+
+            while len(cls_boxes) > 0:
+                max_score_idx = np.argmax(cls_box_scores)
+                box_predictions.append(cls_boxes[max_score_idx])
+                predicted_box_classes.append(cls)
+                predicted_box_scores.append(cls_box_scores[max_score_idx])
+
+                iou_scores = [self._iou(cls_boxes[max_score_idx],
+                                        box) for box in cls_boxes]
+                to_remove = np.where(np.array(iou_scores) > self.nms_t)
+                cls_boxes = np.delete(cls_boxes, to_remove, axis=0)
+                cls_box_scores = np.delete(cls_box_scores, to_remove, axis=0)
+
+        return (np.array(box_predictions),
+                np.array(predicted_box_classes),
+                np.array(predicted_box_scores))
