@@ -263,20 +263,15 @@ class Yolo:
                 original height and width of the images
                     2: (image_height, image_width)
         """
-        pimages, image_shapes, pnormimages = [], [], []
+        pimages, image_shapes = [], []
         processed_size = (self.model.input.shape[1],
                           self.model.input.shape[2])
         for image in images:
-            pimages.append(cv2.resize(image,
-                                      processed_size,
-                                      interpolation=cv2.INTER_CUBIC))
+            pimages.append((cv2.resize(image,
+                            processed_size,
+                            interpolation=cv2.INTER_CUBIC)) / 255)
             image_shapes.append(image.shape[0:2])
 
-        for pimage in pimages:
-            norm_image = cv2.normalize(pimage, None, 0, 1,
-                                       cv2.NORM_MINMAX, dtype=cv2.CV_32F)
-            pnormimages.append(norm_image)
-
-        pimages = np.asarray(pnormimages)
+        pimages = np.asarray(pimages)
         image_shapes = np.asarray(image_shapes)
         return (pimages, image_shapes)
