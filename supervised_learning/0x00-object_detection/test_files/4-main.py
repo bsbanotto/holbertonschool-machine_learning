@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 sys.path.insert(0, '/home/bsbanotto/holbertonschool-machine_learning/supervised_learning/0x00-object_detection')
 
@@ -6,7 +8,7 @@ if __name__ == '__main__':
     import numpy as np
     Yolo = __import__('4-yolo').Yolo
 
-    np.random.seed(0)
+    np.random.seed(3)
     anchors = np.array([[[116, 90], [156, 198], [373, 326]],
                         [[30, 61], [62, 45], [59, 119]],
                         [[10, 13], [16, 30], [33, 23]]])

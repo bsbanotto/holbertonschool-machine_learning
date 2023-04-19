@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 sys.path.insert(0, '/home/bsbanotto/holbertonschool-machine_learning/supervised_learning/0x00-object_detection')
 
