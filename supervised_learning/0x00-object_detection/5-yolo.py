@@ -266,10 +266,13 @@ class Yolo:
         pimages, image_shape = [], []
         processed_size = (416, 416)
         for image in images:
-            pimages.append(cv2.resize(image,
+            norm_image = cv2.normalize(image, None, 0, 1.0,
+                                       cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+            pimages.append(cv2.resize(norm_image,
                                       processed_size,
                                       interpolation=cv2.INTER_CUBIC))
             image_shape.append(image.shape[0:2])
+
         pimages = np.asarray(pimages)
         image_shape = np.asarray(image_shape)
         return (pimages, image_shape)
