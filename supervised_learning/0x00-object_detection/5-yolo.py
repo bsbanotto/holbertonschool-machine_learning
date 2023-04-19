@@ -253,7 +253,7 @@ class Yolo:
         images: list of images as numpy.ndarrays
         Resize image with inter-cubic interpolation
         Rescale all images to have pixel values in range [0, 1]
-        Returns a tuple of (pimages, image_shape)
+        Returns a tuple of (pimages, image_shapes)
             pimages: numpy.ndarray of shape (ni, input_h, input_w, 3)
                 ni: number of images that were preprocessed
                 input_h: input height for the Darknet model
@@ -263,16 +263,19 @@ class Yolo:
                 original height and width of the images
                     2: (image_height, image_width)
         """
-        pimages, image_shape = [], []
+        pimages, image_shapes, pnormimages = [], [], []
         processed_size = (416, 416)
         for image in images:
-            norm_image = cv2.normalize(image, None, 0, 1.0,
-                                       cv2.NORM_MINMAX, dtype=cv2.CV_32F)
-            pimages.append(cv2.resize(norm_image,
+            pimages.append(cv2.resize(image,
                                       processed_size,
                                       interpolation=cv2.INTER_CUBIC))
-            image_shape.append(image.shape[0:2])
+            image_shapes.append(image.shape[0:2])
 
-        pimages = np.asarray(pimages)
-        image_shape = np.asarray(image_shape)
-        return (pimages, image_shape)
+        for pimage in pimages:
+            norm_image = cv2.normalize(pimage, None, 0, 1.0,
+                                       cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+            pnormimages.append(norm_image)
+
+        pimages = np.asarray(pnormimages)
+        image_shapes = np.asarray(image_shapes)
+        return (pimages, image_shapes)
