@@ -273,7 +273,7 @@ class Yolo:
             image_shapes.append(image.shape[0:2])
 
         for pimage in pimages:
-            norm_image = cv2.normalize(pimage, None, 0, 1.0,
+            norm_image = cv2.normalize(pimage, None, 0, 1,
                                        cv2.NORM_MINMAX, dtype=cv2.CV_32F)
             pnormimages.append(norm_image)
 
