@@ -8,7 +8,7 @@ if __name__ == '__main__':
     import numpy as np
     Yolo = __import__('5-yolo').Yolo
 
-    np.random.seed(0)
+    np.random.seed(4)
     anchors = np.array([[[116, 90], [156, 198], [373, 326]],
                         [[30, 61], [62, 45], [59, 119]],
                         [[10, 13], [16, 30], [33, 23]]])
