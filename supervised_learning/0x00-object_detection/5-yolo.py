@@ -264,7 +264,8 @@ class Yolo:
                     2: (image_height, image_width)
         """
         pimages, image_shapes, pnormimages = [], [], []
-        processed_size = (416, 416)
+        processed_size = (self.model.input.shape[1],
+                          self.model.input.shape[2])
         for image in images:
             pimages.append(cv2.resize(image,
                                       processed_size,
