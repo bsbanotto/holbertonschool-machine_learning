@@ -3,8 +3,10 @@
 This repository contains projects from the Machine Learning cirriculum at Holberton School.
 
 <img src="https://imageio.forbes.com/specials-images/dam/imageserve/966248982/960x0.jpg?format=jpg&width=960" alt="MachineLearning">
-Credit: Getty Images. GETTY
+Photo Credit: Getty Images. GETTY  
 
+&nbsp;  
+&nbsp;  
 <table>
     <tr>
         <td>
