@@ -24,7 +24,7 @@ Credit: Getty Images. GETTY
     </tr>
     <tr>
         <td>
-            <a href="https://github.com/bsbanotto/holbertonschool-machine_learning/tree/main/supervised_learning"></a>
+            <a href="https://github.com/bsbanotto/holbertonschool-machine_learning/tree/main/supervised_learning">supervised_learning</a>
         </td>
         <td>
             Making use of Tensorflow to create and use supervised learning models
