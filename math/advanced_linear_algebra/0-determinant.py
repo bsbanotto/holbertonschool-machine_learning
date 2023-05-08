@@ -28,10 +28,7 @@ def copy_matrix(matrix):
 
     for row in range(rows):
         for col in range(cols):
-            if cols != rows:
-                raise ValueError("matrix must be a square matrix")
-            else:
-                matrix_copy[row][col] = matrix[row][col]
+            matrix_copy[row][col] = matrix[row][col]
 
     return matrix_copy
 
@@ -73,13 +70,15 @@ def determinant(matrix):
     The list '[[]]' represents s 0x0 matrix
     Returns the determinant of matrix
     """
+    rows = len(matrix)
     if type(matrix) is not list:
         raise TypeError("matrix must be a list of lists")
-    rows = len(matrix)
     if rows == 0:
         raise TypeError("matrix must be a list of lists")
     for row in matrix:
         if type(row) is not list:
             raise TypeError("matrix must be a list of lists")
+        if len(row) != rows and rows != 1:
+            raise ValueError("matrix must be a square matrix")
     else:
         return determinant_recursive(matrix)
