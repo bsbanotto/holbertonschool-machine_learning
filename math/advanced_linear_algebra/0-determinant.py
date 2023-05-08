@@ -24,14 +24,14 @@ def copy_matrix(matrix):
     rows = len(matrix)
     cols = len(matrix[0])
 
-    if rows != cols:
-        raise ValueError("matrix must be a square matrix")
-
     matrix_copy = zeros_matrix(rows, cols)
 
     for row in range(rows):
         for col in range(cols):
-            matrix_copy[row][col] = matrix[row][col]
+            if cols != rows:
+                raise ValueError("matrix must be a square matrix")
+            else:
+                matrix_copy[row][col] = matrix[row][col]
 
     return matrix_copy
 
