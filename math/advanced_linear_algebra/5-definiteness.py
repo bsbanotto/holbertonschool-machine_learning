@@ -42,7 +42,7 @@ def definiteness(matrix):
         eigvals = np.linalg.eigvals(matrix)
     except np.linalg.LinAlgError:
         return None
-    print("eigenvalues:", eigvals)
+    # print("eigenvalues:", eigvals)
     if np.all(eigvals > 0):
         return "Positive definite"
     if np.all(eigvals >= 0):
