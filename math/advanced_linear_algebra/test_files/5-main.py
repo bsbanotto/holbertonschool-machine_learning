@@ -16,13 +16,13 @@ if __name__ == '__main__':
     mat7 = np.array([[1, 2, 3], [4, 5, 6]])
     mat8 = [[1, 2], [1, 2]]
 
-    print(definiteness(mat1))
-    print(definiteness(mat2))
-    print(definiteness(mat3))
-    print(definiteness(mat4))
-    print(definiteness(mat5))
-    print(definiteness(mat6))
-    print(definiteness(mat7))
+    print(definiteness(mat1), "\n")
+    print(definiteness(mat2), "\n")
+    print(definiteness(mat3), "\n")
+    print(definiteness(mat4), "\n")
+    print(definiteness(mat5), "\n")
+    print(definiteness(mat6), "\n")
+    print(definiteness(mat7), "\n")
     try:
         definiteness(mat8)
     except Exception as e:

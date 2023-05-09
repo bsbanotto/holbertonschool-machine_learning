@@ -42,6 +42,7 @@ def definiteness(matrix):
         eigvals = np.linalg.eigvals(matrix)
     except np.linalg.LinAlgError:
         return None
+    print("eigenvalues:", eigvals)
     if np.all(eigvals > 0):
         return "Positive definite"
     if np.all(eigvals >= 0):
@@ -50,4 +51,6 @@ def definiteness(matrix):
         return "Negative definite"
     if np.all(eigvals <= 0):
         return "Negative semi-definite"
+    # if np.all(eigvals < 0):
+    #     return "Negative definite"
     return "Indefinite"
