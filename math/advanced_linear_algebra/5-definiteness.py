@@ -29,8 +29,8 @@ def definiteness(matrix):
         return "Positive definite"
     if np.all(eigvals >= 0):
         return "Positive semi-definite"
-    if np.all(eigvals <= 0):
-        return "Negative semi-definite"
     if np.all(eigvals < 0):
         return "Negative definite"
+    if np.all(eigvals <= 0):
+        return "Negative semi-definite"
     return "Indefinite"
