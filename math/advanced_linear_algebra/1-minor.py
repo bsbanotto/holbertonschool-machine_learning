@@ -83,6 +83,10 @@ def minor(matrix):
         raise TypeError("matrix must be a list of lists")
 
     cols = len(matrix[0])
+
+    if rows == 1 and cols == 1:
+        return [[1]]
+
     minor_matrix = zeros_matrix(rows, cols)
 
     for row in range(rows):
