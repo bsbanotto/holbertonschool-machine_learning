@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
 Function to calculate the mean and covariance of a data set
+mean is average
+covariance is the degree to which random variables behave in a similar way
 """
 import numpy as np
 
@@ -9,7 +11,7 @@ def mean_cov(X):
     """
     X is a numpy.ndarray of shape (n, d) containing the data set
         n: number of data points
-        d: number of dimensions in each data poin
+        d: number of dimensions in each data point
         If X is not a 2D numpy.ndarray raise a TypeError with message
             X must be a 2D numpy.ndarray
         If n is less than 2, raise a ValueError with message
@@ -25,6 +27,11 @@ def mean_cov(X):
     if X.shape[0] < 2:
         raise ValueError("X must contain multiple data points")
 
+    n, d = X.shape
+
     mean = np.mean(X, axis=0, keepdims=True)
-    cov = 0
+    cov = np.zeros((d, d))
+    for i in range(d):
+        for j in range(d):
+            cov[i][j] = np.mean(X[:, i] * X[:, j]) - mean[0][i] * mean[0][j]
     return mean, cov
