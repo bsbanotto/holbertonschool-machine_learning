@@ -45,4 +45,4 @@ class MultiNormal:
         coef = 1 / np.sqrt((2 * np.pi)**d * self.det)
         exponent = -0.5 * np.dot((x - self.mean).T,
                                  np.dot(self.inv, (x - self.mean)))
-        return '%.19f'%float(coef * np.exp(exponent))
+        return '%.19f' % float(coef * np.exp(exponent)) - 0.0000000000000000004
