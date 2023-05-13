@@ -34,6 +34,9 @@ class MultiNormal:
         self.inv = np.linalg.inv(self.cov)
 
     def pdf(self, x):
+        """
+        Calculates the PDF of a data point
+        """
         if not isinstance(x, np.ndarray):
             raise TypeError("x must be a numpy.ndarray")
         d = self.mean.shape[0]
