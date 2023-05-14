@@ -5,6 +5,8 @@ find the probability that a patient who takes this drug will develop severe
 side effects. During your trials, n patients take the drug and x patients
 develop severe side effects. You can assume that x follows a binomial
 distribution.
+
+P(x) = (n choose x) * p^x & (1-p)^(n-x)
 """
 import numpy as np
 
@@ -42,4 +44,10 @@ def likelihood(x, n, P):
     for value in P:
         if value < 0 or value > 1:
             raise ValueError("All values in P must be in the range [0, 1]")
-    return 0
+
+    likelihoods = np.zeros_like(P)
+    fact = np.math.factorial
+    n_choose_x = fact(n) / (fact(x) * fact(n - x))
+    likelihoods = n_choose_x * (P ** x) * ((1 - P) ** (n - x))
+
+    return likelihoods
