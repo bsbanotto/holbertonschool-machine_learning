@@ -43,10 +43,10 @@ def intersection(x, n, P, Pr):
         raise TypeError("P must be a 1D numpy.ndarray")
     for value in P:
         if value < 0 or value > 1:
-            raise ValueError("All values in {P} must be in the range [0, 1]")
+            raise ValueError("All values in P must be in the range [0, 1]")
     for value in Pr:
         if value < 0 or value > 1:
-            raise ValueError("All values in {Pr} must be in the range [0, 1]")
+            raise ValueError("All values in Pr must be in the range [0, 1]")
     if np.isclose([np.sum(Pr)], [1]) == [False]:
         raise ValueError("Pr must sum to 1")
 
