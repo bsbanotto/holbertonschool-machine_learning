@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Function that performs Principal Component Analysis on a dataset
+Function that performs Principal Component Analysis on a dataset that maintains
+var fraction of X's original variance
 """
 import numpy as np
 
