@@ -17,19 +17,11 @@ def pca(X, var=0.95):
     W: numpy.ndarray of shape (d, nd) where nd is the new dimensionality of the
         transformed X
     """
-    # Calculate the covariance matrix
-    cov_matrix = np.cov(X, rowvar=False)
-
-    # Calculate eigenvalues and eigenvectors
-    eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
-
-    # Sort eigenvalues and eigenvectors in descending order
-    idx = np.argsort(eigenvalues)[::-1]
-    eigenvalues = eigenvalues[idx]
-    eigenvectors = eigenvectors[:, idx]
+    # Perform singular value decomposition (SVD)
+    _, S, Vt = np.linalg.svd(X, full_matrices=False)
 
     # Calculate the explained variance ratio
-    explained_variance_ratio = eigenvalues / np.sum(eigenvalues)
+    explained_variance_ratio = S**2 / np.sum(S**2)
 
     # Calculate the cumulative sum of explained variance ratio
     cumsum_explained_variance_ratio = np.cumsum(explained_variance_ratio)
@@ -38,6 +30,6 @@ def pca(X, var=0.95):
     num_dimensions = np.argmax(cumsum_explained_variance_ratio >= var) + 1
 
     # Select the corresponding eigenvectors to form the weights matrix
-    W = eigenvectors[:, :num_dimensions + 1]
+    W = Vt[:num_dimensions + 1].T
 
     return W
