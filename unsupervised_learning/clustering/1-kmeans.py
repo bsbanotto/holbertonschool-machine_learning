@@ -51,13 +51,6 @@ def kmeans(X, k, iterations=1000):
         clss: numpy.ndarray of shape (n, ) containin the index of the cluster C
             that each data point belongs to
     """
-    n = X.shape[0]
-    d = X.shape[1]
-    centroids = initialize(X, k)
-
-    if centroids is None:
-        return None, None
-
     if type(iterations) is not int:
         return None, None
 
@@ -69,6 +62,13 @@ def kmeans(X, k, iterations=1000):
 
     # if len(X.shape) != 2:
     #     return None, None
+    
+    n = X.shape[0]
+    d = X.shape[1]
+    centroids = initialize(X, k)
+
+    if centroids is None:
+        return None, None
 
     # print(X.shape)
     # print(centroids.shape)
