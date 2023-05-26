@@ -20,16 +20,18 @@ def initialize(X, k):
         centroids for each cluster, or None on failure
     """
 
-    if k <= 0:
+    try:
+        if k <= 0:
+            return None
+
+        min_val = X.min(axis=0)
+        max_val = X.max(axis=0)
+
+        centroids = np.random.uniform(min_val, max_val, size=(k, X.shape[1]))
+
+        return centroids
+    except Exception:
         return None
-
-    min_val = X.min(axis=0)
-    max_val = X.max(axis=0)
-
-    centroids = np.random.uniform(min_val, max_val, size=(k, X.shape[1]))
-
-    return centroids
-
 
 
 def kmeans(X, k, iterations=1000):
@@ -51,13 +53,15 @@ def kmeans(X, k, iterations=1000):
     """
     n = X.shape[0]
     d = X.shape[1]
-    low = X.min(axis=0)
-    high = X.max(axis=0)
     centroids = initialize(X, k)
+
     if centroids is None:
         return None, None
-    
-    for i in range(iterations):
+
+    # print(X.shape)
+    # print(centroids.shape)
+
+    for _ in range(iterations):
         # Calculate distance between centroids and data points
         delta = (X - centroids[:, None, :])  # (k, n, d)
         dist = np.linalg.norm(delta, axis=2).T  # (n, k)
@@ -86,4 +90,5 @@ def kmeans(X, k, iterations=1000):
         # Assign new centroids
         centroids = means
 
+    # print(delta.shape)
     return means, clss
