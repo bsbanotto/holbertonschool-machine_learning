@@ -58,6 +58,12 @@ def kmeans(X, k, iterations=1000):
     if centroids is None:
         return None, None
 
+    if type(iterations) is not int:
+        return None, None
+
+    if iterations <= 0:
+        return None, None
+
     # print(X.shape)
     # print(centroids.shape)
 
