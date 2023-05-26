@@ -48,48 +48,45 @@ def kmeans(X, k, iterations=1000):
     May use at most 2 loops
     Returns C, clss, or None, None on failure
         C: numpy.ndarray of shape (k, d) containing the centroid means
-        clss: numpy.ndarray of shape (n, ) containin the index of the cluster C
+        clss: numpy.ndarray of shape (n, ) containig the index of the cluster C
             that each data point belongs to
     """
-    if type(iterations) is not int:
-        return None, None
-
-    if iterations <= 0:
-        return None, None
-
-    if type(X) is not np.ndarray:
-        return None, None
-
-    if len(X.shape) != 2:
-        return None, None
-
-    n = X.shape[0]
-    d = X.shape[1]
+    # Initialize our centroids
     centroids = initialize(X, k)
+
+    # If guard all of the data
+    if type(iterations) is not int or iterations <= 0:
+        return None, None
+
+    if type(X) is not np.ndarray or len(X.shape) != 2:
+        return None, None
 
     if centroids is None:
         return None, None
 
-    # print(X.shape)
-    # print(centroids.shape)
+    n, d = X.shape
 
     for _ in range(iterations):
-        # Calculate distance between centroids and data points
-        delta = (X - centroids[:, None, :])  # (k, n, d)
-        dist = np.linalg.norm(delta, axis=2).T  # (n, k)
-        # Seperate into clusters
-        clss = np.argmin(dist, axis=1)
-        labeled = np.concatenate((X.copy(), np.reshape(clss, (n, 1))), axis=1)
+        # Assign each datapoint to a cluster
+        clss = np.argmin((np.linalg.norm((X - centroids[:, None, :]),
+                                         axis=2).T), axis=1)
+
+        # Add labels to the dataset
+        label = np.concatenate((X.copy(), np.reshape(clss, (n, 1))), axis=1)
 
         # Calculate the means of each cluster
         means = np.zeros((k, d))
         for j in range(k):
-            temp = labeled[labeled[:, -1] == j]
+            # Create temp subset for j-th cluster
+            temp = label[label[:, -1] == j]
+            # Trim the cluster number from the temp subset
             temp = temp[:, :d]
             if temp.size == 0:
-                # new_centroid = np.random.uniform(low, high, size=(1, d))
+                # If a cluster has no points, pick some random data point as a
+                # new centroid
                 means[j] = initialize(X, 1)
             else:
+                # Otherwise, calculate the mean value of a cluster
                 means[j] = np.mean(temp, axis=0)
         # Recalculate clss
         clss = np.argmin(np.linalg.norm((X - means[:, None, :]), axis=2).T,
