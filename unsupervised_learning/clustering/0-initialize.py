@@ -19,6 +19,9 @@ def initialize(X, k):
     Returns a numpy.ndarray of shape (k, d) containing the initialized
         centroids for each cluster, or None on failure
     """
+    if k <= 0:
+        return None
+
     try:
         min_val = X.min(axis=0)
         max_val = X.max(axis=0)
