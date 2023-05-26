@@ -22,9 +22,6 @@ def initialize(X, k):
     min_val = X.min(axis=0)
     max_val = X.max(axis=0)
 
-    if k <= 0 or k >= X.shape[1]:
-        return None
-
     clusters = np.random.uniform(min_val, max_val, size=(k, X.shape[1]))
 
     return clusters
