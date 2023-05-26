@@ -57,7 +57,7 @@ def kmeans(X, k, iterations=1000):
     if centroids is None:
         return None, None
     
-    for _ in range(iterations):
+    for i in range(iterations):
         # Calculate distance between centroids and data points
         delta = (X - centroids[:, None, :])  # (k, n, d)
         dist = np.linalg.norm(delta, axis=2).T  # (n, k)
