@@ -77,7 +77,7 @@ def kmeans(X, k, iterations=1000):
         # Calculate the means of each cluster
         means = np.zeros((k, d))
         for j in range(k):
-            # Create temp subset for j-th cluster
+            # Create temp subset fo' j-th cluster
             temp = label[label[:, -1] == j]
             # Trim the cluster number from the temp subset
             temp = temp[:, :d]
