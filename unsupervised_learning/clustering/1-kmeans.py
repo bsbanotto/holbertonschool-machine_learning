@@ -71,8 +71,8 @@ def kmeans(X, k, iterations=1000):
             temp = labeled[labeled[:, -1] == j]
             temp = temp[:, :d]
             if temp.size == 0:
-                new_centroid = np.random.uniform(low, high, size=(1, d))
-                means[j] = new_centroid
+                # new_centroid = np.random.uniform(low, high, size=(1, d))
+                means[j] = initialize(X, 1)
             else:
                 means[j] = np.mean(temp, axis=0)
         # Recalculate clss
