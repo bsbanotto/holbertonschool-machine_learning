@@ -64,6 +64,12 @@ def kmeans(X, k, iterations=1000):
     if iterations <= 0:
         return None, None
 
+    if type(X) is not np.ndarray:
+        return None, None
+
+    if len(X.shape) != 2:
+        return None, None
+
     # print(X.shape)
     # print(centroids.shape)
 
