@@ -26,8 +26,8 @@ def initialize(X, k):
         min_val = X.min(axis=0)
         max_val = X.max(axis=0)
 
-        clusters = np.random.uniform(min_val, max_val, size=(k, X.shape[1]))
+        centroids = np.random.uniform(min_val, max_val, size=(k, X.shape[1]))
 
-        return clusters
+        return centroids
     except Exception:
         return None
