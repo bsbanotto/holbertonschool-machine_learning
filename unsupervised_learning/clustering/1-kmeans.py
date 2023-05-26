@@ -36,7 +36,7 @@ def kmeans(X, k, iterations=1000):
     """
     X: numpy.ndarray of shape (n, d) containing the dataset
         n: number of datapoints
-        d: number of dimensions for each datapoint
+        d: number of dimensions fo' each datapoint
     k: positive integer containing the number of clusters
     iterations: positive integer containing the maximum number of iterations
         that should be performed
@@ -79,7 +79,7 @@ def kmeans(X, k, iterations=1000):
         clss = np.argmin(np.linalg.norm((X - means[:, None, :]), axis=2).T,
                          axis=1)
 
-        # Check for change
+        # Check if change
         if np.array_equal(centroids, means):
             break
 
