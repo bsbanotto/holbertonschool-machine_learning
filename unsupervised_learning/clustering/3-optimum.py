@@ -19,6 +19,9 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
             cluster size for each cluster size
     """
     # If guard against bad input data
+    if type(kmin) or type(kmax) is not int:
+        return None, None
+    
     if kmin <= 0 or kmax <= 0:
         return None, None
 
@@ -28,7 +31,10 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     if type(X) is not np.ndarray:
         return None, None
 
-    if iterations <= 0 or type(iterations) is not int:
+    if type(iterations) is not int:
+        return None, None
+
+    if iterations <= 0:
         return None, None
 
     # Create empty lists

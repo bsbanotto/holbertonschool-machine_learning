@@ -25,3 +25,9 @@ if __name__ == "__main__":
     plt.ylabel('Delta Variance')
     plt.title('Optimizing K-means')
     plt.show()
+
+    np.random.seed(0)
+    X = np.random.randint(0, 100, (300, 3)).tolist()
+    print(optimum_k(X))
+    print(optimum_k(np.arange(100)))
+    print(optimum_k(np.arange(100).reshape((100, 1, 1))))
