@@ -20,17 +20,16 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     """
     # If guard against bad input data
     if kmin <= 0 or kmax <= 0:
-        return None
+        return None, None
 
     if kmax <= kmin:
-        return None
+        return None, None
 
     if type(X) is not np.ndarray:
-        return None
+        return None, None
 
     if iterations <= 0:
-        return None
-
+        return None, None
 
     # Create empty lists
     results = []
