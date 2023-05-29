@@ -18,7 +18,7 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         d_vars: list containing the difference in variance from the smallest
             cluster size for each cluster size
     """
-    # If guard for input data
+    # If guard against bad input data
     if kmin <= 0 or kmax <= 0:
         return None
 
