@@ -19,7 +19,11 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
             cluster size for each cluster size
     """
     # If guard against bad input data
+    if type(kmax) is None:
+        return None, None
+
     if kmax:
+        # print("Inside if kmax")
         if type(kmin) is not int:
             return None, None
 
@@ -45,16 +49,18 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
             return None, None
 
     if not kmax:
-        if kmax <= 0:
+        # print("Inside if not kmax")
+
+        if kmax == 0:
             return None, None
 
         if type(X) is not np.ndarray:
             return None, None
 
+        kmax = X.shape[0]
+
         if len(X.shape) != 2:
             return None, None
-
-        kmax = X.shape[0]
 
         if type(kmin) is not int:
             return None, None
