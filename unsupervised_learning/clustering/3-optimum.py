@@ -19,7 +19,13 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
             cluster size for each cluster size
     """
     # If guard against bad input data
-    if type(kmin) or type(kmax) is not int:
+    if not kmax:
+        kmax = X.shape[0]
+
+    if type(kmin) is not int:
+        return None, None
+
+    if type(kmax) is not int:
         return None, None
 
     if kmin <= 0 or kmax <= 0:
@@ -48,7 +54,7 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         results.append((C, clss))
         vars.append(variance(X, C))
 
-    """Calculate d_vars from the smallest cluster size for each cluster"""
+    # Calculate d_vars from the smallest cluster size 4 each cluster
     for x in vars:
         d_vars.append(vars[0] - x)
 
