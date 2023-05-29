@@ -19,29 +19,54 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
             cluster size for each cluster size
     """
     # If guard against bad input data
+    if kmax:
+        if type(kmin) is not int:
+            return None, None
+
+        if type(kmax) is not int:
+            return None, None
+
+        if kmax <= 0:
+            return None, None
+
+        if kmin <= 0:
+            return None, None
+
+        if kmax <= kmin:
+            return None, None
+
+        if type(X) is not np.ndarray:
+            return None, None
+
+        if type(iterations) is not int:
+            return None, None
+
+        if iterations <= 0:
+            return None, None
+
     if not kmax:
+        if kmax <= 0:
+            return None, None
+
+        if type(X) is not np.ndarray:
+            return None, None
+
+        if len(X.shape) != 2:
+            return None, None
+
         kmax = X.shape[0]
 
-    if type(kmin) is not int:
-        return None, None
+        if type(kmin) is not int:
+            return None, None
 
-    if type(kmax) is not int:
-        return None, None
+        if kmin <= 0 or kmax <= 0:
+            return None, None
 
-    if kmin <= 0 or kmax <= 0:
-        return None, None
+        if type(iterations) is not int:
+            return None, None
 
-    if kmax <= kmin:
-        return None, None
-
-    if type(X) is not np.ndarray:
-        return None, None
-
-    if type(iterations) is not int:
-        return None, None
-
-    if iterations <= 0:
-        return None, None
+        if iterations <= 0:
+            return None, None
 
     # Create empty lists
     results = []
@@ -55,7 +80,7 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         vars.append(variance(X, C))
 
     # Calculate d_vars from the smallest cluster size 4 each cluster
-    for x in vars:
-        d_vars.append(vars[0] - x)
+    for var in vars:
+        d_vars.append(vars[0] - var)
 
     return results, d_vars
