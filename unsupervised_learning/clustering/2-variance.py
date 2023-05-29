@@ -20,8 +20,9 @@ def variance(X, C):
     if type(C) is not np.ndarray or len(C.shape) != 2:
         return None
 
-    if X.shape != C.shape:
+    if X.shape[1] != C.shape[1]:
         return None
+
     # Calculate distance between points and cluster centroids
     min_dist = np.min((np.linalg.norm((X - C[:, None, :]), axis=2).T), axis=1)
     var = np.sum(np.square(min_dist))
