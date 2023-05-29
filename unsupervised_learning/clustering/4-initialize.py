@@ -26,7 +26,7 @@ def initialize(X, k):
 
     _, d = X.shape
 
-    # Create a matrix of ones and divide by k so the sum of pi is 1
+    # Create a 1d matrix of ones and divide each number by k
     pi = np.ones(k)
     pi = pi / k
 
