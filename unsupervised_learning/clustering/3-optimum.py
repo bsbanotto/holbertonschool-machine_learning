@@ -28,7 +28,7 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     if type(X) is not np.ndarray:
         return None, None
 
-    if iterations <= 0:
+    if iterations <= 0 or type(iterations) is not int:
         return None, None
 
     # Create empty lists
