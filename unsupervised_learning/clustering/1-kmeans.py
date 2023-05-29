@@ -51,7 +51,7 @@ def kmeans(X, k, iterations=1000):
         clss: numpy.ndarray of shape (n, ) containig the index of the cluster C
             that each data point belongs to
     """
-    # Initialize our centroids
+    # Create initial, random centroids
     centroids = initialize(X, k)
 
     # If guard all of the data
@@ -67,11 +67,12 @@ def kmeans(X, k, iterations=1000):
     n, d = X.shape
 
     for _ in range(iterations):
-        # Assign each datapoint to a cluster
+        # Assign each datapoint a cluster by calculating distance from centroid
+        # and finding the index of the minimum distance
         clss = np.argmin((np.linalg.norm((X - centroids[:, None, :]),
                                          axis=2).T), axis=1)
 
-        # Add labels to the dataset
+        # Add labels to a copy of the dataset
         label = np.concatenate((X.copy(), np.reshape(clss, (n, 1))), axis=1)
 
         # Calculate the means of each cluster
@@ -86,17 +87,17 @@ def kmeans(X, k, iterations=1000):
                 # new centroid
                 means[j] = initialize(X, 1)
             else:
-                # Otherwise, calculate the mean value of a cluster
+                # Otherwise, calculate the mean value of the cluster
                 means[j] = np.mean(temp, axis=0)
-        # Recalculate clss
+        # Recalculate clss. Same as above, except using means
         clss = np.argmin(np.linalg.norm((X - means[:, None, :]), axis=2).T,
                          axis=1)
 
-        # Check if change
+        # Check if change between calculated means and current centroid
         if np.array_equal(centroids, means):
             break
 
-        # Assign new centroids
+        # Assign means as new centroids
         centroids = means
 
     # print(delta.shape)
