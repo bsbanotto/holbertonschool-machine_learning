@@ -13,13 +13,16 @@ def variance(X, C):
     Returns var, or None on failure
         var is the total variance
     """
-    # Guard against bad input dat
+    # Guard against bad input data
     if type(X) is not np.ndarray or len(X.shape) != 2:
         return None
 
     if type(C) is not np.ndarray or len(C.shape) != 2:
         return None
-    # Calculate distance between points and clusters
+
+    if X.shape != C.shape:
+        return None
+    # Calculate distance between points and cluster centroids
     min_dist = np.min((np.linalg.norm((X - C[:, None, :]), axis=2).T), axis=1)
     var = np.sum(np.square(min_dist))
 
