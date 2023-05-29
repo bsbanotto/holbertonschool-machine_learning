@@ -13,7 +13,7 @@ def variance(X, C):
     Returns var, or None on failure
         var is the total variance
     """
-    # Guard for bad input dat
+    # Guard against bad input dat
     if type(X) is not np.ndarray or len(X.shape) != 2:
         return None
 
