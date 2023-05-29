@@ -24,4 +24,17 @@ def initialize(X, k):
     if type(k) is not int or k <= 0:
         return None, None, None
 
-    return (1, 2, 3)
+    _, d = X.shape
+
+    # Create a matrix of ones and divide by k so the sum of pi is 1
+    pi = np.ones(k)
+    pi = pi / k
+
+    # Get centroid means using kmeans algorithm
+    m, _ = kmeans(X, k)
+
+    # Create the covariance matrices, initialized as identity matrices
+    S = np.zeros((k, d, d))
+    S[:] = np.eye(d)
+
+    return (pi, m, S)
