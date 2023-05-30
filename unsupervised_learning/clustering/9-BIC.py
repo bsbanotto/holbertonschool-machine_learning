@@ -32,8 +32,13 @@ def BIC(X, kmin=1, kmax=None, iterations=1000, tol=1e-5, verbose=False):
     # Guard against bad argument inputs
     if type(X) is not np.ndarray or len(X.shape) != 2:
         return None, None, None, None
-    if kmin <= 0:
+    if type(kmin) is not int or kmin <= 0:
         return None, None, None, None
+    if type(kmax) is not int or kmax <= 0:
+        return None, None, None, None
+    if kmax is not None:
+        if kmax <= 0 or kmax <= kmin:
+            return None, None, None, None
     if kmax is None:
         kmax = X.shape[0]
         if kmax <= 0 or kmax <= kmin:
