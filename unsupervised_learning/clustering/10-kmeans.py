@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
+import sklearn.cluster
 """
 Perform k-means on a dataset. Only import allowed
 """
-import sklearn.cluster
 
 
 def kmeans(X, k):
