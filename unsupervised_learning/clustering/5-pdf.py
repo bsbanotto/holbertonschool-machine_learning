@@ -26,8 +26,33 @@ def pdf(X, m, S):
     if type(S) is not np.ndarray or len(S.shape) != 2:
         return None
 
-    n, _ = X.shape
+    if X.shape[1] != m.shape[0]:
+        return None
 
-    P = np.zeros((n))
+    if S.shape[0] != S.shape[1]:
+        return None
+
+    if m.shape[0] != S.shape[0]:
+        return None
+
+    _, d = X.shape
+
+    # Calculate the inverse and determinant of the covariance matrix
+    inv_S = np.linalg.inv(S)
+    det_S = np.linalg.det(S)
+
+    if det_S <= 0:
+        return None
+
+    X_minus_m = X - m
+
+    # Calculate the exponent of the PDF formula
+    exponent = -0.5 * np.sum(X_minus_m @ inv_S * X_minus_m, axis=1)
+    # Calculate the coefficient of the PDF formula
+    coeff = 1 / np.sqrt((2 * np.pi) ** d * det_S)
+
+    # Calculate the PDF values, and set mins to 1e-300
+    P = coeff * np.exp(exponent)
+    P = np.maximum(P, 1e-300)
 
     return P
