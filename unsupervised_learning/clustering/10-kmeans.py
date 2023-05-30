@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
+"""
+Perform k-means on a dataset. Only allowed to use sklearn.cluster
+"""
 import sklearn.cluster
-"""
-Perform k-means on a dataset. Only allowed
-"""
 
 
 def kmeans(X, k):
@@ -14,6 +14,6 @@ def kmeans(X, k):
         clss: numpy.ndarray shape (n,) containing the index of the cluster
             C that each data point belongs to
     """
-    C, clss, _ = sklearn.cluster.k_means(X, k, n_init='auto')
+    C, clss, _ = sklearn.cluster.k_means(X, k)
 
     return C, clss
