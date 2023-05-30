@@ -19,7 +19,7 @@ def expectation(X, pi, m, S):
             for each data point in each cluster
         l: total log likelihood
     """
-    # Guard agains bad data input
+    # Guard against bad data input
     if type(X) is not np.ndarray or len(X.shape) != 2:
         return None, None
     if type(pi) is not np.ndarray or len(pi.shape) != 1:
