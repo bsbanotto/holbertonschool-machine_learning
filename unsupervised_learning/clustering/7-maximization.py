@@ -25,4 +25,6 @@ def maximization(X, g):
         return None, None, None
     if X.shape[0] != g.shape[1]:
         return None, None, None
+    if np.sum(g.shape[0] != 0):
+        return None, None, None
     return("hello")
