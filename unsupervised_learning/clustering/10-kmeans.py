@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Perform k-means on a dataset. Only import allowed is sklearn.cluster
+Perform k-means on a dataset. Only import allowed
 """
 import sklearn.cluster
 
