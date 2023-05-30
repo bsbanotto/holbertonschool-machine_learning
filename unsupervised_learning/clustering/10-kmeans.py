@@ -2,7 +2,7 @@
 """
 Perform k-means on a dataset. Only import allowed is sklearn.cluster
 """
-import sklearn.cluster
+import sklearn.cluster as Cluster
 
 
 def kmeans(X, k):
@@ -14,6 +14,6 @@ def kmeans(X, k):
         clss: numpy.ndarray shape (n,) containing the index of the cluster
             C that each data point belongs to
     """
-    model = sklearn.cluster.KMeans(n_clusters=k, n_init='auto').fit(X)
+    model = Cluster.KMeans(n_clusters=k, n_init='auto').fit(X)
 
     return model.cluster_centers_, model.labels_
