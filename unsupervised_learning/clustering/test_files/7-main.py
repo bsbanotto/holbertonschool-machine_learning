@@ -22,3 +22,12 @@ if __name__ == "__main__":
     print(pi)
     print(m)
     print(S)
+
+    X = np.random.randn(100, 6)
+    print(maximization(X, 'hello'))
+    print(maximization(X, np.array([1, 2, 3, 4, 5])))
+    print(maximization(X, np.array([[[1, 2, 3, 4, 5]]])))
+    g = np.random.randn(5, 90)
+    g = g / np.sum(g, axis=0, keepdims=True)
+    print(maximization(X, g))
+    print(maximization(X, np.random.randn(5, 100)))
