@@ -54,7 +54,7 @@ def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
         pi, m, S = maximization(X, g)
         _, l_finish = expectation(X, pi, m, S)
 
-        # Check for to see if l_start and l_finish are within tol
+        # Check to see if l_start and l_finish are within tol
         if abs(l_finish - l_start) <= tol:
             break
 
