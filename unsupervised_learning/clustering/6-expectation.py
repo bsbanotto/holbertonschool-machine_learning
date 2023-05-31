@@ -45,7 +45,10 @@ def expectation(X, pi, m, S):
     # Calculate PDF of each data point in each cluster
     PDF = np.zeros((k, n))
     for i in range(k):
-        PDF[i] = pi[i] * pdf(X, m[i], S[i])
+        try:
+            PDF[i] = pi[i] * pdf(X, m[i], S[i])
+        except(Exception):
+            return None, None
 
     # Normalize g
     g = PDF / np.sum(PDF, axis=0)
