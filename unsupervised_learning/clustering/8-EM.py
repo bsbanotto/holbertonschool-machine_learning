@@ -49,7 +49,7 @@ def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
 
     l_start = 0
 
-    for i in range(iterations):
+    for i in range(iterations + 1):
         g, l_finish = expectation(X, pi, m, S)
 
         # Check to see if l_start and l_finish are within tol
@@ -59,8 +59,8 @@ def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
                 print("Log Likelihood after {} iterations: {}".format(i,
                                                                       l_round))
             return pi, m, S, g, l_finish
-
-        pi, m, S = maximization(X, g)
+        if i < iterations:
+            pi, m, S = maximization(X, g)
 
         if verbose and i % 10 == 0:
             l_round = round(l_finish, 5)
