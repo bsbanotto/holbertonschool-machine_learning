@@ -29,6 +29,10 @@ Write the function  `def absorbing(P):`  that determines if a markov chain is ab
 -   Returns:  `True`  if it is absorbing, or  `False`  on failure
 
 ## Task 3. The Forward Algorithm
+<img src="https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/unsupervised_learning/hmm/readme_photos/a4a616525a089952d29f.png" />
+
+<img src="https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/unsupervised_learning/hmm/readme_photos/f847db61fbc52eda75d9.png" />
+
 Write the function  `def forward(Observation, Emission, Transition, Initial):`  that performs the forward algorithm for a hidden markov model:
 
 -   `Observation`  is a  `numpy.ndarray`  of shape  `(T,)`  that contains the index of the observation
