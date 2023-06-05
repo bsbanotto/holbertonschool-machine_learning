@@ -7,6 +7,11 @@ import numpy as np
 
 def forward(Observation, Emission, Transition, Initial):
     """
+    In lay terms, and from our main file, Observation is 364 days of clothing
+    that we see a person wear, but it's random. We're meant to determine the
+    probability this sequence of clothing choices happens (P). Spoiler alert
+    it's a really, really small chance.
+
     Observation: numpy.ndarray shape (T,) that contains the index of the
         observation
         T: number of observations
