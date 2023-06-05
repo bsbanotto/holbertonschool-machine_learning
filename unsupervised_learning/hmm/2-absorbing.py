@@ -36,12 +36,12 @@ def absorbing(P):
     for i in range(0, len(diag)):
         if diag[i] == 1:
             I_size += 1
-    I = np.eye(I_size)
+    IdentityMatrix = np.eye(I_size)
     R = P[I_size:, :I_size]
     Q = P[I_size:, I_size:]
 
-    # Get funcamental matrix (F = (I - Q)^-1)
-    F = np.linalg.inv(I - Q)
+    # Get fundamental matrix (F = (I - Q)^-1)
+    F = np.linalg.inv(IdentityMatrix - Q)
 
     # Calculate F times R
     FR = np.matmul(F, R)
