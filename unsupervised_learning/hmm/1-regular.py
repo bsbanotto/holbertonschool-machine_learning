@@ -14,8 +14,6 @@ def regular(P):
     Returns: numpy.ndarray of shape (1, n) containing the steady state
         probabbilities, or None on failure
     """
-    n = P.shape[0]
-
     # Check that P is a square matrix
     if P.shape[0] != P.shape[1]:
         return None
