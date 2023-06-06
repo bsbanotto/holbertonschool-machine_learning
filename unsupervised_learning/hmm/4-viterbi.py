@@ -64,7 +64,7 @@ def viterbi(Observation, Emission, Transition, Initial):
     max_index = np.argmax(V[:, T - 1])
     path[T - 1] = max_index
     for t in range(T - 2, -1, -1):
-        path[t] = np.argmax(Transition[:, int(path[t + 1])])
+        path[t] = np.argmax(V[:, t])
         break
 
-    return path, P
+    return path.astype(int), P
