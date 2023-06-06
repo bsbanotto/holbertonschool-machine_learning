@@ -14,12 +14,12 @@ def backward(Observation, Emission, Transition, Initial):
     Args:
         Observation: numpy.ndarray shape (T,) that contains the index of the
             observation
-            T: number of observations
+            T: number of observations (# of days, 365)
         Emission: numpy.ndarray shape (N, M) containing the emission prob of a
             specific observation given a hidden state
             Emission[i, j]: the probability of observing j given hidden state i
-                N: Number of hidden states
-                M: number of all possible observations
+                N: Number of hidden states (# weather choices)
+                M: number of all possible observations (# outfits)
         Traisition: numpy.ndarray shape (N, N) containing the transition probs
             Transition[i, j] is the probability of transitioning from hidden
                 state i to j
@@ -40,4 +40,16 @@ def backward(Observation, Emission, Transition, Initial):
     if Transition.shape != (N, N) or Initial.shape != (N, 1):
         return None, None
 
-    return("Hello", "Hello")
+    # Create zeros B and set last column to 1.
+    B = np.zeros((N, T))
+    B[:, -1] = 1
+
+    # For each obsergation and each hidden state...
+    for t in range(T - 2, -1, -1):
+        for n in range(N):
+            B[n, t] = np.sum(Emission[:, Observation[t + 1]]
+                             * Transition[n, :] * B[:, t + 1])
+
+    P = np.sum(Initial.T * Emission[:, Observation[0]] * B[:, 0], axis=1)[0]
+
+    return(P, B)

@@ -28,19 +28,7 @@ def regular(P):
     if np.any(P == 0):
         return None
 
-    # Compute eigenvals and eignevectors and find eigval with largest magnitude
-    eigval, eigvec = np.linalg.eig(P.T)
-    max_idx = np.argmax(np.abs(eigval))
-    dominant_eigval = eigval[max_idx]
+    for i in range (100):
+        steady_state_vector = np.linalg.matrix_power(P, i)
 
-    # If dominant eigval is 1, return none
-    if np.abs(dominant_eigval - 1) > 1e-6:
-        return None
-
-    steady_state_vector = np.real(eigvec[:, max_idx])
-
-    steady_state_vector /= np.sum(steady_state_vector)
-
-    steady_state_vector = steady_state_vector.reshape(1, P.shape[0])
-
-    return steady_state_vector
+    return steady_state_vector[0, np.newaxis]
