@@ -28,7 +28,7 @@ def regular(P):
     if np.any(P == 0):
         return None
 
-    for i in range (100):
+    for i in range(100):
         steady_state_vector = np.linalg.matrix_power(P, i)
 
     return steady_state_vector[0, np.newaxis]
