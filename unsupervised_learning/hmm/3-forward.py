@@ -46,7 +46,8 @@ def forward(Observation, Emission, Transition, Initial):
     # Perform the initialization
     F[:, 0] = (Initial.T * Emission[:, Observation[0]])
 
-    # Recurse for each observation
+    # For each observation, for each hidden state, multiply forward probs by
+    # transition probs, then sum those up to get the forward prop at that time
     for t in range(1, T):
         for i in range(N):
             F[i, t] = np.sum(Emission[i, Observation[  # Messy line break here
