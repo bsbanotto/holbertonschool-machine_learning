@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 
 sys.path.insert(0, '/home/bsbanotto/holbertonschool-machine_learning/unsupervised_learning/hyperparameter_tuning')
 GP = __import__('2-gp').GaussianProcess
-BO = __import__('3-bayes_opt').BayesianOptimization
 
 
 def f(x):
@@ -15,6 +14,7 @@ def f(x):
 
 
 if __name__ == '__main__':
+    BO = __import__('3-bayes_opt').BayesianOptimization
     np.random.seed(0)
     X_init = np.random.uniform(-np.pi, 2*np.pi, (2, 1))
     Y_init = f(X_init)
