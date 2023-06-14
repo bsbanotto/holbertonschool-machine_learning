@@ -89,37 +89,27 @@ class BayesianOptimization:
             X_opt: numpy.ndarray shape (1,) representing the optimal point
             Y_opt: numpy.ndarray shape (1,) representing the optimal value
         """
-        # for i in range(iterations):
-        #     X_opt, _ = self.acquisition()
-
-        #     if X_opt in self.gp.X:
-        #         break
-
-        #     Y_opt = self.f(X_opt)
-        #     self.gp.update(X_opt, Y_opt)
-
-        # return X_opt, Y_opt
-
-        """
-        This code block is from ChatGPT to see if it works better
-        """
         X_opt = None
         Y_opt = None
 
         for _ in range(iterations):
             x, _ = self.acquisition()
 
-            # Check if the proposed point has already been sampled
-            if np.any(np.all(self.gp.X == x, axis=1)):
+            if x in self.gp.X:
                 break
 
             y = self.f(x)
             self.gp.update(x, y)
 
-            # Update the optimal point and function value if necessary
-            if X_opt is None or\
-            (self.minimize and y < Y_opt) or\
-            (not self.minimize and y > Y_opt):
+            if X_opt is None:
+                X_opt = x
+                Y_opt = y
+
+            if self.minimize and y < Y_opt:
+                X_opt = x
+                Y_opt = y
+
+            if not self.minimize and y > Y_opt:
                 X_opt = x
                 Y_opt = y
 
