@@ -3,8 +3,14 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 
-
+"""Use this one when running locally"""
+"""
 sys.path.insert(0, '/home/bsbanotto/holbertonschool-machine_learning/unsupervised_learning/hyperparameter_tuning')
+"""
+
+"""Use this one when running in sandbox"""
+sys.path.insert(0, '/holbertonschool-machine_learning/unsupervised_learning/hyperparameter_tuning')
+
 BO = __import__('5-bayes_opt').BayesianOptimization
 
 
