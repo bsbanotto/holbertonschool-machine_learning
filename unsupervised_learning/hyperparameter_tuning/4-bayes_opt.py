@@ -60,3 +60,20 @@ class BayesianOptimization:
                 improvement of each potential sample
         """
         from scipy.stats import norm
+
+        mu, sigma = self.gp.predict(self.gp.X)
+        mu_s, sigma_s = self.gp.predict(self.X_s)
+
+        if self.minimize:
+            mu_bound = np.min(mu)
+        else:
+            mu_bound = np.max(mu)
+
+        Z_Numerator = mu_bound - mu_s - self.xsi
+        Z = Z_Numerator / sigma_s
+
+        EI = np.array(Z_Numerator * norm.cdf(Z) + sigma_s * norm.pdf(Z))
+
+        X_next = self.X_s[np.argmax(EI)]
+
+        return X_next, EI

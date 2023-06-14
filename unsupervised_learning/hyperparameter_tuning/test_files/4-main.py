@@ -18,7 +18,7 @@ if __name__ == '__main__':
     X_init = np.random.uniform(-np.pi, 2*np.pi, (2, 1))
     Y_init = f(X_init)
 
-    bo = BO(f, X_init, Y_init, (-np.pi, 2*np.pi), 50, l=0.6, sigma_f=2, xsi=0.05)
+    bo = BO(f, X_init, Y_init, (-np.pi, 2*np.pi), 50, l=0.6, sigma_f=2, xsi=0.05, minimize=True)
     X_next, EI = bo.acquisition()
 
     print(EI)
