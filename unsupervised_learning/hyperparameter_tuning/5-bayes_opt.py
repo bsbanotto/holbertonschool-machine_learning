@@ -72,7 +72,7 @@ class BayesianOptimization:
         Z_Numerator = mu_bound - mu_s - self.xsi
         Z = Z_Numerator / sigma_s
 
-        EI = np.array(Z_Numerator * norm.cdf(Z) + sigma_s * norm.pdf(Z))
+        EI = Z_Numerator * norm.cdf(Z) + sigma_s * norm.pdf(Z)
 
         X_next = self.X_s[np.argmax(EI)]
 
