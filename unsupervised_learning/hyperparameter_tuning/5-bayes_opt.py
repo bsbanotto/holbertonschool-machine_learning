@@ -72,7 +72,7 @@ class BayesianOptimization:
         Z_Numerator = mu_bound - mu_s - self.xsi
         Z = Z_Numerator / sigma_s
 
-        EI = Z_Numerator * norm.cdf(Z) + sigma_s * norm.pdf(Z)
+        EI = np.array(Z_Numerator * norm.cdf(Z) + sigma_s * norm.pdf(Z))
 
         X_next = self.X_s[np.argmax(EI)]
 
@@ -85,18 +85,42 @@ class BayesianOptimization:
             iterations: max number of iterations to perform
         If the next proposed point is one that has already been sampled, should
             be stopped early
-
         Returns:
             X_opt: numpy.ndarray shape (1,) representing the optimal point
             Y_opt: numpy.ndarray shape (1,) representing the optimal value
         """
-        for i in range(iterations):
-            X_opt, _ = self.acquisition()
+        # for i in range(iterations):
+        #     X_opt, _ = self.acquisition()
 
-            if X_opt in self.gp.X:
+        #     if X_opt in self.gp.X:
+        #         break
+
+        #     Y_opt = self.f(X_opt)
+        #     self.gp.update(X_opt, Y_opt)
+
+        # return X_opt, Y_opt
+
+        """
+        This code block is from ChatGPT to see if it works better
+        """
+        X_opt = None
+        Y_opt = None
+
+        for _ in range(iterations):
+            x, _ = self.acquisition()
+
+            # Check if the proposed point has already been sampled
+            if np.any(np.all(self.gp.X == x, axis=1)):
                 break
 
-            Y_opt = self.f(X_opt)
-            self.gp.update(X_opt, Y_opt)
+            y = self.f(x)
+            self.gp.update(x, y)
+
+            # Update the optimal point and function value if necessary
+            if X_opt is None or\
+            (self.minimize and y < Y_opt) or\
+            (not self.minimize and y > Y_opt):
+                X_opt = x
+                Y_opt = y
 
         return X_opt, Y_opt
