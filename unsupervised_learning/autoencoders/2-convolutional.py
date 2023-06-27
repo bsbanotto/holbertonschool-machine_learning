@@ -5,7 +5,7 @@ Create a convolutional autoencoder
 import tensorflow.keras as keras
 
 
-# Task 2 - Convolutional Autoencoder
+# Convolutional Autoencoder
 def autoencoder(input_dims, filters, latent_dims):
     """
     Create a convolutional autoencoder
@@ -15,9 +15,8 @@ def autoencoder(input_dims, filters, latent_dims):
         size of (2, 2)
 
     Args:
-        input_dims - tuple of integers containing the dimensions of the model
-            input
-        filters - list contaiing the number of filters for each convolutional
+        input_dims - tuple of integers containing the dimensions of the input
+        filters - list containing the number of filters for each convolutional
             layer in the encoder, respectively
         The filters should be reversed for the decoder
         latent_dims - tuple of integers containing the dimensions of the latent
@@ -28,7 +27,7 @@ def autoencoder(input_dims, filters, latent_dims):
         decoder - the decoder model
         auto - the full autoencoder model
     """
-
+    # i = 0
     # Build the encoder
     input_img = keras.Input(shape=input_dims)
     encoded = input_img
@@ -44,32 +43,51 @@ def autoencoder(input_dims, filters, latent_dims):
     # Build the decoder
     decoder_img = keras.Input(shape=latent_dims)
     decoded = decoder_img
+    # print(filters[0])
+    # print(filters[1])
+    # print(filters[2])
     # Loop through filters backwards
-    # did some weird shenanigans to get my shapes right
-    for filter in filters[1::-1]:
-        decoded = keras.layers.Conv2D(filter,
-                                      (3, 3),
-                                      activation='relu',
-                                      padding='same')(decoded)
-        decoded = keras.layers.UpSampling2D((2, 2))(decoded)
+    # for filter in filters[1::-1]:
+    #     print("loop: " + str(i))
+    #     print(filter)
+    #     i += 1
+    #     decoded = keras.layers.Conv2D(filter - 1,
+    #                                   (3, 3),
+    #                                   activation='relu',
+    #                                   padding='same')(decoded)
+    #     decoded = keras.layers.UpSampling2D((2, 2))(decoded)
+    # print(filters[0])
+    # Going to try to manually loop
+    decoded = keras.layers.Conv2D(filters[2],
+                                  (3, 3),
+                                  activation='relu',
+                                  padding='same')(decoded)
+    decoded = keras.layers.UpSampling2D((2, 2))(decoded)
 
-    # Get the zeroth filter
+    decoded = keras.layers.Conv2D(filters[1],
+                                  (3, 3),
+                                  activation='relu',
+                                  padding='same')(decoded)
+    decoded = keras.layers.UpSampling2D((2, 2))(decoded)
+
     decoded = keras.layers.Conv2D(filters[0],
                                   (3, 3),
                                   activation='relu',
                                   padding='valid')(decoded)
     decoded = keras.layers.UpSampling2D((2, 2))(decoded)
-    decoded = keras.layers.Conv2D(input_dims[-1],
+    # print("Exited loop")
+    decoded = keras.layers.Conv2D(1,
                                   (3, 3),
                                   activation='sigmoid',
                                   padding='same')(decoded)
-    decoder = keras.Model(decoder_img, decoded, name='decoder')
+    decoder = keras.Model(decoder_img,
+                          decoded,
+                          name='decoder')
 
     # Bring it all together
-    autoencoder_inputs = keras.Input(shape=input_dims)
-    encoded_output = encoder(autoencoder_inputs)
+    encoded_output = encoder(input_img)
     decoded_output = decoder(encoded_output)
-    autoencoder = keras.Model(autoencoder_inputs,
+    autoencoder = keras.Model(input_img,
                               decoded_output,
                               name='autoencoder')
 
