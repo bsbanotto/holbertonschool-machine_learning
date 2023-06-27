@@ -1,5 +1,7 @@
 This is a README for project Autoencoders.
 
+[Here is a link to a Keras article on autoencoders](https://blog.keras.io/building-autoencoders-in-keras.html)
+
 There are 4 mandatory tasks in this project, as follows:
 
 ## Task 0. "Vanilla" Autoencoder
