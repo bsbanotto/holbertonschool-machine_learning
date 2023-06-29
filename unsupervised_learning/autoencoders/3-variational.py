@@ -5,6 +5,9 @@ Model = keras.Model
 
 
 def sampling(args):
+    """
+    Sampling method
+    """
     z_mean, z_log_var = args
     batch = tf.shape(z_mean)[0]
     dim = tf.shape(z_mean)[1]
@@ -13,7 +16,9 @@ def sampling(args):
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
-    # Encoder
+    """
+    autoencoder method
+    """
     encoder_inputs = layers.Input(shape=(input_dims,))
     x = encoder_inputs
     for units in hidden_layers:
