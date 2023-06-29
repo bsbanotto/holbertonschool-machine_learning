@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import tensorflow.keras as keras
-layers = tensorflow.keras.layers
-Model = tensorflow.keras.Model
+layers = keras.layers
+Model = keras.Model
+
 
 def sampling(args):
     z_mean, z_log_var = args
@@ -9,6 +10,7 @@ def sampling(args):
     dim = tf.shape(z_mean)[1]
     epsilon = tf.keras.backend.random_normal(shape=(batch, dim))
     return z_mean + tf.exp(0.5 * z_log_var) * epsilon
+
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
     # Encoder
