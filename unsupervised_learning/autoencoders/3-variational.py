@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Build a VAE
+"""
 import tensorflow.keras as keras
 layers = keras.layers
 Model = keras.Model
