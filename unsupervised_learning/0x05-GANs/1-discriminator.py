@@ -1,27 +1,27 @@
 #!/usr/bin/env python3
 """
-Create and initialize a generator subclass
+Create Discriminator subclass
 """
 import torch.nn as nn
 
 
-class Generator(nn.Module):
+class Discriminator(nn.Module):
     """
-    Generator subclass for the generator side of the network
+    Discriminator subclass for the discriminator side of the network
     """
     def __init__(self,
                  input_size,
                  hidden_size,
                  output_size):
         """
-        Initialize Generator class
+                Initialize Discriminator class
 
         Args:
             input_size - integer size of the input tensor
             hidden_size - integer size of the hidden layer
             output_size - integer size of the output layer
         """
-        super(Generator, self).__init__()
+        super(Discriminator, self).__init__()
 
         self.input_size = input_size
         self.hidden_size = hidden_size
@@ -29,15 +29,16 @@ class Generator(nn.Module):
 
         self.layers = nn.Sequential(
             nn.Linear(input_size, hidden_size),
-            nn.Tanh(),
+            nn.Sigmoid(),
             nn.Linear(hidden_size, hidden_size),
-            nn.Tanh(),
-            nn.Linear(hidden_size, output_size)
+            nn.Sigmoid(),
+            nn.Linear(hidden_size, output_size),
+            nn.Sigmoid()
         )
 
         def forward(self, x):
             """
-            Forward pass of the Generator network
+            Forward pass of the Discriminator network
 
             Args:
                 x - Input tensor of shape (batch_size, input_size)
