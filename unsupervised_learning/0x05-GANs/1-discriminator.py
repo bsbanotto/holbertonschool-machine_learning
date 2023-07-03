@@ -36,14 +36,14 @@ class Discriminator(nn.Module):
             nn.Sigmoid()
         )
 
-        def forward(self, x):
-            """
-            Forward pass of the Discriminator network
+    def forward(self, x):
+        """
+        Forward pass of the Discriminator network
 
-            Args:
-                x - Input tensor of shape (batch_size, input_size)
+        Args:
+            x - Input tensor of shape (batch_size, input_size)
 
-            Returns:
-                Output tensor of shape (batch_size, output_size)
-            """
-            return self.layers(x)
+        Returns:
+            Output tensor of shape (batch_size, output_size)
+        """
+        return self.layers(x)

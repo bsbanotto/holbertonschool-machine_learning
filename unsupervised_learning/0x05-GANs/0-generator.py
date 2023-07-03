@@ -35,14 +35,14 @@ class Generator(nn.Module):
             nn.Linear(hidden_size, output_size)
         )
 
-        def forward(self, x):
-            """
-            Forward pass of the Generator network
+    def forward(self, x):
+        """
+        Forward pass of the Generator network
 
-            Args:
-                x - Input tensor of shape (batch_size, input_size)
+        Args:
+            x - Input tensor of shape (batch_size, input_size)
 
-            Returns:
-                Output tensor of shape (batch_size, output_size)
-            """
-            return self.layers(x)
+        Returns:
+            Output tensor of shape (batch_size, output_size)
+        """
+        return self.layers(x)

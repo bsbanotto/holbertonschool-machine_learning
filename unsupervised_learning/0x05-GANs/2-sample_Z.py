@@ -27,7 +27,7 @@ def sample_Z(mu, sigma, sampleType, size=(1, 1)):
     # Multiply that number by sigma and add mu
     # From the task, input data for the generator should be random
     if sampleType == "G":
-        return torch.rand(size) * sigma + mu
+        return torch.rand(size)
     # For the discriminator, take a number from the normal distribution
     # using torch.normal
     elif sampleType == "D":
