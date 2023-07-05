@@ -37,7 +37,7 @@ Photo Credit: Getty Images. GETTY
             <a href="https://github.com/bsbanotto/holbertonschool-machine_learning/tree/main/unsupervised_learning">unsupervised_learning</a>
         </td>
         <td>
-            Unsupervised learning directory
+            Learning the foundations of unsupervised learning
         </td>
     </tr>
 </table>
