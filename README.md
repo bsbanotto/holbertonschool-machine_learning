@@ -32,4 +32,12 @@ Photo Credit: Getty Images. GETTY
             Making use of Tensorflow to create and use supervised learning models
         </td>
     </tr>
+    <tr>
+        <td>
+            <a href="https://github.com/bsbanotto/holbertonschool-machine_learning/tree/main/unsupervised_learning">unsupervised_learning</a>
+        </td>
+        <td>
+            Learning the foundations of unsupervised learning
+        </td>
+    </tr>
 </table>
