@@ -49,7 +49,6 @@ class BidirectionalCell():
 
         return h_next
 
-
     def backward(self, h_next, x_t):
         """
         Perform forward propagation for ONE time step in the backward direction
@@ -68,4 +67,3 @@ class BidirectionalCell():
         h_prev = np.tanh(np.matmul(cell_input, self.Whb) + self.bhb)
 
         return h_prev
-    
