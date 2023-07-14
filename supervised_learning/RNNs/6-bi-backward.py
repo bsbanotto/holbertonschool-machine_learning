@@ -48,3 +48,24 @@ class BidirectionalCell():
         h_next = np.tanh(np.matmul(cell_input, self.Whf) + self.bhf)
 
         return h_next
+
+
+    def backward(self, h_next, x_t):
+        """
+        Perform forward propagation for ONE time step in the backward direction
+        Args:
+            h_next: np.ndarray shape(m, h) containing the next hidden state
+            x_t: np.ndarray shape(m, i) contains the data input for the cell
+                m: batch size for the data
+
+        Returns:
+            h_prev: the next hidden state
+        """
+        # Next hidden layer and input data are what we put in
+        cell_input = np.concatenate((h_next, x_t), axis=1)
+
+        # Previous hidden state is tanh of (cell_input * weights + bias)
+        h_prev = np.tanh(np.matmul(cell_input, self.Whb) + self.bhb)
+
+        return h_prev
+    
