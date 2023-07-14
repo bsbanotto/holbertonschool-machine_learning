@@ -80,7 +80,7 @@ class BidirectionalCell():
                 h: dimensionality of the hidden states
 
         Returns:
-            Y: the outputs
+            Y: the outputs of the network
         """
         Y = np.dot(H, self.Wy) + self.by
         Y = np.exp(Y) / np.sum(np.exp(Y), axis=2, keepdims=True)
