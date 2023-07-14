@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""
+Class that represents a bidirectional cell of an RNN
+"""
+import numpy as np
+
+
+class BidirectionalCell():
+    """
+    Bidirectional cell of an RNN
+    """
+    def __init__(self, i, h, o):
+        """
+        Class constructor
+
+        Args:
+            i: dimensionality of the data
+            h: dimensionality of the hidden states
+            o: dimensionality of the outputs
+
+        Creates public instance attributes Whf, Whb, Wy, bhf, bhb, by
+            Whf, bhf: hidden weights and biases in forward direction
+            Whb, Bhb: hidden weights and biases in backward direction
+            Wy, by: for the outputs
+        """
+        self.Whf = np.random.normal(size=(i + h, h))
+        self.Whb = np.random.normal(size=(i + h, h))
+        self.Wy = np.random.normal(size=(2*h, o))
+        self.bhf = np.zeros((1, h))
+        self.bhb = np.zeros((1, h))
+        self.by = np.zeros((1, o))
+
+    def forward(self, h_prev, x_t):
+        """
+        Perform forward propagation for ONE time step
+        Args:
+            h_prev: np.ndarray shape(m, h) containing the previous hidden state
+            x_t: np.ndarray shape(m, i) contains the data input for the cell
+                m: batch size for the data
+
+        Returns:
+            h_next: the next hidden state
+            y: the output of the cell which should use a softmax activation
+        """
+        # Previous hidden layer and input data are what we put in
+        cell_input = np.concatenate((h_prev, x_t), axis=1)
+
+        # Next hidden state is tanh of (cell_input * weights + bias)
+        h_next = np.tanh(np.matmul(cell_input, self.Whf) + self.bhf)
+
+        return h_next
