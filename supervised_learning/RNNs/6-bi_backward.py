@@ -51,7 +51,7 @@ class BidirectionalCell():
 
     def backward(self, h_next, x_t):
         """
-        Perform forward propagation for ONE time step in the backward direction
+        Perform forward propagation in the backward direction for ONE time step
         Args:
             h_next: np.ndarray shape(m, h) containing the next hidden state
             x_t: np.ndarray shape(m, i) contains the data input for the cell
