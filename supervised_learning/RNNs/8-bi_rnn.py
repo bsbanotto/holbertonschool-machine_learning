@@ -35,16 +35,27 @@ def bi_rnn(bi_cell, X, h_0, h_t):
     H_backward = np.zeros((t + 1, m, h))
     H_backward[0] = h_t
 
+    X_backward = np.flip(X, 0)
+
+    # print("X")
+    # print(X)
+    # print("X_backward")
+    # print(X_backward)
+
     # Loop through all time steps building forward and backward hidden states
     for time in range(t):
         # Do the forward bit
         H_forward[time + 1] = bi_cell.forward(H_forward[time], X[time])
 
         # Do the backward bit
-        H_backward[time + 1] = bi_cell.backward(H_backward[time], X[time])
+        H_backward[time + 1] = bi_cell.backward(H_backward[time],
+                                                X_backward[time])
+
+    # print("H_forward shape: ", np.shape(H_forward))
+    # print("H_backward shape: ", np.shape(H_backward))
 
     # Concatenate H_forward and H_backward
-    H = np.concatenate((H_forward[1:], H_backward[:-1]), axis=2)
+    H = np.concatenate((H_forward[1:], H_backward[7:0:-1]), axis=2)
 
     # Calculate the outputs of the network
     Y = bi_cell.output(H)
