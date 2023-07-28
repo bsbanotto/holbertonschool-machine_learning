@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-Bag of Words
+Module that does a TF-IDF embedding
 """
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 import re
 
 
-def bag_of_words(sentences, vocab=None):
+def tf_idf(sentences, vocab=None):
     """
-    Creates a bag of words embedding matrix
+    Creates a TF-IDF embedding
     Args:
         sentences: list of sentences to analyze
-        vocab: list of the vocabulary words to use for the analysis
+        vocab: list of vocab words to use for the analysis
+            - If vocab is none, use all words within sentences
 
     Returns:
         embeddings: np.ndarray shape (s, f) containing the embeddings
@@ -20,7 +21,6 @@ def bag_of_words(sentences, vocab=None):
             f: number of features analyzed
         features: list of the features used for embeddings
     """
-    # If vocab is None, make an empty list to append to
     if vocab:
         features = vocab
         vocab_sentences = []
@@ -55,7 +55,7 @@ def bag_of_words(sentences, vocab=None):
                     features.append(word)
                     features.sort()
 
-    cv = CountVectorizer(vocabulary=features)
-    embeddings = cv.fit_transform(corpus).toarray()
+    tfidf = TfidfVectorizer(vocabulary=features)
+    embedding = tfidf.fit_transform(corpus).toarray()
 
-    return embeddings, features
+    return embedding, features
