@@ -31,11 +31,12 @@ def bag_of_words(sentences, vocab=None):
         sentence = sentence.translate(str.maketrans('',
                                                     '',
                                                     string.punctuation))
-        for word in sentence.split():
-            if word not in f:
-                f.append(word)
-            # Sorted words to match test file output
-            f.sort()
+        if vocab is None:
+            for word in sentence.split():
+                if word not in f:
+                    f.append(word)
+                # Sorted words to match test file output
+                f.sort()
 
     cv = CountVectorizer(max_features=1500)
     s = cv.fit_transform(sentences).toarray()
