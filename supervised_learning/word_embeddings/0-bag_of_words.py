@@ -35,7 +35,7 @@ def bag_of_words(sentences, vocab=None):
             if word not in f:
                 f.append(word)
             # Sorted words to match test file output
-            # f.sort()
+            f.sort()
 
     cv = CountVectorizer(max_features=1500)
     s = cv.fit_transform(sentences).toarray()
