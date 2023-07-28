@@ -24,30 +24,44 @@ def bag_of_words(sentences, vocab=None):
     # If vocab is None, make an empty list to append to
     if vocab is None:
         f = []
-    else:
-        f = vocab
 
+    short_sentences = []
     real_list = []
     corpus = []
-    # First, make everything lowercase and remove punctuation
+    # First, convert sentences list to corpus, lowercase, no punctuation
     for i in range(len(sentences)):
         review = re.sub('[^a-zA-Z]', ' ', sentences[i])
         review = review.lower()
         review = review.split()
-        review = ' '.join(review)
+        if vocab:
+            short_sentences.clear()
+            for j in range(0, len(review)):
+                if review[j] in vocab:
+                    word = review[j]
+                    short_sentences.append(word)
+            review = ' '.join(short_sentences)
+        else:
+            review = ' '.join(review)
         corpus.append(review)
 
-    for sentence in corpus:
-        words = sentence.split()
-        for word in words:
-            if vocab is None and len(word) > 1 and word not in real_list:
-                real_list.append(word)
-                real_list.sort()
-
-    cv = CountVectorizer()
-    s = cv.fit_transform(corpus).toarray()
-    f = real_list
-
     if vocab is None:
+        print(corpus)
+        # All of this to get the vocab list
+        for sentence in corpus:
+            words = sentence.split()
+            for word in words:
+                if len(word) > 1 and word not in real_list:
+                    real_list.append(word)
+                    real_list.sort()
+        cv = CountVectorizer()
+        s = cv.fit_transform(corpus).toarray()
+        f = real_list
+
         return s, f
-    return s, vocab
+
+    else:
+        print(corpus)
+        cv = CountVectorizer(vocabulary=vocab)
+        s = cv.fit_transform(corpus).toarray()
+
+        return s, vocab
