@@ -3,8 +3,6 @@
 Bag of Words
 """
 from sklearn.feature_extraction.text import CountVectorizer
-from nltk.stem.porter import PorterStemmer
-from nltk.stem import WordNetLemmatizer
 
 import re
 import string
