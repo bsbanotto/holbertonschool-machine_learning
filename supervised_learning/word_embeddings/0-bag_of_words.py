@@ -2,6 +2,7 @@
 """
 Bag of Words
 """
+import string
 from sklearn.feature_extraction.text import CountVectorizer
 
 
