@@ -2,8 +2,12 @@
 """
 Bag of Words
 """
-import string
 from sklearn.feature_extraction.text import CountVectorizer
+from nltk.stem.porter import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+
+import re
+import string
 
 
 def bag_of_words(sentences, vocab=None):
@@ -25,20 +29,27 @@ def bag_of_words(sentences, vocab=None):
     else:
         f = vocab
 
+    real_list = []
+    corpus = []
     # First, make everything lowercase and remove punctuation
-    for sentence in sentences:
-        sentence = sentence.lower()
-        sentence = sentence.translate(str.maketrans('',
-                                                    '',
-                                                    string.punctuation))
-        if vocab is None:
-            for word in sentence.split():
-                if word not in f:
-                    f.append(word)
-                # Sorted words to match test file output
-                f.sort()
+    for i in range(len(sentences)):
+        review = re.sub('[^a-zA-Z]', ' ', sentences[i])
+        review = review.lower()
+        review = review.split()
+        review = ' '.join(review)
+        corpus.append(review)
 
-    cv = CountVectorizer(max_features=1500)
-    s = cv.fit_transform(sentences).toarray()
+    for sentence in corpus:
+        words = sentence.split()
+        for word in words:
+            if vocab is None and len(word) > 1 and word not in real_list:
+                real_list.append(word)
+                real_list.sort()
 
-    return s, f
+    cv = CountVectorizer()
+    s = cv.fit_transform(corpus).toarray()
+    f = real_list
+
+    if vocab is None:
+        return s, f
+    return s, vocab
