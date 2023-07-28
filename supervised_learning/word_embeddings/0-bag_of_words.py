@@ -5,7 +5,6 @@ Bag of Words
 from sklearn.feature_extraction.text import CountVectorizer
 
 import re
-import string
 
 
 def bag_of_words(sentences, vocab=None):
@@ -22,46 +21,41 @@ def bag_of_words(sentences, vocab=None):
         features: list of the features used for embeddings
     """
     # If vocab is None, make an empty list to append to
-    if vocab is None:
+    if vocab:
+        f = vocab
+        vocab_sentences = []
+    else:
         f = []
 
-    short_sentences = []
-    real_list = []
     corpus = []
-    # First, convert sentences list to corpus, lowercase, no punctuation
+    # Remove punctuation, to lowercase, create corpus
     for i in range(len(sentences)):
         review = re.sub('[^a-zA-Z]', ' ', sentences[i])
         review = review.lower()
         review = review.split()
+        # If vocab list is provided, need to remove all words except words that
+        # are inside the vocab list.
         if vocab:
-            short_sentences.clear()
+            vocab_sentences.clear()
             for j in range(0, len(review)):
                 if review[j] in vocab:
                     word = review[j]
-                    short_sentences.append(word)
-            review = ' '.join(short_sentences)
+                    vocab_sentences.append(word)
+            review = ' '.join(vocab_sentences)
         else:
             review = ' '.join(review)
         corpus.append(review)
 
     if vocab is None:
-        # print(corpus)
         # All of this to get the vocab list
         for sentence in corpus:
             words = sentence.split()
             for word in words:
-                if len(word) > 1 and word not in real_list:
-                    real_list.append(word)
-                    real_list.sort()
-        cv = CountVectorizer()
-        s = cv.fit_transform(corpus).toarray()
-        f = real_list
+                if len(word) > 1 and word not in f:
+                    f.append(word)
+                    f.sort()
 
-        return s, f
+    cv = CountVectorizer(vocabulary=vocab)
+    s = cv.fit_transform(corpus).toarray()
 
-    else:
-        # print(corpus)
-        cv = CountVectorizer(vocabulary=vocab)
-        s = cv.fit_transform(corpus).toarray()
-
-        return s, vocab
+    return s, f
