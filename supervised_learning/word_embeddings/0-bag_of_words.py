@@ -45,7 +45,7 @@ def bag_of_words(sentences, vocab=None):
         corpus.append(review)
 
     if vocab is None:
-        print(corpus)
+        # print(corpus)
         # All of this to get the vocab list
         for sentence in corpus:
             words = sentence.split()
@@ -60,7 +60,7 @@ def bag_of_words(sentences, vocab=None):
         return s, f
 
     else:
-        print(corpus)
+        # print(corpus)
         cv = CountVectorizer(vocabulary=vocab)
         s = cv.fit_transform(corpus).toarray()
 
