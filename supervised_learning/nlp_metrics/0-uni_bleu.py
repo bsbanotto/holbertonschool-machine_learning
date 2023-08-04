@@ -13,7 +13,7 @@ def uni_bleu(references, sentence):
         references: list of reference translations
             - Each reference translataion is a list of the words in the
               translation
-        sentnece: list containing the model proposed sentnece
+        sentence: list containing the model proposed sentnece
 
     Returns:
         the unigram BLEU score
