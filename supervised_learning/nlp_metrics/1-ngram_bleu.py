@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
+"""
+Calculates the n-gram BLEU score for a sentence
+"""
 import numpy as np
 
 
 def ngram_bleu(references, sentence, n):
     """
-    Calculates the n-gram BLEU score for a sentence
-
     Args:
         references: list of reference translations
             - Each reference translataion is a list of the words in the
