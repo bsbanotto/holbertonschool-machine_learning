@@ -97,6 +97,9 @@ class Dataset:
         return pt_tokens, en_tokens
 
     def tf_encode(self, pt, en):
+        """
+        Acts as a tensorflow wrapper for the encode instance method
+        """
         pt_examples, en_examples = tf.py_function(
             self.encode, [pt, en], [tf.int64, tf.int64]
             )
