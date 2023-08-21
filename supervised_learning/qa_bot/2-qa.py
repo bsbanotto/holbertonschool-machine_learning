@@ -43,7 +43,8 @@ def question_answer(question, reference):
     if answer:
         return answer
     else:
-        return 'Sorry, I do not understand your question'
+        return None
+
 
 def answer_loop(reference):
     """
@@ -59,4 +60,7 @@ def answer_loop(reference):
             print('A: Goodbye')
             break
         answer = question_answer(question, reference)
-        print("A: answer")
+        if answer:
+            print("A: " + answer)
+        else:
+            print('A: Sorry, I do not understand your question')
