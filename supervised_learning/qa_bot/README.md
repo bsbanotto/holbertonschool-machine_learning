@@ -1,5 +1,7 @@
 This is a README for project QA Bot
 
+[A Google Colab notebook for this project can be found here.](https://colab.research.google.com/drive/1tEzedeh3ygWDnSRWrW-8OKGx_3U5p_zP#scrollTo=KAUZbMfarE8s)
+
 There are 5 mandatory tasks in this project as follows
 
 ## Task 0. Question Answering
