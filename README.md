@@ -40,4 +40,12 @@ Photo Credit: Getty Images. GETTY
             Learning the foundations of unsupervised learning
         </td>
     </tr>
+        <tr>
+        <td>
+            <a href="https://github.com/bsbanotto/holbertonschool-machine_learning/tree/main/reinforcement_learning">reinforcement_learning</a>
+        </td>
+        <td>
+            Learning the foundations of reinforcement learning, starting with Q-learning, Deep Q-learning, Temporal Difference, and Policy Gradients
+        </td>
+    </tr>
 </table>
