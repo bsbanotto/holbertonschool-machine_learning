@@ -1,0 +1,9 @@
+name: deep_q
+channels:
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.5
+  - pip
+  - pip:
+    - pip
