@@ -17,6 +17,13 @@ Activate the deep_q environment
 Install requirements using this command fron the environment directory
 `pip install -r requirements.txt`
 
+To use this environment in a Jupyter Notebook
+1. Install ipykernel
+`conda install -c anaconda ipykernel`
+2. Send this environment to ipykernel
+`python -m ipykernel install --user --name=deep_q`
+3. When you start the notebook, select the deep_q kernel
+
 ## Task 0. Breakout
 Write a python script  `train.py`  that utilizes  `keras`,  `keras-rl`, and  `gym`  to train an agent that can play Atari’s Breakout:
 
