@@ -11,7 +11,7 @@ and although this is probably silly, I want to remember this time forever
 Create (breakout) conda environment using this command from the environment directory
 `conda env create -f environment.yml`
 
-Activate the deep_q environment
+Activate the deep_q environment 
 `conda activate deep_q`
 
 Install requirements using this command fron the environment directory
