@@ -21,9 +21,9 @@ def td_lambtha(env, V, policy, lambtha, episodes=5000, max_steps=100,
     Returns:
         V: the updated value estimate
     """
+    eligibility_trace = np.zeros_like(V)
     for episode in range(episodes):
         state = env.reset()
-        eligibility_trace = np.zeros_like(V)
 
         for step in range(max_steps):
             action = policy(state)
@@ -33,15 +33,15 @@ def td_lambtha(env, V, policy, lambtha, episodes=5000, max_steps=100,
             delta = reward + (gamma * V[next_state] - V[state])
 
             # Update eligibility trace
-            eligibility_trace *= gamma * lambtha
-            eligibility_trace[state] += 1.0
+            eligibility_trace *= (gamma * lambtha)
+            eligibility_trace[state] += 1
 
             # Update value estimate
             V += delta * alpha * eligibility_trace
 
             state = next_state
 
-            if done:
+            if done or step > max_steps:
                 break
 
     return V
