@@ -24,6 +24,7 @@ def td_lambtha(env, V, policy, lambtha, episodes=5000, max_steps=100,
     eligibility_trace = np.zeros_like(V)
     for episode in range(episodes):
         state = env.reset()
+        env.seed(0)
 
         for step in range(max_steps):
             action = policy(state)
