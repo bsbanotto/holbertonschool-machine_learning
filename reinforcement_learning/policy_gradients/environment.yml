@@ -1,0 +1,12 @@
+name: policy_grad
+channels:
+  - defaults
+dependencies:
+  - python=3.5
+  - imageio
+  - pip=10.0.1
+  - pip:
+    - gym==0.17.2
+    - numpy==1.15
+    - matplotlib
+
