@@ -54,23 +54,23 @@ When this parameter is  `True`, render the environment every 1000 episodes compu
 
 **Result after 0 episodes:**
 
-![Result after 0 episodes](`link here`)
+![Result after 0 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_0.gif)
 
 **Result after 250 episodes:**
 
-![Result after 250 episodes](`link here`)
+![Result after 250 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_250.gif)
 
 **Result after 500 episodes:**
 
-![Result after 500 episodes](`link here`)
+![Result after 500 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_500.gif)
 
 **Result after 1000 episodes:**
 
-![Result after 1000 episodes](`link here`)
+![Result after 1000 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_1000.gif)
 
 **Result after 2500 episodes:**
 
-![Result after 2500 episodes](`link here`)
+![Result after 2500 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_2500.gif)
 
 **Result after 5000 episodes:**
 
