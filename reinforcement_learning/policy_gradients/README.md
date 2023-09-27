@@ -44,7 +44,7 @@ Since the training is quite long, please print the current episode number and th
 
 With the following main file, you should have this result plotted:
 
-![reward per episode](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2020/12/e2fff0551f5173b824a8ee1b2e67aff72d7309e2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20230922%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20230922T151337Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c9215750b66c5870a33af0bd8da310297ad7866508c87d0a7ff564843314d46d)
+![reward per episode]([https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2020/12/e2fff0551f5173b824a8ee1b2e67aff72d7309e2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20230922%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20230922T151337Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c9215750b66c5870a33af0bd8da310297ad7866508c87d0a7ff564843314d46d](https://raw.githubusercontent.com/bsbanotto/holbertonschool-machine_learning/main/reinforcement_learning/policy_gradients/output.png))
 
 ## Task 3. Animate iteration
 
