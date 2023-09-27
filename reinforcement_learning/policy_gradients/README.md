@@ -1,6 +1,6 @@
 # This is a README for the Policy Gradients project
 
-## In this project, I implement a reinforcement learning policy gradient control algorithm to train an agent to play Cart Pole
+## In this project, I implement a policy gradient control algorithm to train an agent to play Cart Pole through reinforcement learning
 
 To run this file in a conda environment:
 
@@ -9,7 +9,7 @@ git clone https://github.com/bsbanotto/holbertonschool-machine_learning/tree/mai
 cd <cloned_repo>
 conda env create -f environment.yml
 conda activate policy_grad
-python3 ./render.py
+python3 ./run.py
 ```
 
 There are 4 mandatory tasks in this project as follows
@@ -52,26 +52,32 @@ Update the prototype of the  `train`  function by adding a last optional paramet
 
 When this parameter is  `True`, render the environment every 1000 episodes computed.
 
-**Result after 0 episodes:**
+**After 0 episodes**  
+**Score: 19**
 
-![Result after 0 episode](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_0.gif)
+![Result after 0 episodes](https://raw.githubusercontent.com/bsbanotto/holbertonschool-machine_learning/main/reinforcement_learning/policy_gradients/episode_gifs/episode_0.gif)
 
-**Result after 250 episodes:**
+**After 250 episodes:**  
+**Score: 40**
 
-![Result after 250 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_250.gif)
+![Result after 250 episodes](https://raw.githubusercontent.com/bsbanotto/holbertonschool-machine_learning/main/reinforcement_learning/policy_gradients/episode_gifs/episode_250.gif)
 
-**Result after 500 episodes:**
+**After 500 episodes:**  
+**Score: 32**
 
-![Result after 500 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_500.gif)
+![Result after 500 episodes](https://raw.githubusercontent.com/bsbanotto/holbertonschool-machine_learning/main/reinforcement_learning/policy_gradients/episode_gifs/episode_500.gif)
 
-**Result after 1000 episodes:**
+**After 1000 episodes:**  
+**Score: 22**
 
-![Result after 1000 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_1000.gif)
+![Result after 1000 episodes](https://raw.githubusercontent.com/bsbanotto/holbertonschool-machine_learning/main/reinforcement_learning/policy_gradients/episode_gifs/episode_1000.gif)
 
-**Result after 2500 episodes:**
+**After 2500 episodes:**  
+**Score: 441**
 
-![Result after 2500 episodes](https://github.com/bsbanotto/holbertonschool-machine_learning/blob/main/reinforcement_learning/policy_gradients/episode_gifs/episode_2500.gif)
+![Result after 2500 episodes](https://raw.githubusercontent.com/bsbanotto/holbertonschool-machine_learning/main/reinforcement_learning/policy_gradients/episode_gifs/episode_2500.gif)
 
-**Result after 5000 episodes:**
+**After 5000 episodes:**  
+**Score: 500(max allowable**)
 
-![Result after 5000 episodes](`link here`)
+![Result after 5000 episodes](https://raw.githubusercontent.com/bsbanotto/holbertonschool-machine_learning/main/reinforcement_learning/policy_gradients/episode_gifs/episode_5000.gif)

@@ -7,51 +7,7 @@ import numpy as np
 import gym
 import imageio
 import os
-
-
-def policy(matrix, weight):
-    """
-    Computes a policy using the given weight for the provided matrix
-
-    Args:
-        matrix: np.ndarray shape (state, action)
-        weight: np.ndarray shape (action, weight)./
-
-    Returns:
-        The policy computed using the given weight
-        np.ndarray shape (state, weight)
-    """
-    dot_prod = matrix.dot(weight)
-    exp = np.exp(dot_prod)
-    policy = exp / np.sum(exp)
-    return policy
-
-
-def policy_gradient(state, weight):
-    """
-    Function that computes the Monte-Carlo policy gradient based on a state
-        and a weight matrix
-
-    Args:
-        state: matrix representing the current observation of the environment
-        weight: matrix of random weight
-
-    Returns:
-        The action and the gradieng(in this order)
-    """
-    MCPolicy = policy(state, weight)
-    action = np.random.choice(len(MCPolicy[0]), p=MCPolicy[0])
-
-    # Need to reshape the policy to build softmax, so we do that here
-    s = MCPolicy.reshape(-1, 1)
-
-    softmax = (np.diagflat(s) - np.dot(s, s.T))[action, :]
-
-    log_derivative = softmax / MCPolicy[0, action]
-
-    grad = state.T.dot(log_derivative[None, :])
-
-    return action, grad
+policy_gradient = __import__('policy_gradient').policy_gradient
 
 
 def render(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False,
@@ -66,7 +22,7 @@ def render(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False,
 
     Returns:
         all values of the score (sum of all rewards during one episode loop)
-    """    
+    """
     # Assign weights randomly based on the given environment
     number_observations = env.observation_space.shape[0]
     number_actions = env.action_space.n
@@ -100,9 +56,9 @@ def render(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False,
             if not os.path.exists(path):
                 os.makedirs(path)
             if show_result and save_gifs and episode in episodes_to_render:
-                imageio.mimsave(path + '/episode_' + str(episode) + '.gif', 
-                                frames, 
-                                fps = 16, 
+                imageio.mimsave(path + '/episode_' + str(episode) + '.gif',
+                                frames,
+                                fps=16,
                                 )
             # Get action and gradient from the policy_gradient function
             action, gradient = policy_gradient(state, weight)
@@ -135,15 +91,3 @@ def render(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False,
 
     # Return the list of scores and the list of weights
     return scores
-
-
-if __name__ == "__main__":
-    env = gym.make('CartPole-v1')
-    scores = render(env=env,
-                    nb_episodes=5000,
-                    alpha=0.000045,
-                    gamma=0.98,
-                    show_result=True,
-                    episodes_to_render=[0, 250, 500, 1000, 2500, 5000],
-                    save_gifs=True)
-    env.close()
