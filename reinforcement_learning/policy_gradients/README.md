@@ -1,6 +1,6 @@
 # This is a README for the Policy Gradients project
 
-## In this project, I implement a policy gradient control algorithm to train an agent to play Cart Pole through reinforcement learning
+## Implementing a Policy Gradient Control Algorithm for Cart Pole Game via Reinforcement Learning in this Project
 
 To run this file in a conda environment:
 
