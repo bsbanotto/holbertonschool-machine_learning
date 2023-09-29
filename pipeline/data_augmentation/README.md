@@ -51,9 +51,3 @@ Write a blog post describing step by step how to perform automated data augmenta
 -   Write professionally and intelligibly
 -   Please, remember that these blogs must be written in English to further your technical ability in a variety of settings
 
-## Task 7. PCA Color Augmentation (Advanced)
-Write a function  `def pca_color(image, alphas):`  that performs PCA color augmentation as described in the  [AlexNet](https://intranet.hbtn.io/rltoken/_NDxb8XjIX-JgmBCCWvYHQ "AlexNet")  paper:
-
--   `image`  is a 3D  `tf.Tensor`  containing the image to change
--   `alphas`  a tuple of length 3 containing the amount that each channel should change
--   Returns the augmented image
