@@ -1,0 +1,15 @@
+artifact_uri: file:///home/bsbanotto/holbertonschool-machine_learning/pipeline/ml_lifecycle/mlruns/0/8956427cc83847edbe5a40a3304878e7/artifacts
+end_time: 1696283787341
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8956427cc83847edbe5a40a3304878e7
+run_name: dazzling-dolphin-778
+run_uuid: 8956427cc83847edbe5a40a3304878e7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1696283617170
+status: 3
+tags: []
+user_id: bsbanotto

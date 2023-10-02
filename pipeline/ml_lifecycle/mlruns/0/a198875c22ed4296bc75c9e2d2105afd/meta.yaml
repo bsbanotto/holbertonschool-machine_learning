@@ -1,0 +1,15 @@
+artifact_uri: file:///home/bsbanotto/holbertonschool-machine_learning/pipeline/ml_lifecycle/mlruns/0/a198875c22ed4296bc75c9e2d2105afd/artifacts
+end_time: 1696284639618
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a198875c22ed4296bc75c9e2d2105afd
+run_name: indecisive-bear-432
+run_uuid: a198875c22ed4296bc75c9e2d2105afd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1696284473157
+status: 3
+tags: []
+user_id: bsbanotto
