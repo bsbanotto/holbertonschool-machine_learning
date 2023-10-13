@@ -1,0 +1,297 @@
+# This is a README for project PANDAS
+
+There are 15 mandatory tasks in this project as follows.
+
+## Task 0. From Numpy
+
+Write a function  `def from_numpy(array):`  that creates a  `pd.DataFrame`  from a  `np.ndarray`:
+
+- `array`  is the  `np.ndarray`  from which you should create the  `pd.DataFrame`
+- The columns of the  `pd.DataFrame`  should be labeled in alphabetical order and capitalized. There will not be more than 26 columns.
+- Returns: the newly created  `pd.DataFrame`
+
+## Task 1. From Dictionary
+
+Write a python script that created a  `pd.DataFrame`  from a dictionary:
+
+- The first column should be labeled  `First`  and have the values  `0.0`,  `0.5`,  `1.0`, and  `1.5`
+- The second column should be labeled  `Second`  and have the values  `one`,  `two`,  `three`,  `four`
+- The rows should be labeled  `A`,  `B`,  `C`, and  `D`, respectively
+- The  `pd.DataFrame`  should be saved into the variable  `df`
+
+## Task 2. From File
+
+Write a function  `def from_file(filename, delimiter):`  that loads data from a file as a  `pd.DataFrame`:
+
+- `filename`  is the file to load from
+- `delimiter`  is the column separator
+- Returns: the loaded  `pd.DataFrame`
+
+## Task 3. Rename
+
+Complete the script below to perform the following:
+
+- Rename the column  `Timestamp`  to  `Datetime`
+- Convert the timestamp values to datatime values
+- Display only the  `Datetime`  and  `Close`  columns
+
+```bash
+$ cat 3-rename.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+# YOUR CODE HERE
+
+print(df.tail())
+$ ./3-rename.py
+```
+
+## Task 4. To Numpy
+
+Complete the following script to take the last 10 rows of the columns `High` and `Close` and convert them into a `numpy.ndarray`:
+
+```bash
+$ cat 4-array.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+A = # YOUR CODE HERE
+
+print(A)
+$ ./4-array.py
+```
+
+## Task 5. Slice
+
+Complete the following script to slice the `pd.DataFrame` along the columns `High`, `Low`, `Close`, and `Volume_BTC`, taking every 60th row:
+
+```bash
+$ cat 5-slice.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+df = # YOUR CODE HERE
+
+print(df.tail())
+$ ./5-slice.py
+```
+
+## Task 6. Flip it and Switch it
+
+Complete the following script to alter the `pd.DataFrame` such that the rows and columns are transposed and the data is sorted in reverse chronological order:
+
+```bash
+$ cat 6-flip_switch.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+df = # YOUR CODE HERE
+
+print(df.tail(8))
+$ ./6-flip_switch.py
+```
+
+## Task 7. Sort
+
+Complete the following script to sort the `pd.DataFrame` by the `High` price in descending order:
+
+```bash
+$ cat 7-high.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+df = # YOUR CODE HERE
+
+print(df.head())
+$ ./7-high.py
+```
+
+## Task 8. Prune
+
+Complete the following script to remove the entries in the `pd.DataFrame` where `Close` is `NaN`:
+
+```bash
+$ cat 8-prune.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+df = # YOUR CODE HERE
+
+print(df.head())
+$ ./8-prune.py
+```
+
+## Task 9. Fill
+
+Complete the following script to fill in the missing data points in the  `pd.DataFrame`:
+
+- The column  `Weighted_Price`  should be removed
+- missing values in  `Close`  should be set to the previous row value
+- missing values in  `High`,  `Low`,  `Open`  should be set to the same row’s  `Close`  value
+- missing values in  `Volume_(BTC)`  and  `Volume_(Currency)`  should be set to  `0`
+
+```bash
+$ cat 9-fill.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+# YOUR CODE HERE
+
+print(df.head())
+print(df.tail())
+$ ./9-fill.py
+```
+
+## Task 10. Indexing
+
+Complete the following script to index the `pd.DataFrame` on the `Timestamp` column:
+
+```bash
+$ cat 10-index.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+df = # YOUR CODE HERE
+
+print(df.tail())
+$ ./10-index.py
+```
+
+## Task 11. Concat
+
+Complete the following script to index the  `pd.DataFrame`s on the  `Timestamp`  columns and concatenate them:
+
+- Concatenate the start of the bitstamp table onto the top of the coinbase table
+- Include all timestamps from bitstamp up to and including timestamp  `1417411920`
+- Add keys to the data labeled  `bitstamp`  and  `coinbase`  respectively
+
+```bash
+$ cat 11-concat.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df1 = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+df2 = from_file('bitstampUSD_1-min_data_2012-01-01_to_2020-04-22.csv', ',')
+
+# YOUR CODE HERE
+
+df = # YOUR CODE HERE
+
+print(df)
+$ ./11-concat.py
+```
+
+## Task 12. Hierarchy
+
+Based on  `11-concat.py`, rearrange the MultiIndex levels such that timestamp is the first level:
+
+- Concatenate th bitstamp and coinbase tables from timestamps  `1417411980`  to  `1417417980`, inclusive
+- Add keys to the data labeled  `bitstamp`  and  `coinbase`  respectively
+- Display the rows in chronological order
+
+```bash
+$ cat 12-hierarchy.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df1 = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+df2 = from_file('bitstampUSD_1-min_data_2012-01-01_to_2020-04-22.csv', ',')
+
+# YOUR CODE HERE
+
+df = # YOUR CODE HERE
+
+print(df)
+$ ./12-hierarchy.py
+```
+
+## Task 13. Analyze
+
+Complete the following script to calculate descriptive statistics for all columns in `pd.DataFrame` except `Timestamp`:
+
+```bash
+$ cat 13-analyze.py
+#!/usr/bin/env python3
+
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+stats = # YOUR CODE HERE
+
+print(stats)
+$ ./13-analyze.py
+```
+
+## Task 14. Visualize
+
+Complete the following script to visualize the  `pd.DataFrame`:
+
+- The column  `Weighted_Price`  should be removed
+- Rename the column  `Timestamp`  to  `Date`
+- Convert the timestamp values to date values
+- Index the data frame on  `Date`
+- Missing values in  `Close`  should be set to the previous row value
+- Missing values in  `High`,  `Low`,  `Open`  should be set to the same row’s  `Close`  value
+- Missing values in  `Volume_(BTC)`  and  `Volume_(Currency)`  should be set to  `0`
+- Plot the data from 2017 and beyond at daily intervals and group the values of the same day such that:
+
+  - `High`: max
+  - `Low`: min
+  - `Open`: mean
+  - `Close`: mean
+  - `Volume(BTC)`: sum
+  - `Volume(Currency)`: sum
+
+```bash
+$ cat 14-visualize.py
+#!/usr/bin/env python3
+
+from datetime import date
+import matplotlib.pyplot as plt
+import pandas as pd
+from_file = __import__('2-from_file').from_file
+
+df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+
+# YOUR CODE HERE
+
+$ ./14-visualize.py
+```
