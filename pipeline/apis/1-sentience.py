@@ -28,7 +28,6 @@ def sentientPlanets():
                 species_planet_urls.extend([species['homeworld']])
             if species['classification'] == 'sentient':
                 species_planet_urls.extend([species['homeworld']])
-        # species_planet_urls.extend([species['homeworld'] for species in species_data['results']])
         page += 1
 
     # print(len(species_planet_urls))
@@ -46,4 +45,3 @@ if __name__ == "__main__":
     planets = sentientPlanets()
     for planet in planets:
         print(planet)
-    # sentientPlanets()
