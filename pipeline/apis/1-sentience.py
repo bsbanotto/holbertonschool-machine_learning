@@ -14,8 +14,7 @@ def sentientPlanets():
         list of planets that are home to sentient species
     """
     page = 1
-    species_planet_urls = []
-    planet_list = []
+    species_planet_urls, planet_list = [], []
 
     response = requests.get(API_ROOT + 'species/?page={}'.format(page))
     species_data = response.json()
@@ -29,8 +28,6 @@ def sentientPlanets():
             if species['classification'] == 'sentient':
                 species_planet_urls.extend([species['homeworld']])
         page += 1
-
-    # print(len(species_planet_urls))
 
     for url in species_planet_urls:
         if url is not None:
