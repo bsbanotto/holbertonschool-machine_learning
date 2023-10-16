@@ -20,12 +20,12 @@ def availableShips(passengerCount):
         List of ships
     """
     page = 1
-    results = []
-    ships_list = []
-    passengers_list = []
+    results, ships_list, passengers_list = [], [], []
+
     response = requests.get(API_ROOT + 'starships/?page={}'.format(page))
     ships_data = response.json()
 
+    # Collecting all of the information from the api
     while ships_data['next']:
         response = requests.get(API_ROOT + 'starships/?page={}'.format(page))
         ships_data = response.json()
@@ -34,6 +34,7 @@ def availableShips(passengerCount):
                                 for ship in ships_data['results']])
         page += 1
 
+    # Clean up the passengers list so all are INTS
     for i in range(0, len(passengers_list)):
         passengers_list[i] = passengers_list[i].replace(',', '')
         if passengers_list[i] == 'n/a':
@@ -42,8 +43,10 @@ def availableShips(passengerCount):
             passengers_list[i] = -1
         passengers_list[i] = int(passengers_list[i])
 
+    # Combine ships list and passengers list to a dictionary
     ship_passenger_dict = dict(zip(ships_list, passengers_list))
 
+    # Filter dictionary to keep valid ships
     for ship, passengers in ship_passenger_dict.items():
         if int(passengers) >= passengerCount:
             results.append(ship)
