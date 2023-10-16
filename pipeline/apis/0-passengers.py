@@ -5,7 +5,6 @@ carrying more than the given number of passengers, or empty list if no ships
 available
 """
 import requests
-import json
 
 
 API_ROOT = "https://swapi-api.alx-tools.com/api/"
