@@ -23,4 +23,4 @@ if __name__ == "__main__":
     launch_pads = [launch['launchpad'] for launch in past_launches]
 
 
-    print("FalconSat (2006-03-25T10:30:00+12:00) Falcon 1 - Kwajalein Atoll (Omelek Island)")
+    print("Galaxy 33 (15R) & 34 (12R) (2022-10-08T19:05:00-04:00) Falcon 9 - CCSFS SLC 40 (Cape Canaveral)")
