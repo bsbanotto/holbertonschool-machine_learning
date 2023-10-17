@@ -15,8 +15,6 @@ if __name__ == "__main__":
 
     response = requests.get(API)
 
-    # print(response.headers)
-
     user_data = response.json()
 
     if response.status_code == 200:
