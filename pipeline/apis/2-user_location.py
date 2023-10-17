@@ -15,6 +15,8 @@ if __name__ == "__main__":
 
     response = requests.get(API)
 
+    # print(response.headers)
+
     user_data = response.json()
 
     if response.status_code == 200:
@@ -24,9 +26,6 @@ if __name__ == "__main__":
         print("Not found")
 
     elif response.status_code == 403:
-        rate_url = 'https://api.github.com/rate_limit'
-        rate_response = requests.get(rate_url)
-        rate_response_data = rate_response.json()
-        reset_time = rate_response_data['rate']['reset']
+        reset_time = response.headers['X-RateLimit-Reset']
         now = int(time.time())
         print("Reset in {} min".format((reset_time - now) // 60))
