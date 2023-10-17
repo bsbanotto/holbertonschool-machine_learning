@@ -28,4 +28,4 @@ if __name__ == "__main__":
     elif response.status_code == 403:
         reset_time = response.headers['X-RateLimit-Reset']
         now = int(time.time())
-        print("Reset in {} min".format((reset_time - now) // 60))
+        print("Reset in {} min".format((int(reset_time) - now) // 60))
