@@ -18,10 +18,10 @@ if __name__ == "__main__":
     user_data = response.json()
 
     if response.status_code == 200:
-        if user_data['location']:
-            print(user_data['location'])
-        else:
-            print("Not found")
+        print(user_data['location'])
+
+    elif response.status_code == 404:
+        print("Not found")
 
     elif response.status_code == 403:
         rate_url = 'https://api.github.com/rate_limit'
