@@ -38,7 +38,5 @@ if __name__ == "__main__":
 
     sorted_result = sorted(res_dict.items(), key=lambda x: (-x[1], x[0]))
 
-    sorted_result_dict = {item[0]: item[1] for item in sorted_result}
-
-    for rocket, count in sorted_result_dict.items():
-        print(rocket + ': ' + str(count))
+for i in range(len(sorted_result)):
+    print(sorted_result[i][0] + ': ' + str(sorted_result[i][1]))
