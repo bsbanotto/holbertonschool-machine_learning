@@ -34,10 +34,11 @@ if __name__ == "__main__":
                               key=lambda x: x[1], reverse=True))
 
     # Replace keys in launch_dict with the appropriate rocket names
-    result_dict = {rocket_dict[key]: value for key,
-                   value in launch_dict.items() if key in rocket_dict}
+    res_dict = {rocket_dict[key]: value for key, value in launch_dict.items()}
 
-    # print(result_dict)
+    sorted_result = sorted(res_dict.items(), key=lambda x: (-x[1], x[0]))
 
-    for rocket, count in result_dict.items():
+    sorted_result_dict = {item[0]: item[1] for item in sorted_result}
+
+    for rocket, count in sorted_result_dict.items():
         print(rocket + ': ' + str(count))
