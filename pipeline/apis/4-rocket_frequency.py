@@ -38,5 +38,5 @@ if __name__ == "__main__":
 
     sorted_result = sorted(res_dict.items(), key=lambda x: (-x[1], x[0]))
 
-for i in range(len(sorted_result)):
-    print(sorted_result[i][0] + ': ' + str(sorted_result[i][1]))
+    for i in range(len(sorted_result)):
+        print(sorted_result[i][0] + ': ' + str(sorted_result[i][1]))
