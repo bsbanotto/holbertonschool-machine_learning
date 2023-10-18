@@ -31,11 +31,13 @@ if __name__ == "__main__":
 
     # Convert the list of rockets to a counted and sorted dict
     launch_dict = dict(sorted(Counter(launched_rockets).items(),
-                              key=lambda x: x[1], reverse=True))
+                              key=lambda x: x[1], reverse=False))
 
     # Replace keys in launch_dict with the appropriate rocket names
     result_dict = {rocket_dict[key]: value for key,
                    value in launch_dict.items() if key in rocket_dict}
+    
+    print(result_dict)
 
     for rocket, count in result_dict.items():
         print(rocket + ': ' + str(count))
