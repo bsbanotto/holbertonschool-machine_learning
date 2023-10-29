@@ -279,4 +279,4 @@ Write a Python script that provides some stats about Nginx logs stored in MongoD
 
 You can use this dump as data sample:  [dump.zip](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/misc/2020/6/645541f867bb79ae47b7a80922e9a48604a569b9.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231029%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231029T172405Z&X-Amz-Expires=345600&X-Amz-SignedHeaders=host&X-Amz-Signature=10b145bc14cec84f0d3932a3ffca257595e955569e543e0c169539f0fd441478 "dump.zip")
 
-The output of your script  **must be exactly the same as the example**
+The output of your script  **must be exactly the same as the example**mysql
