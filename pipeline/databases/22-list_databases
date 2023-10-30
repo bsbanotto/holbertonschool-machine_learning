@@ -1,2 +1,2 @@
-// Show mongo databases
+// mongosh script to show all mongo databases
 show databases
