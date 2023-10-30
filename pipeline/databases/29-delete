@@ -1,7 +1,4 @@
 // mongosh script that deletes all documents with `name="Holberton school"` in the collection school
-db.school.remove(
+db.school.deleteMany(
     { name: "Holberton school" },
-    {
-        justOne: false
-    }
 )
