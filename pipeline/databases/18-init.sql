@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (id)
 );
 
-INSERT INTO users (email, name) VALUES ("bob@dylan.com", "Bob");
-INSERT INTO users (email, name, valid_email) VALUES ("sylvie@dylan.com", "Sylvie", 1);
-INSERT INTO users (email, name, valid_email) VALUES ("jeanne@dylan.com", "Jeanne", 1);
+INSERT INTO users (email, name, valid_email) VALUES ("email0@test.com", "Test 0", 1);
+INSERT INTO users (email, name, valid_email) VALUES ("email1@test.com", "Test 1", 0);
+INSERT INTO users (email, name, valid_email) VALUES ("email2@test.com", "Test 2", 1);
+INSERT INTO users (email, name, valid_email) VALUES ("email3@test.com", "Test 3", 0);

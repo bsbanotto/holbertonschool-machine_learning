@@ -5,9 +5,11 @@ CREATE TRIGGER valid_email
 BEFORE UPDATE ON users
 FOR EACH ROW
 BEGIN
-    IF old.email = new.email THEN
+    IF old.email = new.email AND old.valid_email = 1 THEN
         SET new.valid_email = 1;
-    ELSE
+    ELSEIF old.email = new.email AND old.valid_email = 0 THEN
+        SET new.valid_email = 0;
+    ELSEIF old.email != new.email THEN
         SET new.valid_email = 0;
     END IF;
 END;//
