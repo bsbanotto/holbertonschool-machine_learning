@@ -8,7 +8,7 @@ CREATE PROCEDURE ComputeAverageScoreForUser(
     IN user_id INT
 )
 BEGIN
-    DECLARE users_average_score INT;
+    DECLARE users_average_score DECIMAL(3, 1);
 
     -- Calculate the average score for the user
     SELECT AVG(score) INTO users_average_score
