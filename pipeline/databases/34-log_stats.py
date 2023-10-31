@@ -23,7 +23,7 @@ if __name__ == "__main__":
         method_stats_dict[method] = method_count
 
     for item, value in method_stats_dict.items():
-        print('\t method ' + item + ': ' + str(value))
+        print('\tmethod ' + item + ': ' + str(value))
 
     # Print the number of documents with method=GET, path=/status
     status_count = nginx_collection.count_documents({'method': 'GET',
