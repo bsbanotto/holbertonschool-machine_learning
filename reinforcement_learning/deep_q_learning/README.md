@@ -9,13 +9,13 @@ I'm including these because it's my first time creating a conda environment
 and although this is probably silly, I want to remember this time forever
 
 Create (breakout) conda environment using this command from the environment directory
-`conda env create -f environment.yml`
+`conda env create -f environment/environment.yml`
 
 Activate the deep_q environment 
 `conda activate deep_q`
 
 Install requirements using this command fron the environment directory
-`pip install -r requirements.txt`
+`pip install -r environment/requirements.txt`
 
 To use this environment in a Jupyter Notebook
 1. Install ipykernel
